@@ -86,7 +86,7 @@ include 'include/header-links.php';
                     <a href="login.php" class="text-color hover-underline">Login</a>
                     <p>
                       Not a member?
-                      <a href="sign-up.php" class="text-color hover-underline">Register</a>
+                      <a href="register.php" class="text-color hover-underline">Register</a>
                     </p>
                   </div>
                 </div>

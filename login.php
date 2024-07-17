@@ -64,7 +64,7 @@ include 'include/header-links.php';
                 <div class="input-box">
                   <label class="label-text">Email</label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="email" name="email" placeholder="Email" />
+                    <input class="form-control form--control" type="email" name="email" id="email" placeholder="Email" required/>
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
@@ -73,7 +73,8 @@ include 'include/header-links.php';
                   <label class="label-text">Password</label>
                   <div class="input-group mb-3">
                     <span class="la la-lock input-icon z-index-6"></span>
-                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" placeholder="Password" />
+                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password" 
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  required />
 
                     <button class="btn theme-btn theme-btn-transparent toggle-password" type="button">
                       <svg class="eye-on" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#7f8897">
@@ -99,7 +100,7 @@ include 'include/header-links.php';
                   </button>
                   <p class="fs-14 pt-2">
                     Don't have an account?
-                    <a href="sign-up.php" class="text-color hover-underline">Register</a>
+                    <a href="register.php" class="text-color hover-underline">Register</a>
                   </p>
                 </div>
                 <!-- end btn-box -->

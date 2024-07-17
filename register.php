@@ -1,3 +1,50 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'config/connection.php';
+
+function sanitize_input($data)
+{
+  return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve and sanitize form data
+  $fname = sanitize_input($_POST["fname"]);
+  $lname = sanitize_input($_POST["lname"]);
+  $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+  $contact_no = sanitize_input($_POST["phone"]);
+  $designation = sanitize_input($_POST["designation"]);
+  $gender = sanitize_input($_POST["gender"]);
+  $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+
+  // Validate email
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format");
+  }
+
+  // Validate phone number (optional: add more specific validation if needed)
+  if (!preg_match('/^[0-9]{10,11}$/', $contact_no)) {
+    die("Invalid phone number format");
+  }
+
+  //SQL query to insert data into the database
+  $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`, `user_id`) 
+  VALUES ('$fname', '$lname', '$email', '$contact_no', '$designation', '$gender', '$password', '$last_id')";
+
+  //Execute the query
+  if ($conn->query($sql) === TRUE) {
+    $last_id = mysqli_insert_id($conn);
+
+    echo "<h3>User Added Successfully!</h3>";
+    echo "<script> location.href='login.php'; </script>";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    die;
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +75,7 @@ include 'include/header-links.php';
     <div class="container">
       <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
         <div class="section-heading">
-          <h2 class="section__title text-white">Sign Up</h2>
+          <h2 class="section__title text-white">Register</h2>
         </div>
       </div>
       <!-- end breadcrumb-content -->
@@ -63,49 +110,75 @@ include 'include/header-links.php';
               <div class="section-block"></div>
               <form method="post" class="pt-4">
                 <div class="input-box">
-                  <label class="label-text">First Name</label>
+                  <label class="label-text">First Name <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="name" placeholder="First name" />
+                    <input class="form-control form--control" type="text" name="fname" id="fname" placeholder="First name" required />
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
                 <!-- end input-box -->
                 <div class="input-box">
-                  <label class="label-text">Last Name</label>
+                  <label class="label-text">Last Name <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="name" placeholder="Last name" />
+                    <input class="form-control form--control" type="text" name="lname" id="lname" placeholder="Last name" required />
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
                 <!-- end input-box -->
                 <div class="input-box">
-                  <label class="label-text">Email Address</label>
+                  <label class="label-text">Email Address <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="email" name="email" placeholder="Enter email address" />
+                    <input class="form-control form--control" type="email" name="email" id="email" placeholder="Enter email address" required />
                     <span class="la la-envelope input-icon"></span>
                   </div>
                 </div>
                 <div class="input-box">
-                  <label class="label-text">Contact No.</label>
+                  <label class="label-text">Contact No. <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="tel" name="contact" placeholder="Enter contact number" />
+                    <input class="form-control form--control" type="tel" name="phone" id="phone" placeholder="1234567890" pattern="[0-9]{10,11}" required />
                     <span class="la la-phone input-icon"></span>
                   </div>
                 </div>
                 <!-- end input-box -->
                 <div class="input-box">
-                  <label class="label-text">Designation</label>
+                  <label class="label-text">Designation <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="contact" placeholder="Enter your designation" />
+                    <input class="form-control form--control" type="text" name="designation" id="designation" placeholder="Enter your designation" required />
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
                 <!-- end input-box -->
                 <div class="input-box">
-                  <label class="label-text">Password</label>
+                  <label class="label-text">Gender <span class="text-danger">*</span></label>
+                  <div class="form-control-wrap">
+                    <ul class="custom-control-group d-flex justify-content-between">
+                      <li>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="gender" value="male" id="sex-male" checked required>
+                          <label class="custom-control-label" for="sex-male">Male</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="gender" value="female" id="sex-female" required>
+                          <label class="custom-control-label" for="sex-female">Female</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="gender" value="other" id="sex-other" required>
+                          <label class="custom-control-label" for="sex-other">Others</label>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- end input-box -->
+                <div class="input-box">
+                  <label class="label-text">Password <span class="text-danger">*</span></label>
                   <div class="input-group mb-3">
                     <span class="la la-lock input-icon z-index-6"></span>
-                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" placeholder="Password" />
+                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
 
                     <button class="btn theme-btn theme-btn-transparent toggle-password" type="button">
                       <svg class="eye-on" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#7f8897">
@@ -120,6 +193,15 @@ include 'include/header-links.php';
                   </div>
                 </div>
                 <!-- end input-box -->
+                <div class="custom-control custom-checkbox mb-4 fs-15">
+                  <input type="checkbox" class="custom-control-input" id="agreeCheckbox" required />
+                  <label class="custom-control-label custom--control-label" for="agreeCheckbox">by signing I agree to the
+                    <a href="terms-and-conditions.php" class="text-color hover-underline">terms and conditions</a>
+                    and
+                    <a href="privacy-policy.php" class="text-color hover-underline">privacy policy</a>
+                  </label>
+                </div>
+                <!-- end custom-control -->
                 <div class="btn-box">
                   <button class="btn theme-btn" type="submit">
                     Register

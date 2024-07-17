@@ -1,3 +1,10 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'config/connection.php';
+include 'include/session.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -415,7 +422,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -461,7 +468,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -503,7 +510,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -545,7 +552,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -590,7 +597,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -635,7 +642,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
                     </h5>
@@ -965,7 +972,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1011,7 +1018,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1053,7 +1060,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1095,7 +1102,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1140,7 +1147,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1185,7 +1192,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete WordPress Website Business Course</a>
                     </h5>
@@ -1509,7 +1516,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1556,7 +1563,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1599,7 +1606,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1642,7 +1649,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1688,7 +1695,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1734,7 +1741,7 @@ include 'include/header-links.php';
                   </div>
                   <!-- end card-image -->
                   <div class="card-body">
-                    
+
                     <h5 class="card-title">
                       <a href="course-details.php">The Complete Digital Marketing Course - 12 Courses in
                         1</a>
@@ -1975,7 +1982,7 @@ include 'include/header-links.php';
         </div>
         <!-- end section-heading -->
         <div class="cat-btn-box mt-28px">
-          <a href="sign-up.php" class="btn theme-btn">Get Started <i class="la la-arrow-right icon ms-1"></i></a>
+          <a href="register.php" class="btn theme-btn">Get Started <i class="la la-arrow-right icon ms-1"></i></a>
         </div>
         <!-- end cat-btn-box -->
       </div>
@@ -2570,7 +2577,7 @@ include 'include/header-links.php';
             </div>
             <!-- end section-heading -->
             <div class="btn-box pt-35px">
-              <a href="sign-up.php" class="btn theme-btn"><i class="la la-user me-1"></i>Get Started</a>
+              <a href="register.php" class="btn theme-btn"><i class="la la-user me-1"></i>Get Started</a>
             </div>
           </div>
           <!-- end register-content -->
@@ -2926,7 +2933,7 @@ include 'include/header-links.php';
           </div>
           <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
             <li>23 total hours</li>
-            
+
           </ul>
           <p class="card-text pt-1 fs-14 lh-22">
             The skills you need to become a BI Analyst - Statistics, Database
@@ -2977,7 +2984,7 @@ include 'include/header-links.php';
           </div>
           <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
             <li>23 total hours</li>
-            
+
           </ul>
           <p class="card-text pt-1 fs-14 lh-22">
             The skills you need to become a BI Analyst - Statistics, Database
@@ -3028,7 +3035,7 @@ include 'include/header-links.php';
           </div>
           <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
             <li>23 total hours</li>
-            
+
           </ul>
           <p class="card-text pt-1 fs-14 lh-22">
             The skills you need to become a BI Analyst - Statistics, Database
@@ -3079,7 +3086,7 @@ include 'include/header-links.php';
           </div>
           <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
             <li>23 total hours</li>
-            
+
           </ul>
           <p class="card-text pt-1 fs-14 lh-22">
             The skills you need to become a BI Analyst - Statistics, Database
@@ -3130,7 +3137,7 @@ include 'include/header-links.php';
           </div>
           <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
             <li>23 total hours</li>
-            
+
           </ul>
           <p class="card-text pt-1 fs-14 lh-22">
             The skills you need to become a BI Analyst - Statistics, Database

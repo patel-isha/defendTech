@@ -707,13 +707,13 @@ Author Email:   contact@techydevs.com
                 successMessage.classList.remove('active');
             }, 2000);
         });
-        /*========= International Telephone Dial Codes ========*/
-        if ($(internationalTelephoneInput).length) {
-            $(internationalTelephoneInput).intlTelInput({
-                separateDialCode: true,
-                utilsScript: "js/utils.js"
-            })
-        }
+        // /*========= International Telephone Dial Codes ========*/
+        // if ($(internationalTelephoneInput).length) {
+        //     $(internationalTelephoneInput).intlTelInput({
+        //         separateDialCode: true,
+        //         utilsScript: "js/utils.js"
+        //     })
+        // }
         /*========= Resume upload ========*/
         if ($(fileUploaderInput).length) {
             $(fileUploaderInput).MultiFile({
