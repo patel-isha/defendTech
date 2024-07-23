@@ -9,7 +9,7 @@
                                 <i class="la la-phone me-1"></i><a href="tel:00123456789"> (00) 123 456 789</a>
                             </li>
                             <li class="d-flex align-items-center">
-                                <i class="la la-envelope-o me-1"></i><a href="mailto:contact@demo.com"> contact@demo.com</a>
+                                <i class="la la-envelope-o me-1"></i><a href="mailto:contact@demo.com"> contact@defendtech.com</a>
                             </li>
                         </ul>
                     </div>
@@ -78,7 +78,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="logo-box">
-                            <a href="index.php" class="logo"><img src="assets/images/demo-logo.jpg" class="w-70" alt="logo" /></a>
+                            <a href="index.php" class="logo"><img src="assets/images/logo.png" class="w-90" alt="logo" /></a>
                             <div class="user-btn-action">
                                 <div class="search-menu-toggle icon-element icon-element-sm shadow-sm me-2" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>

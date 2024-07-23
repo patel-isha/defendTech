@@ -6800,7 +6800,7 @@ textarea {
   -ms-flex-pack: end;
   justify-content: flex-end;
   padding-top: 20px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   position: relative;
 }
 @media (max-width: 1199px) {
