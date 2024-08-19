@@ -7,7 +7,7 @@
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
                     <a href="index.php">
-                        <img src="assets/images/demo-logo.jpg" alt="footer logo" class="footer__logo w-70" />
+                        <img src="assets/images/logo.png" alt="footer logo" class="footer__logo w-70" />
                     </a>
                     <ul class="generic-list-item pt-4">
                         <li><a href="tel:+1631237884">+163 123 7884</a></li>
