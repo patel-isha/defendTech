@@ -6,10 +6,10 @@
                     <div class="header-widget">
                         <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14">
                             <li class="d-flex align-items-center pe-3 me-3 border-right border-right-gray">
-                                <i class="la la-phone me-1"></i><a href="tel:00123456789"> (00) 123 456 789</a>
+                                <i class="la la-phone me-1 f-large"></i><a href="tel:+1(888)7601940"> + 1 (888) 760 1940</a>
                             </li>
                             <li class="d-flex align-items-center">
-                                <i class="la la-envelope-o me-1"></i><a href="mailto:contact@demo.com"> contact@defendtech.com</a>
+                                <i class="la la-envelope-o me-1 f-large"></i><a href="mailto:info@defendtech.com"> info@defendtech.com</a>
                             </li>
                         </ul>
                     </div>
@@ -41,10 +41,10 @@
                         <?php if (!isset($_SESSION['user_id'])) { ?>
                             <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray ps-3 ms-3">
                                 <li class="d-flex align-items-center pe-3 me-3 border-right border-right-gray">
-                                    <i class="la la-sign-in me-1"></i><a href="login.php"> Login</a>
+                                    <i class="la la-sign-in me-1 f-large"></i><a href="login.php"> Login</a>
                                 </li>
                                 <li class="d-flex align-items-center">
-                                    <i class="la la-user me-1"></i><a href="register.php"> Register</a>
+                                    <i class="la la-user me-1 f-large"></i><a href="register.php"> Register</a>
                                 </li>
                             </ul>
                         <?php } else { ?>
@@ -185,6 +185,69 @@
                                 <!-- end ul -->
                             </nav>
                             <!-- end main-menu -->
+                            <div class="shop-cart me-4">
+                                <ul>
+                                    <li>
+                                        <p class="shop-cart-btn d-flex align-items-center">
+                                            <i class="la la-shopping-cart f-large"></i>
+                                            <span class="product-count">2</span>
+                                        </p>
+                                        <ul class="cart-dropdown-menu">
+                                            <li class="media media-card">
+                                                <a href="shopping-cart.html" class="media-img">
+                                                    <img
+                                                        src="images/small-img.jpg"
+                                                        alt="Cart image" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h5>
+                                                        <a href="course-details.html">The Complete JavaScript Course 2021: From
+                                                            Zero to Expert!</a>
+                                                    </h5>
+                                                    <span class="d-block lh-18 py-1">Kamran Ahmed</span>
+                                                    <p class="text-black font-weight-semi-bold lh-18">
+                                                        $12.99
+                                                        <span class="before-price fs-14">$129.99</span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="media media-card">
+                                                <a href="shopping-cart.html" class="media-img">
+                                                    <img
+                                                        src="images/small-img.jpg"
+                                                        alt="Cart image" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h5>
+                                                        <a href="course-details.html">The Complete JavaScript Course 2021: From
+                                                            Zero to Expert!</a>
+                                                    </h5>
+                                                    <span class="d-block lh-18 py-1">Kamran Ahmed</span>
+                                                    <p class="text-black font-weight-semi-bold lh-18">
+                                                        $12.99
+                                                        <span class="before-price fs-14">$129.99</span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li class="media media-card">
+                                                <div class="media-body fs-16">
+                                                    <p class="text-black font-weight-semi-bold lh-18">
+                                                        Total: <span class="cart-total">$12.99</span>
+                                                        <span class="before-price fs-14">$129.99</span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="shopping-cart.html"
+                                                    class="btn theme-btn w-100">Got to cart
+                                                    <i class="la la-arrow-right icon ms-1"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end shop-cart -->
                         </div>
                         <!-- end menu-wrapper -->
                     </div>

@@ -9,3 +9,11 @@
 .pt-80 {
     padding-top: 80px;
 }
+
+.f-large {
+    font-size: large;
+}
+
+.min-h50 {
+    min-height: 50px;
+}

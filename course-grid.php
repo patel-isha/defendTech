@@ -257,41 +257,6 @@ include 'include/header-links.php';
             <!-- end card -->
             <div class="card card-item">
               <div class="card-body">
-                <h3 class="card-title fs-18 pb-2">Video Duration</h3>
-                <div class="divider"><span></span></div>
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="videoDurationCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="videoDurationCheckbox">
-                    0-2 Hours<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="videoDurationCheckbox2" required />
-                  <label class="custom-control-label custom--control-label text-black" for="videoDurationCheckbox2">
-                    3-6 Hours<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="videoDurationCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="videoDurationCheckbox3">
-                    7-14 Hours<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="videoDurationCheckbox4" required />
-                  <label class="custom-control-label custom--control-label text-black" for="videoDurationCheckbox4">
-                    16+ Hours<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-              </div>
-            </div>
-            <!-- end card -->
-            <div class="card card-item">
-              <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Level</h3>
                 <div class="divider"><span></span></div>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
@@ -322,83 +287,6 @@ include 'include/header-links.php';
                   </label>
                 </div>
                 <!-- end custom-control -->
-              </div>
-            </div>
-            <!-- end card -->
-            <div class="card card-item">
-              <div class="card-body">
-                <h3 class="card-title fs-18 pb-2">Language</h3>
-                <div class="divider"><span></span></div>
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="lanCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="lanCheckbox">
-                    English<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="laCheckbox2" required />
-                  <label class="custom-control-label custom--control-label text-black" for="laCheckbox2">
-                    Português<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="lanCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="lanCheckbox3">
-                    Español<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="lanCheckbox4" required />
-                  <label class="custom-control-label custom--control-label text-black" for="lanCheckbox4">
-                    Türkçe<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="collapse" id="collapseMoreTwo">
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="lanCheckbox5" required />
-                    <label class="custom-control-label custom--control-label text-black" for="lanCheckbox5">
-                      Français<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="lanCheckbox6" required />
-                    <label class="custom-control-label custom--control-label text-black" for="lanCheckbox6">
-                      中文<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="lanCheckbox7" required />
-                    <label class="custom-control-label custom--control-label text-black" for="lanCheckbox7">
-                      Deutsch<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="lanCheckbox8" required />
-                    <label class="custom-control-label custom--control-label text-black" for="lanCheckbox8">
-                      日本語<span class="ms-1 text-gray">(300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="lanCheckbox9" required />
-                    <label class="custom-control-label custom--control-label text-black" for="lanCheckbox9">
-                      Polski<span class="ms-1 text-gray">(300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                </div>
-                <!-- end collapse -->
-                <a class="collapse-btn collapse--btn fs-15" data-bs-toggle="collapse" href="#collapseMoreTwo" role="button" aria-expanded="false" aria-controls="collapseMoreTwo">
-                  <span class="collapse-btn-hide">Show more<i class="la la-angle-down ms-1 fs-14"></i></span>
-                  <span class="collapse-btn-show">Show less<i class="la la-angle-up ms-1 fs-14"></i></span>
-                </a>
               </div>
             </div>
             <!-- end card -->
@@ -504,41 +392,6 @@ include 'include/header-links.php';
                   <span class="collapse-btn-hide">Show more<i class="la la-angle-down ms-1 fs-14"></i></span>
                   <span class="collapse-btn-show">Show less<i class="la la-angle-up ms-1 fs-14"></i></span>
                 </a>
-              </div>
-            </div>
-            <!-- end card -->
-            <div class="card card-item">
-              <div class="card-body">
-                <h3 class="card-title fs-18 pb-2">Features</h3>
-                <div class="divider"><span></span></div>
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="featureCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="featureCheckbox">
-                    Captions<span class="ms-1 text-gray">(20,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="featureCheckbox2" required />
-                  <label class="custom-control-label custom--control-label text-black" for="featureCheckbox2">
-                    Quizzes<span class="ms-1 text-gray">(5,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="featureCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="featureCheckbox3">
-                    Coding Exercises<span class="ms-1 text-gray">(12)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="featureCheckbox4" required />
-                  <label class="custom-control-label custom--control-label text-black" for="featureCheckbox4">
-                    Practice Tests<span class="ms-1 text-gray">(200)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
               </div>
             </div>
             <!-- end card -->

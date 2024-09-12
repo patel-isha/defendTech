@@ -159,33 +159,18 @@ include 'include/header-links.php';
             <div class="section-heading">
               <h2 class="section__title pb-3">We'd love to hear from you</h2>
               <p class="section__desc">
-                Lorem ipsum is simply free text dolor sit amett quie
-                adipiscing elit. When an unknown printer took a galley.
-                quiaies lipsum dolor sit atur adip scing
+              Have questions or need assistance? Reach out to us anytime! We're here to help with your queries
+               and support your learning journey.
               </p>
             </div>
             <!-- end section-heading -->
-            <ul class="social-icons social-icons-styled social--icons-styled pt-30px">
-              <li>
-                <a href="#"><i class="la la-facebook"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="la la-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="la la-instagram"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="la la-youtube"></i></a>
-              </li>
-            </ul>
           </div>
         </div>
         <!-- end col-lg-5 -->
         <div class="col-lg-7">
           <div class="card card-item">
             <div class="card-body">
-              <form method="post" action="https://techydevs.com/demos/themes/html/DefendTech-demo/DefendTech/php/contact.php" class="contact-form">
+              <form method="post" class="contact-form">
                 <div class="alert alert-success contact-success-message" role="alert">
                   Thank You! Your message has been sent.
                 </div>

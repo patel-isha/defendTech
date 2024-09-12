@@ -10,26 +10,7 @@
                         <img src="assets/images/logo.png" alt="footer logo" class="footer__logo w-70" />
                     </a>
                     <ul class="generic-list-item pt-4">
-                        <li><a href="tel:+1631237884">+163 123 7884</a></li>
-                        <li>
-                            <a href="mailto:support@wbsite.com">support@website.com</a>
-                        </li>
-                        <li>Uk</li>
-                    </ul>
-                    <h3 class="fs-20 font-weight-semi-bold pt-4 pb-2">We are on</h3>
-                    <ul class="social-icons social-icons-styled">
-                        <li class="me-1">
-                            <a href="#" class="facebook-bg"><i class="la la-facebook"></i></a>
-                        </li>
-                        <li class="me-1">
-                            <a href="#" class="twitter-bg"><i class="la la-twitter"></i></a>
-                        </li>
-                        <li class="me-1">
-                            <a href="#" class="instagram-bg"><i class="la la-instagram"></i></a>
-                        </li>
-                        <li class="me-1">
-                            <a href="#" class="linkedin-bg"><i class="la la-linkedin"></i></a>
-                        </li>
+                        <li>To educate, inform, and empower individuals and organizations to protect their digital lives through accessible and engaging content.</li>
                     </ul>
                 </div>
                 <!-- end footer-item -->
@@ -40,12 +21,10 @@
                     <h3 class="fs-20 font-weight-semi-bold">Company</h3>
                     <span class="section-divider section--divider"></span>
                     <ul class="generic-list-item">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Become a Teacher</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="about.php">About us</a></li>
+                        <li><a href="course-grid.php">Courses</a></li>
+                        <li><a href="quiz.php">Quiz</a></li>
+                        <li><a href="blog.php">Blog</a></li>
                     </ul>
                 </div>
                 <!-- end footer-item -->
@@ -56,12 +35,12 @@
                     <h3 class="fs-20 font-weight-semi-bold">Courses</h3>
                     <span class="section-divider section--divider"></span>
                     <ul class="generic-list-item">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Hacking</a></li>
-                        <li><a href="#">PHP Learning</a></li>
-                        <li><a href="#">Spoken English</a></li>
-                        <li><a href="#">Self-Driving Car</a></li>
-                        <li><a href="#">Garbage Collectors</a></li>
+                        <li><a href="#">Introduction to Cybersecurity</a></li>
+                        <li><a href="#">Recognizing Phishing Attacks</a></li>
+                        <li><a href="#">Building Strong Passwords</a></li>
+                        <li><a href="#">Cybersecurity Quizzes</a></li>
+                        <li><a href="#">Cybersecurity Problem-Solving</a></li>
+                        <li><a href="#">Advanced Cybersecurity Tutorials</a></li>
                     </ul>
                 </div>
                 <!-- end footer-item -->
@@ -69,15 +48,15 @@
             <!-- end col-lg-3 -->
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
-                    <h3 class="fs-20 font-weight-semi-bold">Download App</h3>
+                    <h3 class="fs-20 font-weight-semi-bold">Contact Us</h3>
                     <span class="section-divider section--divider"></span>
-                    <div class="mobile-app">
-                        <p class="pb-3 lh-24">
-                            Download our mobile app and learn on the go.
-                        </p>
-                        <a href="#" class="d-block mb-2 hover-s"><img src="assets/images/appstore.png" alt="App store" class="img-fluid" /></a>
-                        <a href="#" class="d-block hover-s"><img src="assets/images/googleplay.png" alt="Google play store" class="img-fluid" /></a>
-                    </div>
+                    <ul class="generic-list-item">
+                        <li><a href="tel:+1(888)7601940">+ 1 (888) 760 1940</a></li>
+                        <li>
+                            <a href="mailto:info@defendtech.com">info@defendtech.com</a>
+                        </li>
+                        <li>110-114 Middlesex St, London E1 7HT</li>
+                    </ul>
                 </div>
                 <!-- end footer-item -->
             </div>
@@ -92,8 +71,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <p class="copy-desc">
-                        &copy; 2024 DefendTech. All Rights Reserved. by
-                        <a href="https://techydevs.com/">TechyDevs</a>
+                        &copy; 2024 DefendTech. All Rights Reserved.
                     </p>
                 </div>
                 <!-- end col-lg-6 -->

@@ -218,7 +218,7 @@ include 'include/header-links.php';
           ?>
               <div class="col-lg-4 responsive-column-half">
                 <div class="category-item">
-                  <img class="cat__img lazy" src="assets/images/img-loading.png" data-src="<?php echo $row['cc_image']; ?>" alt="Category image" />
+                  <img class="cat__img lazy" src="assets/images/categories/basics.jpg" data-src="<?php echo $row['cc_image']; ?>" alt="Category image" />
                   <div class="category-content">
                     <div class="category-inner">
                       <h3 class="cat__title"><a href="#"><?php echo $row['cc_name']; ?></a></h3>
@@ -268,9 +268,6 @@ include 'include/header-links.php';
           $result->data_seek(0);
           if ($result->num_rows > 0) {
             while ($category = $result->fetch_assoc()) {
-              
-
-              # Make sure the field names are correct
               $categoryId = isset($category['cc_id']) ? $category['cc_id'] : 'unknown_id';
               $categoryAlias = isset($category['cc_allias']) ? $category['cc_allias'] : 'No Name';
 
@@ -299,9 +296,6 @@ include 'include/header-links.php';
           $isActive = true;
           if ($result->num_rows > 0) {
             while ($category = $result->fetch_assoc()) {
-              # Debug: Output category data
-              echo "Processing category ID: " . $category['cc_id'] . "<br>";
-
               $activeClass = $isActive ? 'show active' : '';
               $isActive = false;
               echo '<div class="tab-pane fade ' . $activeClass . '" id="' . $category['cc_id'] . '" role="tabpanel" aria-labelledby="' . $category['cc_id'] . '-tab">';
@@ -318,21 +312,26 @@ include 'include/header-links.php';
 
               if ($coursesResult->num_rows > 0) {
                 while ($course = $coursesResult->fetch_assoc()) {
-                  echo '<div class="col-lg-4 responsive-column-half">';
-                  echo '<div class="card card-item card-preview" data-tooltip-content="#tooltip_content_' . $course['course_id'] . '">';
-                  echo '<div class="card-image">';
-                  echo '<a href="course-details.php?course_id=' . $course['course_id'] . '" class="d-block">';
-                  echo '<img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="' . $course['course_image'] . '" alt="Card image cap" />';
-                  echo '</a>';
-                  echo '</div>';
-                  echo '<div class="card-body">';
-                  echo '<h5 class="card-title">';
-                  echo '<a href="course-details.php?course_id=' . $course['course_id'] . '">' . $course['course_title'] . '</a>';
-                  echo '</h5>';
-                  echo '<p class="card-text">' . $course['course_author'] . '</p>';
-                  echo '<div class="rating-wrap d-flex align-items-center py-2">';
-                  echo '<div class="review-stars">';
-                  echo '<span class="rating-number">' . round($course['avg_rating'], 1) . '</span>';
+                  echo
+                  '<div class="col-lg-4 responsive-column-half">
+                    <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_' . $course['course_id'] . '">
+                      <div class="card-image">
+                        <a href="course-details.php?course_id=' . $course['course_id'] . '" class="d-block">
+                          <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="' . $course['course_image'] . '" alt="Card image cap" />
+                        </a>
+                        <div class="course-badge-labels">
+                          <div class="course-badge">Bestseller</div>
+                        </div>
+                      </div>
+                    <div class="card-body">
+                      <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">' . $course['course_level'] . '</h6>
+                      <h5 class="card-title min-h50">
+                        <a href="course-details.php?course_id=' . $course['course_id'] . '">' . $course['course_title'] . '</a>
+                      </h5>
+                      <p class="card-text">' . $course['course_author'] . '</p>
+                      <div class="rating-wrap d-flex align-items-center py-2">
+                        <div class="review-stars">
+                          <span class="rating-number">' . round($course['avg_rating'], 1) . '</span>';
                   for ($i = 1; $i <= 5; $i++) {
                     if ($i <= round($course['avg_rating'])) {
                       echo '<span class="la la-star"></span>';
@@ -340,32 +339,37 @@ include 'include/header-links.php';
                       echo '<span class="la la-star-o"></span>';
                     }
                   }
-                  echo '</div>';
-                  echo '<span class="rating-total ps-1">(' . $course['total_reviews'] . ')</span>';
-                  echo '</div>';
-                  echo '</div>';
-                  echo '</div>';
-                  echo '</div>';
+                  echo '</div>
+                        <span class="rating-total ps-1">(' . $course['total_reviews'] . ')</span>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-price text-black font-weight-bold">£ ' . $course['course_cost'] . '</p>
+                        <a href="#" class="btn theme-btn">
+                          <i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>';
                 }
               } else {
                 echo '<div class="col-lg-4">No courses found</div>';
               }
-
-              echo '</div>';
-              echo '</div>';
+              echo '</div>
+             </div>';
             }
           } else {
-            echo '<div class="tab-pane fade show active" id="no-categories" role="tabpanel" aria-labelledby="no-categories-tab">';
-            echo '<div class="row">';
-            echo '<div class="col-lg-12">No categories found</div>';
-            echo '</div>';
-            echo '</div>';
+            echo '<div class="tab-pane fade show active" id="no-categories" role="tabpanel" aria-labelledby="no-categories-tab">
+            <div class="row">
+              <div class="col-lg-12">No categories found</div>
+            </div>
+            </div>';
           }
           ?>
         </div>
         <!-- end tab-content -->
         <div class="more-btn-box mt-4 text-center">
-          <a href="course-grid.html" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ms-1"></i></a>
+          <a href="course-grid.php" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ms-1"></i></a>
         </div>
         <!-- end more-btn-box -->
       </div>
@@ -394,7 +398,7 @@ include 'include/header-links.php';
                 </g>
               </svg>
             </div>
-            <h4 class="counter__title counter text-color-2">7520</h4>
+            <h4 class="counter__title counter text-color-2">328</h4>
             <p class="counter__meta">expert instructors</p>
           </div>
           <!-- end counter-item -->
@@ -441,8 +445,8 @@ include 'include/header-links.php';
                 </g>
               </svg>
             </div>
-            <h4 class="counter__title counter text-color-3">54,252</h4>
-            <p class="counter__meta">foreign followers</p>
+            <h4 class="counter__title counter text-color-3">2602</h4>
+            <p class="counter__meta">Users</p>
           </div>
           <!-- end counter-item -->
         </div>
@@ -499,7 +503,7 @@ include 'include/header-links.php';
                 </g>
               </svg>
             </div>
-            <h4 class="counter__title counter text-color-4">97,220</h4>
+            <h4 class="counter__title counter text-color-4">1500</h4>
             <p class="counter__meta">people enrolled</p>
           </div>
           <!-- end counter-item -->
@@ -528,8 +532,8 @@ include 'include/header-links.php';
                 </g>
               </svg>
             </div>
-            <h4 class="counter__title counter text-color-5">20</h4>
-            <p class="counter__meta">years of experience</p>
+            <h4 class="counter__title counter text-color-5">546</h4>
+            <p class="counter__meta">COurses</p>
           </div>
           <!-- end counter-item -->
         </div>
@@ -921,9 +925,7 @@ include 'include/header-links.php';
               <h2 class="section__title">Benefits of Learning With DefendTech</h2>
               <span class="section-divider"></span>
               <p class="section__desc">
-                Simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry’s when an unknown printerit
-                to make a type specimen book Pellentesque tellus arcu
+                Master cutting-edge cybersecurity skills with expert-led courses and hands-on experience. Stay ahead of evolving threats and secure your future in the digital world.
               </p>
             </div>
             <!-- end section-heading -->
@@ -967,7 +969,7 @@ include 'include/header-links.php';
                     </svg>
                   </div>
                   <h4 class="fs-20 font-weight-semi-bold pt-3">
-                    130,000 Courses
+                    546 Courses
                   </h4>
                 </div>
                 <!-- end info-icon-box -->
@@ -984,7 +986,7 @@ include 'include/header-links.php';
                     </svg>
                   </div>
                   <h4 class="fs-20 font-weight-semi-bold pt-3">
-                    Live Learning
+                    Interactive Learning
                   </h4>
                 </div>
                 <!-- end info-icon-box -->
@@ -1147,16 +1149,11 @@ include 'include/header-links.php';
               </h2>
               <span class="section-divider"></span>
               <p class="section__desc">
-                Education is the process of acquiring the body of knowledge
-                and skills that people are expected have in your society. A
-                education develops a critical thought process in addition to
-                learning. Bimply dummy text of the printing and typesetting
-                istryrem Ipsum has been the industry’s standard dummy text
-                ever since the 1500s, when an unknown printer Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit. Aliquam aliquid
-                architecto aspernatur, facilis perspiciatis rerum saepe vel
-                vitae? Alias culpa dicta facere maiores quam quas, quis
-                sapiente voluptatem? Nulla, voluptatem.
+                Join DefendTech to gain access to expertly crafted Learning Paths that guide you step-by-step in
+                mastering cybersecurity skills. Whether you're a beginner or an experienced professional,
+                our courses are designed to keep you sharp and up-to-date with the latest industry practices,
+                ensuring you stay ahead in your career. Sign up today and start your journey to becoming a
+                cybersecurity expert.
               </p>
             </div>
             <!-- end section-heading -->
@@ -1207,7 +1204,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
@@ -1255,7 +1252,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
@@ -1303,7 +1300,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
@@ -1351,7 +1348,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
@@ -1399,7 +1396,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
@@ -1447,7 +1444,7 @@ include 'include/header-links.php';
             </h5>
             <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
               <li class="d-flex align-items-center">
-                By<a href="#">TechyDevs</a>
+                By<a href="#">DefendTech</a>
               </li>
               <li class="d-flex align-items-center">
                 <a href="#">4 Comments</a>
