@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) && basename($_SERVER['PHP_SELF']) === "booking.php") {
+if (!isset($_SESSION['user_id'])) {
     header("Location:logout.php");
     //exit();
 }

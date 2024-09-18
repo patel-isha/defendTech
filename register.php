@@ -16,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $contact_no = sanitize_input($_POST["phone"]);
   $designation = sanitize_input($_POST["designation"]);
   $gender = sanitize_input($_POST["gender"]);
-  $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+  $password = SHA1($_POST["password"]);
+  $last_id = "";
 
   // Validate email
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -29,8 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   //SQL query to insert data into the database
-  $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`, `user_id`) 
-  VALUES ('$fname', '$lname', '$email', '$contact_no', '$designation', '$gender', '$password', '$last_id')";
+  $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`) 
+  VALUES ('$fname', '$lname', '$email', '$contact_no', '$designation', '$gender', '$password')";
 
   //Execute the query
   if ($conn->query($sql) === TRUE) {
@@ -108,11 +109,11 @@ include 'include/header-links.php';
                 Start Learning!
               </h3>
               <div class="section-block"></div>
-              <form method="post" class="pt-4">
+              <form method="post" class="pt-4" id="registerForm">
                 <div class="input-box">
                   <label class="label-text">First Name <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="fname" id="fname" placeholder="First name" required />
+                    <input class="form-control form--control" type="text" name="fname" id="fname" placeholder="First name" required >
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
@@ -120,7 +121,7 @@ include 'include/header-links.php';
                 <div class="input-box">
                   <label class="label-text">Last Name <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="lname" id="lname" placeholder="Last name" required />
+                    <input class="form-control form--control" type="text" name="lname" id="lname" placeholder="Last name" required >
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
@@ -128,25 +129,37 @@ include 'include/header-links.php';
                 <div class="input-box">
                   <label class="label-text">Email Address <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="email" name="email" id="email" placeholder="Enter email address" required />
+                    <input class="form-control form--control" type="email" name="email" id="email" placeholder="Enter email address" required >
                     <span class="la la-envelope input-icon"></span>
                   </div>
                 </div>
                 <div class="input-box">
                   <label class="label-text">Contact No. <span class="text-danger">*</span></label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="tel" name="phone" id="phone" placeholder="1234567890" pattern="[0-9]{10,11}" required />
+                    <input class="form-control form--control" type="tel" name="phone" id="phone" placeholder="1234567890" pattern="[0-9]{10,11}" required >
                     <span class="la la-phone input-icon"></span>
                   </div>
                 </div>
-                <!-- end input-box -->
-                <div class="input-box">
-                  <label class="label-text">Designation <span class="text-danger">*</span></label>
-                  <div class="form-group">
-                    <input class="form-control form--control" type="text" name="designation" id="designation" placeholder="Enter your designation" required />
-                    <span class="la la-user input-icon"></span>
+                  <!-- end input-box -->
+                  <div class="input-box">
+                      <label class="label-text">Designation <span class="text-danger">*</span></label>
+                      <div class="form-control-wrap">
+                          <ul class="custom-control-group d-flex justify-content-between">
+                              <li>
+                                  <div class="custom-control custom-radio">
+                                      <input type="radio" class="custom-control-input" name="designation" value="student" id="designation-student" checked required>
+                                      <label class="custom-control-label" for="designation-student">Student</label>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="custom-control custom-radio">
+                                      <input type="radio" class="custom-control-input" name="designation" value="tutor" id="designation-tutor" required>
+                                      <label class="custom-control-label" for="designation-tutor">Tutor</label>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
                   </div>
-                </div>
                 <!-- end input-box -->
                 <div class="input-box">
                   <label class="label-text">Gender <span class="text-danger">*</span></label>
@@ -178,7 +191,7 @@ include 'include/header-links.php';
                   <label class="label-text">Password <span class="text-danger">*</span></label>
                   <div class="input-group mb-3">
                     <span class="la la-lock input-icon z-index-6"></span>
-                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required >
 
                     <button class="btn theme-btn theme-btn-transparent toggle-password" type="button">
                       <svg class="eye-on" xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 0 24 24" width="22px" fill="#7f8897">
@@ -242,6 +255,57 @@ include 'include/header-links.php';
   <?php
   include 'include/footer-scripts.php';
   ?>
+  <script>
+      $(document).ready(function () {
+          $("#registerForm").validate({
+              rules: {
+                  fname: "required",
+                  lname: "required",
+                  password: {
+                      required: true,
+                      minlength: 5
+                  },
+                  email: {
+                      required: true,
+                      email: true,
+                  },
+              },
+              messages: {
+                  fname: "Enter your firstname",
+                  lname: "Enter your lastname",
+                  password: {
+                      required: "Provide a password",
+                      minlength: "Enter at least  characters"
+                  },
+                  email: {
+                      required: "Please enter a valid email address",
+                      minlength: "Please enter a valid email address",
+                  },
+              },
+              // // the errorPlacement has to take the table layout into account
+              // errorPlacement: function(error, element) {
+              //     if (element.is(":radio"))
+              //         error.appendTo(element.parent().next().next());
+              //     else if (element.is(":checkbox"))
+              //         error.appendTo(element.next());
+              //     else
+              //         error.appendTo(element.next());
+              // },
+              // specifying a submitHandler prevents the default submit, good for the demo
+              // submitHandler: function() {
+              //     alert("submitted!");
+              // },
+              // set this class to error-labels to indicate valid fields
+              // success: function(label) {
+              //     // set &nbsp; as text for IE
+              //     label.html("&nbsp;").addClass("checked");
+              // },
+              // highlight: function(element, errorClass) {
+              //     $(element).parent().next().find("." + errorClass).removeClass("checked");
+              // }
+          });
+      });
+  </script>
 </body>
 
 </html>

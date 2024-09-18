@@ -51,7 +51,7 @@
                             <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray ps-3 ms-3">
                                 <li class="nav-item dropdown">
                                     <label class="welcome-user cursor-pointer" for="dropdown-toggle">
-                                        <span><i class="fa-solid fa-circle-user fa-fw align-middle f-28"></i></span>Welcome <?php echo $_SESSION['fname']; ?> <i class="fas fa-angle-down align-middle ml-10"></i>
+                                        <span><i class="fa-solid fa-circle-user fa-fw align-middle f-28"></i></span>Welcome <?php echo $_SESSION['name']; ?> <i class="fas fa-angle-down align-middle ml-10"></i>
                                     </label>
                                     <input type="checkbox" id="dropdown-toggle" class="toggle-input">
                                     <ul class="submenu">
@@ -115,7 +115,7 @@
                                              <li>
                                                  <a href="student-detail.html">my details</a>
                                              </li>
-                                             
+
                                              <li><a href="student-path.html">path details </a></li>
                                              <li>
                                                  <a href="student-path-assessment.html">Skill Assessment</a>
@@ -155,7 +155,7 @@
                                                      <a href="register.php">sign-up</a>
                                                      <a href="login.php">login</a>
                                                      <a href="forgot-password.php">recover</a>
-                                                     <a href="shopping-cart.html">cart</a>
+                                                     <a href="shopping-cart.php">cart</a>
                                                      <a href="checkout.html">checkout</a>
                                                      <a href="error.html">page 404</a>
                                                  </li>
@@ -194,7 +194,7 @@
                                         </p>
                                         <ul class="cart-dropdown-menu">
                                             <li class="media media-card">
-                                                <a href="shopping-cart.html" class="media-img">
+                                                <a href="shopping-cart.php" class="media-img">
                                                     <img
                                                         src="images/small-img.jpg"
                                                         alt="Cart image" />
@@ -212,7 +212,7 @@
                                                 </div>
                                             </li>
                                             <li class="media media-card">
-                                                <a href="shopping-cart.html" class="media-img">
+                                                <a href="shopping-cart.php" class="media-img">
                                                     <img
                                                         src="images/small-img.jpg"
                                                         alt="Cart image" />
@@ -239,7 +239,7 @@
                                             </li>
                                             <li>
                                                 <a
-                                                    href="shopping-cart.html"
+                                                    href="shopping-cart.php"
                                                     class="btn theme-btn w-100">Got to cart
                                                     <i class="la la-arrow-right icon ms-1"></i></a>
                                             </li>
@@ -333,7 +333,7 @@
                     <li><a href="register.php">sign-up</a></li>
                     <li><a href="login.php">login</a></li>
                     <li><a href="forgot-password.php">recover</a></li>
-                    <li><a href="shopping-cart.html">cart</a></li>
+                    <li><a href="shopping-cart.php">cart</a></li>
                     <li><a href="checkout.html">checkout</a></li>
                     <li><a href="error.html">page 404</a></li>
                 </ul>

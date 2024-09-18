@@ -1,3 +1,36 @@
+
+<?php
+session_start();
+include 'config/connection.php';
+
+// Check if user is logged in
+if (isset($_SESSION['user_id']) != "") {
+    header("Location:/");
+}
+
+//Check if the form was submitted
+if (isset($_POST['login'])) {
+    $username = $_POST["email"];
+    $password = SHA1($_POST["password"]);
+
+    $sql = "SELECT * FROM `users` where email = '$username' and password = '$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Output data of the first (and only) row
+        $row = $result->fetch_assoc();
+        if ($row['designation'] !== "admin") {
+
+            //Get User Details
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['name'] = $row['firstname']." ".$row['lastname'];
+            header("Location:/");
+        }
+    } else {
+        echo 'No records found';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +52,7 @@ include 'include/header-links.php';
   <?php
   include 'include/header.php';
   ?>
+
 
   <!-- ================================
     START BREADCRUMB AREA
@@ -73,7 +107,7 @@ include 'include/header-links.php';
                   <label class="label-text">Password</label>
                   <div class="input-group mb-3">
                     <span class="la la-lock input-icon z-index-6"></span>
-                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password" 
+                    <input class="form-control form--control top-bottom-left-radius-5 password-field" type="password" name="password" id="password" placeholder="Enter your password"
                     title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  required />
 
                     <button class="btn theme-btn theme-btn-transparent toggle-password" type="button">
@@ -91,11 +125,11 @@ include 'include/header-links.php';
                 <!-- end input-box -->
                 <div class="btn-box">
                   <div class="d-flex align-items-center justify-content-between pb-4">
-                    
+
                     <!-- end custom-control -->
                     <a href="forgot-password.php" class="btn-text">Forgot my password?</a>
                   </div>
-                  <button class="btn theme-btn" type="submit">
+                  <button class="btn theme-btn" type="submit" name="login">
                     Login <i class="la la-arrow-right icon ms-1"></i>
                   </button>
                   <p class="fs-14 pt-2">

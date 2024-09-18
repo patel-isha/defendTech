@@ -1,3 +1,7 @@
+<?php
+include 'config/connection.php';
+include 'include/session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +32,7 @@ include 'include/header-links.php';
       <div class="container">
         <div class="breadcrumb-content">
           <ul class="quiz-nav d-flex flex-wrap align-items-center">
-           
+
             <li>
               <div class="d-flex align-items-center">
                 <a href="course-details.php">

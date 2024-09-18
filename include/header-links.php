@@ -16,6 +16,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="assets/css/select2.min.css" />
     <link rel="stylesheet" href="assets/css/line-awesome.css" />
     <link rel="stylesheet" href="assets/css/animate.min.css" />
