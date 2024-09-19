@@ -23,172 +23,168 @@ include 'include/header-links.php';
     </div>
     <!-- end cssload-loader -->
 
-  <?php
-  include 'include/header.php';
-  ?>
+    <?php
+    include 'include/header.php';
+    ?>
+    <!-- MultiStep Form -->
+    <div class="container-fluid overflowx-hidden">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 p-0 mt-3 mb-2">
+                <div class="card px-0 pb-0 mt-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="step0"></li>
+                                    <li id="step1"></li>
+                                    <li id="step2"></li>
+                                    <li id="step3"></li>
+                                    <li id="step4"></li>
+                                    <li id="step5"></li>
+                                    <li id="step6"></li>
+                                </ul>
+                                <h3 class="navy-blue mb-30"><strong>Cybersecurity Basics <span class="orange">Quiz</span></strong></h3>
+                                <!-- fieldsets -->
+                                <fieldset name="step0">
+                                    <input type="button" name="next" class="next action-button" value="Get Started" />
+                                </fieldset>
+                                <fieldset class="col-11 col-sm-9 col-md-7 col-lg-6 m-auto p-0 mt-3 mb-2">
+                                    <fieldset name="step1">
+                                        <div class="form-card">
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue">1) Which of the following is the strongest password?</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">password123</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">qwerty</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">P@55w0rD!</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">mydogname</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue">2) What should you do if you receive a suspicious email?</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Open it to see if it's important.</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Click the link to find out more.</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Mark it as spam or delete it.</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Reply to ask for more details.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="next" class="next action-button" value="Next" onclick="saveDataAndSend('step2');" />
+                                    </fieldset>
+                                    <fieldset name="step2">
+                                        <div class="form-card">
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">3) Which mode of transportation do you prefer for long-distance travel?</h6>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="traveler" value="Adventure seeker" qid="1">Adventure seeker</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="traveler" value="Relaxation enthusiast" qid="1">Relaxation enthusiast</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="traveler" value="Foodie traveler" qid="1">Foodie traveler</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="traveler" value="Culture explorer" qid="1">Culture explorer</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <label><input type="checkbox" name="traveler" value="Business traveler" qid="1">Business traveler</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">4) What influences your destination choice the most?</h6>
+                                                <textarea class="form-control" rows="3" qid="4"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="next" class="next action-button" value="Next" onclick="saveDataAndSend('step3');" />
+                                    </fieldset>
+                                    <fieldset name="step3">
+                                        <div class="form-card">
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">5) What type of accommodation do you prefer?</h6>
+                                                <textarea class="form-control" rows="3" qid="5"></textarea>
+                                            </div>
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue">6) How do you plan your travel itinerary?</h6>
+                                                <textarea class="form-control" rows="3" qid="6"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="make_payment" class="next action-button" value="Next" />
+                                    </fieldset>
+                                    <fieldset name="step4">
+                                        <div class="form-card">
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">7) What activities do you enjoy most while traveling? (Select all that apply)</h6>
+                                                <textarea class="form-control" rows="3" qid="7"></textarea>
+                                            </div>
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">8) How do you prefer to book your travel arrangements?</h6>
+                                                <textarea class="form-control" rows="3" qid="8"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="next" class="next action-button" value="Next" />
+                                    </fieldset>
+                                    <fieldset name="step5">
+                                        <div class="form-card">
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">9) How important is sustainable/eco-friendly travel to you?</h6>
+                                                <textarea class="form-control" rows="3" qid="9"></textarea>
+                                            </div>
+                                            <div class="mb-30">
+                                                <h6 class="navy-blue mb-3">10) How do you typically document your travel experiences?</h6>
+                                                <textarea class="form-control" rows="3" qid="10"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                        <input type="button" name="next" class="next action-button" value="Finish" />
+                                    </fieldset>
+                                    <fieldset name="step6">
+                                        <div class="form-card">
+                                            <h2 class="fs-title text-center">Success !</h2>
+                                            <br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-3">
+                                                    <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center mt-3">
+                                                <div class="col-6 text-center">
+                                                    <a href="#" id="viewInvoiceLink" class="btn btn-primary action-button w-75">View Your Invoice</a>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row justify-content-center">
+                                                <div class="col-7 text-center">
+                                                    <h5>You Have Successfully Completed The Survey</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </fieldset>
 
-  <!-- ================================
-    START BREADCRUMB AREA
-================================= -->
-  <section class="breadcrumb-area">
-    <div class="bg-white py-3 pattern-bg">
-      <div class="container">
-        <div class="breadcrumb-content">
-          <ul class="quiz-nav d-flex flex-wrap align-items-center">
-
-            <li>
-              <div class="d-flex align-items-center">
-                <a href="course-details.php">
-                  <img src="assets/images/angular.png" alt="Angular thumbnail" />
-                </a>
-                <p>
-                  <a href="course-details.php">Angular Fundamentals</a><span class="d-block fs-13">Brad Traversy</span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- end breadcrumb-content -->
-      </div>
-      <!-- end container -->
-    </div>
-    <div class="bg-dark pt-60px pb-60px">
-      <div class="container">
-        <ul class="quiz-course-nav d-flex align-items-center justify-content-between">
-          <li>
-            <a href="course-details.php" class="icon-element icon-element-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Getting Started with Angular: Introduction">
-              <i class="la la-check"></i>
-            </a>
-          </li>
-          <li>
-            <a href="course-details.php" class="icon-element icon-element-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Getting Started with Angular: Introduction to TypeScript">
-              <i class="la la-check"></i>
-            </a>
-          </li>
-          <li>
-            <a href="course-details.php" class="icon-element icon-element-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Getting Started with Angular: Comparing Angular to AngularJS">
-              <i class="la la-check"></i>
-            </a>
-          </li>
-          <li>
-            <a href="student-quiz.html" class="icon-element icon-element-sm text-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quiz: Getting Started with Angular">
-              <i class="la la-user"></i>
-            </a>
-          </li>
-        </ul>
-        <div class="breadcrumb-content pt-40px">
-          <div class="section-heading">
-            <h2 class="section__title text-white fs-30 pb-2">
-              Question 1 of 5
-            </h2>
-            <p class="section__desc text-white-50">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusamus deleniti deserunt dolorum eligendi exercitationem,
-              facere fuga, hic laudantium obcaecati officia omnis qui quia
-              quisquam rem sed sit ullam velit voluptatibus?
-            </p>
-          </div>
-        </div>
-      </div>
-      <!-- end container -->
-    </div>
-    <div class="quiz-action-nav bg-white py-3 shadow-sm">
-      <div class="container">
-        <div class="quiz-action-content d-flex flex-wrap align-items-center justify-content-between">
-          <ul class="quiz-nav d-flex align-items-center">
-            <li>
-              <i class="la la-sliders fs-17 me-2"></i>Choose the correct
-              answer below
-            </li>
-          </ul>
-          <div class="quiz-nav-btns">
-            <a href="student-quiz-result-details.html" class="btn theme-btn theme-btn-transparent me-2">Skip Quiz</a>
-            <a href="course-details.php" class="btn theme-btn theme-btn-transparent me-2">Review Video</a>
-            <a href="student-quiz-result-details.html" class="btn theme-btn">Next Question <i class="la la-angle-right icon ms-1"></i></a>
-          </div>
-        </div>
-      </div>
-      <!-- end container -->
-    </div>
-    <!-- end quiz-action-nav -->
-  </section>
-  <!-- end breadcrumb-area -->
-  <!-- ================================
-    END BREADCRUMB AREA
-================================= -->
-
-  <!-- ================================
-       START QUIZ ANS AREA
-================================= -->
-  <section class="quiz-ans-wrap pt-60px pb-60px">
-    <div class="container">
-      <div class="quiz-ans-content">
-        <h3 class="fs-22 font-weight-semi-bold">Your Answer:</h3>
-        <div class="quiz-ans-list py-3">
-          <div class="custom-control custom-checkbox mb-1">
-            <input type="checkbox" class="custom-control-input" id="quizAnsCheckbox" required />
-            <label class="custom-control-label custom--control-label" for="quizAnsCheckbox">
-              Ability to use newer syntax and offers reliability
-            </label>
-          </div>
-          <!-- end custom-control -->
-          <div class="custom-control custom-checkbox mb-1">
-            <input type="checkbox" class="custom-control-input" id="quizAnsCheckbox2" required checked />
-            <label class="custom-control-label custom--control-label" for="quizAnsCheckbox2">
-              Compatibility
-            </label>
-          </div>
-          <!-- end custom-control -->
-          <div class="custom-control custom-checkbox mb-1">
-            <input type="checkbox" class="custom-control-input" id="quizAnsCheckbox3" required />
-            <label class="custom-control-label custom--control-label" for="quizAnsCheckbox3">
-              Usage of missing features
-            </label>
-          </div>
-          <!-- end custom-control -->
-        </div>
-        <!-- end quiz-ans-list -->
-        <p class="fs-15">
-          <strong class="font-weight-semi-bold text-black">Note:</strong>
-          There can be multiple correct answers to this question.
-        </p>
-      </div>
-    </div>
-    <!-- end container -->
-  </section>
-  <!-- ================================
-       START QUIZ ANS AREA
-================================= -->
-
-  <!--======================================
-        START CTA AREA
-======================================-->
-  <section class="cta-area py-5 position-relative overflow-hidden bg-gray">
-    <span class="stroke-shape stroke-shape-1"></span>
-    <span class="stroke-shape stroke-shape-2"></span>
-    <span class="stroke-shape stroke-shape-3"></span>
-    <span class="stroke-shape stroke-shape-4"></span>
-    <span class="stroke-shape stroke-shape-5"></span>
-    <span class="stroke-shape stroke-shape-6"></span>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="cta-content-wrap">
-            <h3 class="fs-20 font-weight-semi-bold lh-28">
-              Top companies choose
-              <a href="for-business.html" class="text-color hover-underline">DefendTech for Business</a>
-              to build in-demand career skills.
-            </h3>
-          </div>
-        </div>
-        <!-- end col-lg-6 -->
-        <div class="col-lg-6">
-          <div class="client-logo-wrap text-end">
-            <a href="#" class="client-logo-item client--logo-item-2 pe-3"><img src="assets/images/sponsor-img.png" alt="brand image" /></a>
-            <a href="#" class="client-logo-item client--logo-item-2 pe-3"><img src="assets/images/sponsor-img2.png" alt="brand image" /></a>
-            <a href="#" class="client-logo-item client--logo-item-2 pe-3"><img src="assets/images/sponsor-img3.png" alt="brand image" /></a>
-          </div>
-          <!-- end client-logo-wrap -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
