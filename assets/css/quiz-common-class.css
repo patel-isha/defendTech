@@ -1,0 +1,28 @@
+/* colors */
+.navy-blue {
+    color: #37345D;
+}
+
+.orange {
+    color: #ec5252;
+}
+
+/* margin */
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+/* extra css classes */
+
+.overflowx-hidden {
+    overflow-x: hidden;
+}
+
+.br8 {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}

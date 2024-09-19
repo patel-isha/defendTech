@@ -191,6 +191,14 @@ include 'include/header-links.php';
                 </div>
                 <!-- end input-box -->
                 <div class="input-box">
+                  <label class="label-text">Phone Number</label>
+                  <div class="form-group">
+                    <input id="phone" class="form-control form--control" type="phone" name="phone" placeholder="Enter phone number" />
+                    <span class="la la-phone input-icon"></span>
+                  </div>
+                </div>
+                <!-- end input-box -->
+                <div class="input-box">
                   <label class="label-text">Message</label>
                   <div class="form-group">
                     <textarea id="message" class="form-control form--control ps-4" name="message" rows="5" placeholder="Write message"></textarea>
