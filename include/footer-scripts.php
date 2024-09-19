@@ -13,3 +13,4 @@
  <script src="assets/js/progress-bar.js"></script>
  <script src="assets/js/jquery.lazy.min.js"></script>
  <script src="assets/js/main.js"></script>
+ <script src="assets/js/form.js"></script>
