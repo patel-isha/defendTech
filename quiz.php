@@ -1,7 +1,10 @@
 <?php
-include 'config/connection.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'quiz-config/connection.php';
 include 'include/session.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +13,15 @@ include 'include/header-links.php';
 ?>
 
 <body>
-  <!-- start cssload-loader -->
-  <div class="preloader">
-    <div class="loader">
-      <svg class="spinner" viewBox="0 0 50 50">
-        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-      </svg>
+    <!-- start cssload-loader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+        </div>
     </div>
-  </div>
-  <!-- end cssload-loader -->
+    <!-- end cssload-loader -->
 
   <?php
   include 'include/header.php';
@@ -187,32 +190,60 @@ include 'include/header-links.php';
           </div>
           <!-- end client-logo-wrap -->
         </div>
-        <!-- end col-lg-6 -->
-      </div>
-      <!-- end row -->
     </div>
-    <!-- end container -->
-  </section>
-  <!-- end cta-area -->
-  <!--======================================
-        END CTA AREA
-======================================-->
 
-  <?php
-  include 'include/footer.php';
-  ?>
+    <?php
+    include 'include/footer.php';
+    include 'include/footer-scripts.php';
+    ?>
 
-  <!-- start scroll top -->
-  <div id="scroll-top">
-    <i class="la la-arrow-up" title="Go top"></i>
-  </div>
-  <!-- end scroll top -->
+    <script type="text/javascript">
+        function saveDataAndSend(fieldID) {
+            var formDataArray = [];
+            var fieldset = $('fieldset[name="' + fieldID + '"]');
+            var ResponsID = $('#hdnMainEnrollId').val();
 
-  <?php
-  include 'include/footer-scripts.php';
-  ?>
+            // Loop through selected input elements within the fieldset
+            fieldset.find('input:checked, input[type="text"], select, textarea').each(function() {
+                var fieldName = $(this).attr('name');
+                var qidValue = $(this).attr('qid'); // Retrieve the qid attribute value
+                var value = $(this).val();
+
+                if (fieldName !== "txtFullname") {
+                    // Debug information
+                    console.log("Fieldname- " + fieldName + " -- qid-" + qidValue + "--" + value);
+
+                    // Store field name, qid, and value in a field data object
+                    var fieldData = {
+                        qid: qidValue,
+                        answer: value,
+                        SR_Id: ResponsID
+                    };
+
+                    // Push the field data object into the formDataArray
+                    formDataArray.push(fieldData);
+                }
+            });
+
+            console.log(formDataArray);
+
+            // Send data to the server using AJAX
+            $.ajax({
+                url: 'save_answers.php',
+                type: 'POST',
+                data: {
+                    formData: formDataArray
+                },
+                success: function(response) {
+                    console.log('Data saved successfully:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
+
 </body>
-
-<!-- Mirrored from techydevs.com/demos/themes/html/DefendTech-demo/DefendTech/student-quiz.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 17 Jun 2024 15:27:19 GMT -->
 
 </html>
