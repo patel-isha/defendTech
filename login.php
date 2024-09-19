@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
             //Get User Details
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['name'] = $row['firstname']." ".$row['lastname'];
+            $_SESSION['designation'] = $row['designation'];
             header("Location:/");
         }
     } else {

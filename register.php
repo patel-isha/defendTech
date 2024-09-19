@@ -24,6 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     die("Invalid email format");
   }
 
+    // Check if email exist
+    $sqlEmail = "SELECT * FROM users WHERE email = '$email'";
+
+    $result = $conn->query($sqlEmail);
+
+    if ($result->num_rows > 0) {
+        throw new InvalidArgumentException('Email already exists');
+    }
+
   // Validate phone number (optional: add more specific validation if needed)
   if (!preg_match('/^[0-9]{10,11}$/', $contact_no)) {
     die("Invalid phone number format");
