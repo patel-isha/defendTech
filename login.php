@@ -7,7 +7,7 @@ include 'config/connection.php';
 if (isset($_SESSION['user_id']) != "") {
     header("Location:/");
 }
-
+$error = "";
 //Check if the form was submitted
 if (isset($_POST['login'])) {
     $username = $_POST["email"];
@@ -28,7 +28,7 @@ if (isset($_POST['login'])) {
             header("Location:/");
         }
     } else {
-        echo 'No records found';
+        $error = 'No Records Found!';
     }
 }
 ?>
@@ -94,8 +94,14 @@ include 'include/header-links.php';
               <h3 class="card-title text-center fs-24 lh-35 pb-4">
                 Login to Your Account!
               </h3>
-              <div class="section-block"></div>
+              <div class="section-block">
+              </div>
               <form method="post" class="pt-4">
+                  <?php
+                  if (isset($error) && $error != "") {
+                      echo "<div class='alert alert-danger'>".$error."</div>";
+                  }
+                  ?>
                 <div class="input-box">
                   <label class="label-text">Email</label>
                   <div class="form-group">
