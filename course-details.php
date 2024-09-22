@@ -1,3 +1,15 @@
+<?php
+include 'config/connection.php';
+
+# Prepare the SELECT Query
+$sqlCourseDetail = "SELECT c.*,cc.cc_id, 
+    cc.cc_name,
+    (SELECT AVG(rating) FROM course_review WHERE course_review.course_id = c.course_id GROUP BY course_review.course_id) AS avg_rating FROM course AS c 
+LEFT JOIN course_category AS cc ON cc.cc_id = c.cc_id  
+WHERE c.course_title IS NOT NULL HAVING avg_rating > 0";
+$resultCourseDetail = $conn->query($sqlCourseDetail);
+$courseDetail = $resultCourseDetail->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,24 +46,40 @@ include 'include/header-links.php';
           </ul>
           <div class="section-heading">
             <h2 class="section__title">
-              Java Programming Masterclass for Software Developers
+                <?php echo $courseDetail['course_title']; ?>
             </h2>
             <p class="section__desc pt-2 lh-30">
-              Learn Java In This Course And Become a Computer Programmer.
-              Obtain valuable Core Java Skills And Java Certification
+                <?php echo $courseDetail['course_subtext']; ?>
             </p>
           </div>
           <!-- end section-heading -->
           <div class="d-flex flex-wrap align-items-center pt-3">
-            <h6 class="ribbon ribbon-lg me-2 bg-3 text-white">Bestseller</h6>
+            <h6 class="ribbon ribbon-lg me-2 bg-3 text-white"><?php echo ucfirst(str_replace('_', ' ', $courseDetail['course_badge'])); ?></h6>
             <div class="rating-wrap d-flex flex-wrap align-items-center">
               <div class="review-stars">
-                <span class="rating-number">4.4</span>
-                <span class="la la-star"></span>
-                <span class="la la-star"></span>
-                <span class="la la-star"></span>
-                <span class="la la-star"></span>
-                <span class="la la-star-o"></span>
+                <span class="rating-number"><?php echo number_format($courseDetail['avg_rating'], 1); ?></span>
+                  <?php
+                  // PHP logic for stars
+                  $rating = round($courseDetail["avg_rating"], 1); // Get the average rating (e.g., 3.5)
+                  $filledStars = floor($rating); // Number of fully filled stars
+                  $hasHalfStar = fmod($rating, 1) !== 0.0; // Check if there's a fractional part
+                  $emptyStars = 5 - $filledStars - ($hasHalfStar ? 1 : 0); // Remaining empty stars
+
+                  // Display filled stars
+                  for ($i = 1; $i <= $filledStars; $i++) { ?>
+                  <span class="la la-star"></span>
+                  <?php }
+
+                  // Display half-empty star if applicable
+                  if ($hasHalfStar) { ?>
+                  <span class="la la-star-o"></span>
+                  <?php }
+
+                  // Display empty stars
+                  for ($i = 1; $i <= $emptyStars; $i++) { ?>
+                  <span class="la la-star-o"></span>
+                  <?php } ?>
+
               </div>
               <span class="rating-total ps-1">(20,230 ratings)</span>
               <span class="student-total ps-2">540,815 students</span>
@@ -60,14 +88,14 @@ include 'include/header-links.php';
           <!-- end d-flex -->
           <p class="pt-2 pb-1">
             Created by
-            <a href="teacher-detail.html" class="text-color hover-underline">Tim Buchalka</a>
+            <a href="teacher-detail.html" class="text-color hover-underline"><?php echo $courseDetail['course_author']; ?></a>
           </p>
           <div class="d-flex flex-wrap align-items-center">
             <p class="pe-3 d-flex align-items-center">
               <svg class="svg-icon-color-gray me-1" width="16px" viewBox="0 0 24 24">
                 <path d="M23 12l-2.44-2.78.34-3.68-3.61-.82-1.89-3.18L12 3 8.6 1.54 6.71 4.72l-3.61.81.34 3.68L1 12l2.44 2.78-.34 3.69 3.61.82 1.89 3.18L12 21l3.4 1.46 1.89-3.18 3.61-.82-.34-3.68L23 12zm-10 5h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
               </svg>
-              Last updated 2 Jan,2021
+              Last updated <?php echo date('j M, Y', strtotime($courseDetail['updated_at']));?>
             </p>
             <p class="pe-3 d-flex align-items-center">
               <svg class="svg-icon-color-gray me-1" width="16px" viewBox="0 0 24 24">
