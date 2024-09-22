@@ -2,22 +2,19 @@
 include 'config/connection.php';
 
 //Check if the form was submitted
-if (isset($_POST['forgot_password'])) {
-    $email = $_POST["email"];
+if (isset($_POST['recover_password'])) {
+    $email = $_GET["email"];
+    $oldPassword = SHA1($_POST["password"]);
+    $password = SHA1($_POST["new_password"]);
 
-    $sql = "SELECT * FROM `users` where email = '$email'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // Output data of the first (and only) row
-        $row = $result->fetch_assoc();
-        if ($row['designation'] !== "admin") {
-            echo "<script> location.href='recover-password.php?email=".$email."'; </script>";
-        } else {
-            $error = 'No records found!';
-        }
-    } else {
-        $error = 'No records found!';
+    $checkEmail = "SELECT * FROM `users` where email = '$email' AND password = '$oldPassword' AND designation !='admin' ";
+    $resultEmail = $conn->query($checkEmail);
+    if ($resultEmail->num_rows > 0) {
+        $sqlUser = "UPDATE `users` SET `password` = '$password' WHERE email = '$email'";
+        $conn->query($sqlUser);
+        echo "<script> location.href='recover-password-success.php'; </script>";
+    }else{
+        $error = "Email or Password is Incorrect!";
     }
 }
 ?>
@@ -85,12 +82,6 @@ include 'include/header-links.php';
           <div class="card card-item">
             <div class="card-body">
               <h3 class="card-title fs-24 lh-35 pb-2">Reset Password!</h3>
-              <p class="fs-15 lh-24 pb-3">
-                Enter the email of your account to reset password. Then you
-                will receive a link to email to reset the password.If you have
-                any issue about reset password
-                <a href="contact.php" class="text-color hover-underline">contact us</a>
-              </p>
               <div class="section-block"></div>
               <form method="post" class="pt-4">
                   <?php
@@ -99,15 +90,31 @@ include 'include/header-links.php';
                   }
                   ?>
                 <div class="input-box">
-                  <label class="label-text">Email Address</label>
+                  <label class="label-text">Old Password</label>
                   <div class="form-group">
-                    <input class="form-control form--control" type="text" name="email" placeholder="Enter email Address" />
+                    <input class="form-control form--control" type="password" name="password" id="password" placeholder="Enter old Password" required />
                     <span class="la la-user input-icon"></span>
                   </div>
                 </div>
                 <!-- end input-box -->
+                  <div class="input-box">
+                      <label class="label-text">New Password</label>
+                      <div class="form-group">
+                          <input class="form-control form--control" type="password" name="new_password" id="new_password" placeholder="Enter New Password" required />
+                          <span class="la la-user input-icon"></span>
+                      </div>
+                  </div>
+                  <!-- end input-box -->
+                  <div class="input-box">
+                      <label class="label-text">Confirm Password</label>
+                      <div class="form-group">
+                          <input class="form-control form--control" type="password" name="confirm_password" id="confirm_password" placeholder="Enter Confirm Password" required />
+                          <span class="la la-user input-icon"></span>
+                      </div>
+                  </div>
+                  <!-- end input-box -->
                 <div class="btn-box">
-                  <button class="btn theme-btn" name="forgot_password" type="submit">
+                  <button class="btn theme-btn" name="recover_password" type="submit">
                     Reset Password <i class="la la-arrow-right icon ms-1"></i>
                   </button>
                   <div class="d-flex align-items-center justify-content-between fs-14 pt-2">
@@ -147,6 +154,21 @@ include 'include/header-links.php';
   <?php
   include 'include/footer-scripts.php';
   ?>
+  <script>
+      var new_password = document.getElementById("new_password")
+          , confirm_password = document.getElementById("confirm_password");
+
+      function validatePassword(){
+          if(new_password.value != confirm_password.value) {
+              confirm_password.setCustomValidity("Passwords Don't Match");
+          } else {
+              confirm_password.setCustomValidity('');
+          }
+      }
+
+      new_password.onchange = validatePassword;
+      confirm_password.onkeyup = validatePassword;
+  </script>
 </body>
 
 </html>

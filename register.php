@@ -176,8 +176,8 @@ include 'include/header-links.php';
                       <label class="label-text">Designation <span class="text-danger">*</span></label>
                       <div class="form-group select2-full-wrapper">
                         <div class="select-container w-auto">
-                          <select class="select-container-select">
-                            <option value="select-designation" selected="">
+                          <select class="select-container-select" name="designation" id="designation" required >
+                            <option value="">
                               Select your designation
                             </option>
                             <option value="student/Learner">Student/Learner</option>

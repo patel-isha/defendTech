@@ -1,3 +1,14 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'config/connection.php';
+
+# Prepare the SELECT Query
+$sqlCourseCount = "SELECT COUNT(course_id) as course_count FROM course";
+$resultCourseCount = $conn->query($sqlCourseCount);
+$countCount = $resultCourseCount->fetch_assoc();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +17,7 @@ include 'include/header-links.php';
 ?>
 
 <body>
-  <!-- start cssload-loader -->
+<!--   start cssload-loader -->
   <div class="preloader">
     <div class="loader">
       <svg class="spinner" viewBox="0 0 50 50">
@@ -14,7 +25,7 @@ include 'include/header-links.php';
       </svg>
     </div>
   </div>
-  <!-- end cssload-loader -->
+<!--   end cssload-loader -->
 
   <?php
   include 'include/header.php';
@@ -52,7 +63,7 @@ include 'include/header-links.php';
       <div class="filter-bar mb-4">
         <div class="filter-bar-inner d-flex flex-wrap align-items-center justify-content-between">
           <p class="fs-14">
-            We found <span class="text-black">56</span> courses available for
+            We found <span class="text-black"><?php echo $countCount['course_count'];?></span> courses available for
             you
           </p>
           <div class="d-flex flex-wrap align-items-center">
@@ -78,7 +89,7 @@ include 'include/header-links.php';
                 <div class="divider"><span></span></div>
                 <form method="post">
                   <div class="form-group mb-0">
-                    <input class="form-control form--control ps-3" type="text" name="search" placeholder="Search courses" />
+                    <input class="form-control form--control ps-3" type="text" name="search" id="searchCourse" placeholder="Search courses" />
                     <span class="la la-search search-icon"></span>
                   </div>
                 </form>
@@ -88,9 +99,15 @@ include 'include/header-links.php';
             <div class="card card-item">
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Ratings</h3>
+                  <?php
+                  # Prepare the SELECT Query
+                  $sqlRatingCount = "SELECT SUM(rating = 5) as five, SUM(rating >= 4.5 && rating < 5 ) as four_half_up, SUM(rating >= 3.0 && rating < 4.5 ) as three_up, SUM(rating >= 2.0 && rating < 3.0 ) as two_up, SUM(rating >= 1.0 && rating < 2.0 ) as one_up FROM course_review";
+                  $result = $conn->query($sqlRatingCount);
+                  $ratingCount = $result->fetch_assoc();
+                  ?>
                 <div class="divider"><span></span></div>
                 <div class="custom-control custom-radio mb-1 fs-15">
-                  <input type="radio" class="custom-control-input" id="fiveStarRating" name="radio-stacked" required />
+                  <input type="radio" class="common_selector rating custom-control-input" id="fiveStarRating" value="5" name="radio-stacked" required />
                   <label class="custom-control-label custom--control-label" for="fiveStarRating">
                     <span class="rating-wrap d-flex align-items-center">
                       <span class="review-stars">
@@ -100,12 +117,12 @@ include 'include/header-links.php';
                         <span class="la la-star"></span>
                         <span class="la la-star"></span>
                       </span>
-                      <span class="rating-total ps-1"><span class="me-1 text-black">5.0</span>(20,230)</span>
+                      <span class="rating-total ps-1"><span class="me-1 text-black">5.0</span>(<?php echo $ratingCount['five']; ?>)</span>
                     </span>
                   </label>
                 </div>
                 <div class="custom-control custom-radio mb-1 fs-15">
-                  <input type="radio" class="custom-control-input" id="fourStarRating" name="radio-stacked" required />
+                  <input type="radio" class="common_selector rating custom-control-input" id="fourStarRating" value="4" name="radio-stacked" required />
                   <label class="custom-control-label custom--control-label" for="fourStarRating">
                     <span class="rating-wrap d-flex align-items-center">
                       <span class="review-stars">
@@ -115,12 +132,12 @@ include 'include/header-links.php';
                         <span class="la la-star"></span>
                         <span class="la la-star"></span>
                       </span>
-                      <span class="rating-total ps-1"><span class="me-1 text-black">4.5 & up</span>(10,230)</span>
+                      <span class="rating-total ps-1"><span class="me-1 text-black">4.5 & up</span>(<?php echo $ratingCount['four_half_up']; ?>)</span>
                     </span>
                   </label>
                 </div>
                 <div class="custom-control custom-radio mb-1 fs-15">
-                  <input type="radio" class="custom-control-input" id="threeStarRating" name="radio-stacked" required />
+                  <input type="radio" class="common_selector rating custom-control-input" id="threeStarRating" value="3" name="radio-stacked" required />
                   <label class="custom-control-label custom--control-label" for="threeStarRating">
                     <span class="rating-wrap d-flex align-items-center">
                       <span class="review-stars">
@@ -130,12 +147,12 @@ include 'include/header-links.php';
                         <span class="la la-star"></span>
                         <span class="la la-star"></span>
                       </span>
-                      <span class="rating-total ps-1"><span class="me-1 text-black">3.0 & up</span>(7,230)</span>
+                      <span class="rating-total ps-1"><span class="me-1 text-black">3.0 & up</span>(<?php echo $ratingCount['three_up']; ?>)</span>
                     </span>
                   </label>
                 </div>
                 <div class="custom-control custom-radio mb-1 fs-15">
-                  <input type="radio" class="custom-control-input" id="twoStarRating" name="radio-stacked" required />
+                  <input type="radio" class="common_selector rating custom-control-input" id="twoStarRating" value="2" name="radio-stacked" required />
                   <label class="custom-control-label custom--control-label" for="twoStarRating">
                     <span class="rating-wrap d-flex align-items-center">
                       <span class="review-stars">
@@ -145,12 +162,12 @@ include 'include/header-links.php';
                         <span class="la la-star"></span>
                         <span class="la la-star"></span>
                       </span>
-                      <span class="rating-total ps-1"><span class="me-1 text-black">2.0 & up</span>(5,230)</span>
+                      <span class="rating-total ps-1"><span class="me-1 text-black">2.0 & up</span>(<?php echo $ratingCount['two_up']; ?>)</span>
                     </span>
                   </label>
                 </div>
                 <div class="custom-control custom-radio mb-1 fs-15">
-                  <input type="radio" class="custom-control-input" id="oneStarRating" name="radio-stacked" required />
+                  <input type="radio" class="common_selector rating custom-control-input" id="oneStarRating" value="1" name="radio-stacked" required />
                   <label class="custom-control-label custom--control-label" for="oneStarRating">
                     <span class="rating-wrap d-flex align-items-center">
                       <span class="review-stars">
@@ -160,7 +177,7 @@ include 'include/header-links.php';
                         <span class="la la-star"></span>
                         <span class="la la-star"></span>
                       </span>
-                      <span class="rating-total ps-1"><span class="me-1 text-black">1.0 & up</span>(3,230)</span>
+                      <span class="rating-total ps-1"><span class="me-1 text-black">1.0 & up</span>(<?php echo $ratingCount['one_up']; ?>)</span>
                     </span>
                   </label>
                 </div>
@@ -171,76 +188,20 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Categories</h3>
                 <div class="divider"><span></span></div>
+                  <?php
+                  # Prepare the SELECT Query
+                  $sqlCategory = "SELECT cc_name,cc_id,(SELECT COUNT(course_id) FROM course where course.cc_id = course_category.cc_id) as category_count FROM course_category";
+                  $result = $conn->query($sqlCategory);
+                  while ($row = $result->fetch_assoc()) {
+                  ?>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="catCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox">
-                    Business<span class="ms-1 text-gray">(12,300)</span>
+                  <input type="checkbox" class="common_selector category custom-control-input" id="catCheckbox_<?php echo $row['cc_id']; ?>" value="<?php echo $row['cc_id']; ?>" required />
+                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox_<?php echo $row['cc_id']; ?>">
+                    <?php echo $row['cc_name']; ?><span class="ms-1 text-gray">(<?php echo $row['category_count']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="catCheckbox2" required />
-                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox2">
-                    UI & UX<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="catCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox3">
-                    Animation<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="catCheckbox4" required />
-                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox4">
-                    Game Design<span class="ms-1 text-gray">(12,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="collapse" id="collapseMore">
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="catCheckbox5" required />
-                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox5">
-                      Graphic Design<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="catCheckbox6" required />
-                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox6">
-                      Typography<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="catCheckbox7" required />
-                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox7">
-                      Web Development<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="catCheckbox8" required />
-                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox8">
-                      Photography<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="catCheckbox9" required />
-                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox9">
-                      Finance<span class="ms-1 text-gray">(12,300)</span>
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                </div>
-                <!-- end collapse -->
-                <a class="collapse-btn collapse--btn fs-15" data-bs-toggle="collapse" href="#collapseMore" role="button" aria-expanded="false" aria-controls="collapseMore">
-                  <span class="collapse-btn-hide">Show more<i class="la la-angle-down ms-1 fs-14"></i></span>
-                  <span class="collapse-btn-show">Show less<i class="la la-angle-up ms-1 fs-14"></i></span>
-                </a>
+                <?php } ?>
               </div>
             </div>
             <!-- end card -->
@@ -248,31 +209,30 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Level</h3>
                 <div class="divider"><span></span></div>
+                  <?php
+                      # Prepare the SELECT Query
+                      $sqlLevelCount = "SELECT SUM(course_level = 'Beginner') as beginner, SUM(course_level = 'Intermediate') as intermediate, SUM(course_level = 'Expert') as expert, COUNT(course_id) as total FROM course";
+                      $resultLevelCount = $conn->query($sqlLevelCount);
+                      $levelCount = $resultLevelCount->fetch_assoc();
+                  ?>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="levelCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="levelCheckbox">
-                    All Levels<span class="ms-1 text-gray">(20,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="levelCheckbox2" required />
+                  <input type="checkbox" class="common_selector level custom-control-input" value="Beginner" id="levelCheckbox2" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox2">
-                    Beginner<span class="ms-1 text-gray">(5,300)</span>
+                    Beginner<span class="ms-1 text-gray">(<?php echo $levelCount['beginner'];?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="levelCheckbox3" required />
+                  <input type="checkbox" class="common_selector level custom-control-input" value="Intermediate" id="levelCheckbox3" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox3">
-                    Intermediate<span class="ms-1 text-gray">(3,300)</span>
+                    Intermediate<span class="ms-1 text-gray">(<?php echo $levelCount['intermediate'];?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="levelCheckbox4" required />
+                  <input type="checkbox" class="common_selector level custom-control-input" value="Expert" id="levelCheckbox4" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox4">
-                    Expert<span class="ms-1 text-gray">(1,300)</span>
+                    Expert<span class="ms-1 text-gray">(<?php echo $levelCount['expert'];?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
@@ -283,104 +243,26 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">By Cost</h3>
                 <div class="divider"><span></span></div>
+                  <?php
+                  # Prepare the SELECT Query
+                  $sqlPriceCount = "SELECT SUM(course_cost > 0) as paid, SUM(course_cost = 0) as free, COUNT(*) as total FROM course";
+                  $result = $conn->query($sqlPriceCount);
+                  $priceCount = $result->fetch_assoc();
+                  ?>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="priceCheckbox" required />
+                  <input type="checkbox" class="common_selector cost custom-control-input" value="paid" id="priceCheckbox" required />
                   <label class="custom-control-label custom--control-label text-black" for="priceCheckbox">
-                    Paid<span class="ms-1 text-gray">(19,300)</span>
+                    Paid<span class="ms-1 text-gray">(<?php echo $priceCount['paid'];?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="priceCheckbox2" required />
+                  <input type="checkbox" class="common_selector cost custom-control-input" value="free" id="priceCheckbox2" required />
                   <label class="custom-control-label custom--control-label text-black" for="priceCheckbox2">
-                    Free<span class="ms-1 text-gray">(1,300)</span>
+                    Free<span class="ms-1 text-gray">(<?php echo $priceCount['free'];?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="priceCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="priceCheckbox3">
-                    All<span class="ms-1 text-gray">(20,300)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
-              </div>
-            </div>
-            <!-- end card -->
-            <div class="card card-item">
-              <div class="card-body">
-                <h3 class="card-title fs-18 pb-2">Instructors</h3>
-                <div class="divider"><span></span></div>
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="instructorCheckbox" required />
-                  <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox">
-                    All Instructor
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="instructorCheckbox2" required />
-                  <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox2">
-                    Aatef Jaberi
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="instructorCheckbox3" required />
-                  <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox3">
-                    Emilee Logan
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="custom-control-input" id="instructorCheckbox4" required />
-                  <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox4">
-                    Harley Ferrell
-                  </label>
-                </div>
-                <!-- end custom-control -->
-                <div class="collapse" id="collapseMoreThree">
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="instructorCheckbox5" required />
-                    <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox5">
-                      Nahla Jones
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="instructorCheckbox6" required />
-                    <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox6">
-                      Tomi Hensley
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="instructorCheckbox7" required />
-                    <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox7">
-                      Foley Patrik
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="instructorCheckbox8" required />
-                    <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox8">
-                      Oliver Porter
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                  <div class="custom-control custom-checkbox mb-1 fs-15">
-                    <input type="checkbox" class="custom-control-input" id="instructorCheckbox9" required />
-                    <label class="custom-control-label custom--control-label text-black" for="instructorCheckbox9">
-                      Fahad Chaudhry
-                    </label>
-                  </div>
-                  <!-- end custom-control -->
-                </div>
-                <!-- end collapse -->
-                <a class="collapse-btn collapse--btn fs-15" data-bs-toggle="collapse" href="#collapseMoreThree" role="button" aria-expanded="false" aria-controls="collapseMoreThree">
-                  <span class="collapse-btn-hide">Show more<i class="la la-angle-down ms-1 fs-14"></i></span>
-                  <span class="collapse-btn-show">Show less<i class="la la-angle-up ms-1 fs-14"></i></span>
-                </a>
               </div>
             </div>
             <!-- end card -->
@@ -389,273 +271,10 @@ include 'include/header-links.php';
         </div>
         <!-- end col-lg-4 -->
         <div class="col-lg-8">
-          <div class="row">
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img8.jpg" alt="Card image cap" />
-                  </a>
-                  <div class="course-badge-labels">
-                    <div class="course-badge">Bestseller</div>
-                    <div class="course-badge blue">-39%</div>
-                  </div>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">
-                      12.99
-                      <span class="before-price font-weight-medium">129.99</span>
-                    </p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
-            <!-- end col-lg-6 -->
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img9.jpg" alt="Card image cap" />
-                  </a>
-                  <div class="course-badge-labels">
-                    <div class="course-badge red">Featured</div>
-                  </div>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">
-                      129.99
-                    </p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
-            <!-- end col-lg-6 -->
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img10.jpg" alt="Card image cap" />
-                  </a>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">
-                      129.99
-                    </p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
-            <!-- end col-lg-6 -->
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img11.jpg" alt="Card image cap" />
-                  </a>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">
-                      129.99
-                    </p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
-            <!-- end col-lg-6 -->
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img12.jpg" alt="Card image cap" />
-                  </a>
-                  <div class="course-badge-labels">
-                    <div class="course-badge green">Free</div>
-                  </div>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">Free</p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
-            <!-- end col-lg-6 -->
-            <div class="col-lg-6 responsive-column-half">
-              <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">
-                <div class="card-image">
-                  <a href="course-details.php" class="d-block">
-                    <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="assets/images/img13.jpg" alt="Card image cap" />
-                  </a>
-                  <div class="course-badge-labels">
-                    <div class="course-badge sky-blue">Highest rated</div>
-                  </div>
-                </div>
-                <!-- end card-image -->
-                <div class="card-body">
-                  
-                  <h5 class="card-title">
-                    <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-                  </h5>
-                  <p class="card-text">
-                    <a href="teacher-detail.html">Jose Portilla</a>
-                  </p>
-                  <div class="rating-wrap d-flex align-items-center py-2">
-                    <div class="review-stars">
-                      <span class="rating-number">4.4</span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star"></span>
-                      <span class="la la-star-o"></span>
-                    </div>
-                    <span class="rating-total ps-1">(20,230)</span>
-                  </div>
-                  <!-- end rating-wrap -->
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-price text-black font-weight-bold">
-                      129.99
-                    </p>
-                    <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-                      <i class="la la-heart-o"></i>
-                    </div>
-                  </div>
-                </div>
-                <!-- end card-body -->
-              </div>
-              <!-- end card -->
-            </div>
+          <div class="row filter_data">
           </div>
           <!-- end row -->
-          
+
         </div>
         <!-- end col-lg-8 -->
       </div>
@@ -678,60 +297,61 @@ include 'include/header-links.php';
   </div>
   <!-- end scroll top -->
 
-  <div class="tooltip_templates">
-    <div id="tooltip_content_1">
-      <div class="card card-item">
-        <div class="card-body">
-          <p class="card-text pb-2">
-            By <a href="teacher-detail.html">Jose Portilla</a>
-          </p>
-          <h5 class="card-title pb-1">
-            <a href="course-details.php">The Business Intelligence Analyst Course 2021</a>
-          </h5>
-          <div class="d-flex align-items-center pb-1">
-            <h6 class="ribbon fs-14 me-2">Bestseller</h6>
-            <p class="text-success fs-14 font-weight-medium">
-              Updated<span class="font-weight-bold ps-1">November 2020</span>
-            </p>
-          </div>
-          <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
-            <li>23 total hours</li>
-            
-          </ul>
-          <p class="card-text pt-1 fs-14 lh-22">
-            The skills you need to become a BI Analyst - Statistics, Database
-            theory, SQL, Tableau – Everything is included
-          </p>
-          <ul class="generic-list-item fs-14 py-3">
-            <li>
-              <i class="la la-check me-1 text-black"></i> Become an expert in
-              Statistics, SQL, Tableau, and problem solving
-            </li>
-            <li>
-              <i class="la la-check me-1 text-black"></i> Boost your resume
-              with in-demand skills
-            </li>
-            <li>
-              <i class="la la-check me-1 text-black"></i> Gather, organize,
-              analyze and visualize data
-            </li>
-          </ul>
-          <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="btn theme-btn flex-grow-1 me-3"><i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart</a>
-            <div class="icon-element icon-element-sm shadow-sm cursor-pointer" title="Add to Wishlist">
-              <i class="la la-heart-o"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end card -->
-    </div>
-  </div>
-  <!-- end tooltip_templates -->
-
   <?php
   include 'include/footer-scripts.php';
   ?>
+  <script>
+      $(document).ready(function() {
+
+          filter_data();
+
+          function filter_data() {
+              $('.filter_data').html('<div id="loading" style="" ></div>');
+              var action = 'fetch_data';
+              var type = 'grid';
+              var search = $('#searchCourse').val();
+              var cost = get_filter('cost');
+              var rating = get_filter('rating');
+              var category = get_filter('category');
+              var tutor = get_filter('tutor');
+              var level = get_filter('level');
+              $.ajax({
+                  url: "fetch-filter-course.php",
+                  method: "POST",
+                  data: {
+                      action: action,
+                      type: type,
+                      cost: cost,
+                      rating: rating,
+                      category: category,
+                      tutor: tutor,
+                      search: search,
+                      level: level,
+                  },
+                  success: function(data) {
+                      $('.filter_data').html(data);
+                  }
+              });
+          }
+
+          function get_filter(class_name) {
+              var filter = [];
+              $('.' + class_name + ':checked').each(function() {
+                  filter.push($(this).val());
+              });
+              return filter;
+          }
+
+          $('.common_selector').click(function() {
+              filter_data();
+          });
+
+          $('#searchCourse').keyup(function() {
+              filter_data();
+          });
+
+      });
+  </script>
 </body>
 
 </html>

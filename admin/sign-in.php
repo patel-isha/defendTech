@@ -11,7 +11,6 @@ if (isset($_SESSION['username']) != "") {
 if (isset($_POST['login'])) {
     $username = $_POST["uname"];
     $password = SHA1($_POST["password"]);
-    //$password = $_POST["password"];
 
     $sql = "SELECT * FROM `users` where email = '$username' and password = '$password'";
     $result = $conn->query($sql);
@@ -19,26 +18,24 @@ if (isset($_POST['login'])) {
     if ($result->num_rows > 0) {
         // Output data of the first (and only) row
         $row = $result->fetch_assoc();
-        echo $row['designation'];
-        if ($row['designation'] == "admin" || $row['designation'] == "tutor") {
-            //            $_SESSION['username'] = $row['username'];
-            $_SESSION['fullname'] = $row['designation'] == "admin" ? 'Admin' : $row['first_name'] . "" . $row['last_name'];
-            $_SESSION['designation'] = $row['designation'];
-            //            if ($row['role_type'] == 'owner') {
-            //                $user_id = $row['user_id'];
-            //                $sqlOwner = "SELECT * FROM `owners` where user_id = '$user_id'";
-            //                $resultOwner = $conn->query($sqlOwner);
-            //                $rowOwner = $resultOwner->fetch_assoc();
-            //            }
+        if ($row['designation'] == "admin") {
+//            $_SESSION['username'] = $row['username'];
+//            $_SESSION['fullname'] = $row['full_name'];
+//            $_SESSION['roletype'] = $row['role_type'];
+//            if ($row['role_type'] == 'owner') {
+//                $user_id = $row['user_id'];
+//                $sqlOwner = "SELECT * FROM `owners` where user_id = '$user_id'";
+//                $resultOwner = $conn->query($sqlOwner);
+//                $rowOwner = $resultOwner->fetch_assoc();
+//            }
             //Get Owner Details
             $_SESSION['user_id'] = $row['user_id'];
             header("Location:dashboard.php");
-        } else if ($row['designation'] == "driver") {
-            //header("Location:frontend/index.php");
-            echo 'No records found';
+        } else {
+            $error = 'No records found!';
         }
     } else {
-        echo 'No records found';
+        $error = 'No records found!';
     }
 }
 ?>
@@ -78,6 +75,11 @@ if (isset($_POST['login'])) {
                                     </div>
                                 </div>
                                 <form method="post">
+                                    <?php
+                                    if (isset($error) && $error != "") {
+                                        echo "<div class='alert alert-danger'>".$error."</div>";
+                                    }
+                                    ?>
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="uname">Username</label>
