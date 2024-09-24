@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
         // Output data of the first (and only) row
         $row = $result->fetch_assoc();
         if ($row['designation'] == "admin") {
-//            $_SESSION['username'] = $row['username'];
+            $_SESSION['designation'] = $row['designation'];
 //            $_SESSION['fullname'] = $row['full_name'];
 //            $_SESSION['roletype'] = $row['role_type'];
 //            if ($row['role_type'] == 'owner') {
