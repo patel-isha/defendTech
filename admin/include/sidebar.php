@@ -22,13 +22,13 @@
                          </a>
                      </li>
                      <li class="nk-menu-item has-sub">
-                         <a href="#" class="nk-menu-link nk-menu-toggle">
+                         <a href="javascript:void(0)" class="nk-menu-link nk-menu-toggle">
                              <span class="nk-menu-icon"><em class="icon fa fa-book"></em></span>
                              <span class="nk-menu-text">Courses</span>
                          </a>
                          <ul class="nk-menu-sub">
                              <li class="nk-menu-item">
-                                 <a href="car-list.php" class="nk-menu-link"><span class="nk-menu-text">Categories</span></a>
+                                 <a href="course-list.php" class="nk-menu-link"><span class="nk-menu-text">Courses</span></a>
                              </li>
                              <?php if ($_SESSION['designation'] == 'admin'){ ?>
                                  <li class="nk-menu-item" style="display: <?php if($_SESSION['designation'] == "tutor") {
@@ -37,7 +37,7 @@
                                  else {
                                     echo "block";
                                  } ?>;" >
-                                     <a href="add-car-category.php" class="nk-menu-link"><span class="nk-menu-text">Course Category</span></a>
+                                     <a href="add-course-category.php" class="nk-menu-link"><span class="nk-menu-text">Course Category</span></a>
                                  </li>
                                  <li class="nk-menu-item">
                                      <a href="add-car-brand.php" class="nk-menu-link"><span class="nk-menu-text">Add Course</span></a>

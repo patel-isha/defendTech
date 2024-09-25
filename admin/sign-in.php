@@ -18,20 +18,20 @@ if (isset($_POST['login'])) {
     if ($result->num_rows > 0) {
         // Output data of the first (and only) row
         $row = $result->fetch_assoc();
-        if ($row['designation'] == "admin") {
-//            $_SESSION['username'] = $row['username'];
-//            $_SESSION['fullname'] = $row['full_name'];
-//            $_SESSION['roletype'] = $row['role_type'];
-//            if ($row['role_type'] == 'owner') {
-//                $user_id = $row['user_id'];
-//                $sqlOwner = "SELECT * FROM `owners` where user_id = '$user_id'";
-//                $resultOwner = $conn->query($sqlOwner);
-//                $rowOwner = $resultOwner->fetch_assoc();
-//            }
-            //Get Owner Details
+        if ($row['designation'] == "admin" || $row['designation'] == "tutor") {
+            $_SESSION['firstname'] = $row['first_name'];
+            $_SESSION['designation'] = $row['designation'];
+
+            if ($row['designation'] == 'tutor') {
+                $user_id = $row['user_id'];
+                $sqlOwner = "SELECT * FROM `users` where user_id = '$user_id'";
+                $resultOwner = $conn->query($sqlOwner);
+                $rowOwner = $resultOwner->fetch_assoc();
+            }
+            //Get Tutor Details
             $_SESSION['user_id'] = $row['user_id'];
             header("Location:dashboard.php");
-        } else {
+        } else if ($row['designation'] == "student"){
             $error = 'No records found!';
         }
     } else {
@@ -77,7 +77,7 @@ if (isset($_POST['login'])) {
                                 <form method="post">
                                     <?php
                                     if (isset($error) && $error != "") {
-                                        echo "<div class='alert alert-danger'>".$error."</div>";
+                                        echo "<div class='alert alert-danger'>" . $error . "</div>";
                                     }
                                     ?>
                                     <div class="form-group">

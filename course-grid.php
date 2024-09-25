@@ -17,7 +17,7 @@ include 'include/header-links.php';
 ?>
 
 <body>
-<!--   start cssload-loader -->
+  <!--   start cssload-loader -->
   <div class="preloader">
     <div class="loader">
       <svg class="spinner" viewBox="0 0 50 50">
@@ -25,7 +25,7 @@ include 'include/header-links.php';
       </svg>
     </div>
   </div>
-<!--   end cssload-loader -->
+  <!--   end cssload-loader -->
 
   <?php
   include 'include/header.php';
@@ -63,7 +63,7 @@ include 'include/header-links.php';
       <div class="filter-bar mb-4">
         <div class="filter-bar-inner d-flex flex-wrap align-items-center justify-content-between">
           <p class="fs-14">
-            We found <span class="text-black"><?php echo $countCount['course_count'];?></span> courses available for
+            We found <span class="text-black"><?php echo $countCount['course_count']; ?></span> courses available for
             you
           </p>
           <div class="d-flex flex-wrap align-items-center">
@@ -99,12 +99,12 @@ include 'include/header-links.php';
             <div class="card card-item">
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Ratings</h3>
-                  <?php
-                  # Prepare the SELECT Query
-                  $sqlRatingCount = "SELECT SUM(rating = 5) as five, SUM(rating >= 4.5 && rating < 5 ) as four_half_up, SUM(rating >= 3.0 && rating < 4.5 ) as three_up, SUM(rating >= 2.0 && rating < 3.0 ) as two_up, SUM(rating >= 1.0 && rating < 2.0 ) as one_up FROM course_review";
-                  $result = $conn->query($sqlRatingCount);
-                  $ratingCount = $result->fetch_assoc();
-                  ?>
+                <?php
+                # Prepare the SELECT Query
+                $sqlRatingCount = "SELECT SUM(rating = 5) as five, SUM(rating >= 4.5 && rating < 5 ) as four_half_up, SUM(rating >= 3.0 && rating < 4.5 ) as three_up, SUM(rating >= 2.0 && rating < 3.0 ) as two_up, SUM(rating >= 1.0 && rating < 2.0 ) as one_up FROM course_review";
+                $result = $conn->query($sqlRatingCount);
+                $ratingCount = $result->fetch_assoc();
+                ?>
                 <div class="divider"><span></span></div>
                 <div class="custom-control custom-radio mb-1 fs-15">
                   <input type="radio" class="common_selector rating custom-control-input" id="fiveStarRating" value="5" name="radio-stacked" required />
@@ -188,19 +188,19 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Categories</h3>
                 <div class="divider"><span></span></div>
-                  <?php
-                  # Prepare the SELECT Query
-                  $sqlCategory = "SELECT cc_name,cc_id,(SELECT COUNT(course_id) FROM course where course.cc_id = course_category.cc_id) as category_count FROM course_category";
-                  $result = $conn->query($sqlCategory);
-                  while ($row = $result->fetch_assoc()) {
-                  ?>
-                <div class="custom-control custom-checkbox mb-1 fs-15">
-                  <input type="checkbox" class="common_selector category custom-control-input" id="catCheckbox_<?php echo $row['cc_id']; ?>" value="<?php echo $row['cc_id']; ?>" required />
-                  <label class="custom-control-label custom--control-label text-black" for="catCheckbox_<?php echo $row['cc_id']; ?>">
-                    <?php echo $row['cc_name']; ?><span class="ms-1 text-gray">(<?php echo $row['category_count']; ?>)</span>
-                  </label>
-                </div>
-                <!-- end custom-control -->
+                <?php
+                # Prepare the SELECT Query
+                $sqlCategory = "SELECT cc_name,cc_id,(SELECT COUNT(course_id) FROM course where course.cc_id = course_category.cc_id) as category_count FROM course_category";
+                $result = $conn->query($sqlCategory);
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                  <div class="custom-control custom-checkbox mb-1 fs-15">
+                    <input type="checkbox" class="common_selector category custom-control-input" id="catCheckbox_<?php echo $row['cc_id']; ?>" value="<?php echo $row['cc_id']; ?>" required />
+                    <label class="custom-control-label custom--control-label text-black" for="catCheckbox_<?php echo $row['cc_id']; ?>">
+                      <?php echo $row['cc_name']; ?><span class="ms-1 text-gray">(<?php echo $row['category_count']; ?>)</span>
+                    </label>
+                  </div>
+                  <!-- end custom-control -->
                 <?php } ?>
               </div>
             </div>
@@ -209,30 +209,37 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">Level</h3>
                 <div class="divider"><span></span></div>
-                  <?php
-                      # Prepare the SELECT Query
-                      $sqlLevelCount = "SELECT SUM(course_level = 'Beginner') as beginner, SUM(course_level = 'Intermediate') as intermediate, SUM(course_level = 'Expert') as expert, COUNT(course_id) as total FROM course";
-                      $resultLevelCount = $conn->query($sqlLevelCount);
-                      $levelCount = $resultLevelCount->fetch_assoc();
-                  ?>
+                <?php
+                # Prepare the SELECT Query
+                $sqlLevelCount = "SELECT SUM(course_level = 'Beginner') as beginner, SUM(course_level = 'Intermediate') as intermediate, SUM(course_level = 'Expert') as expert, SUM(course_level = 'All Levels') as allLevels, COUNT(course_id) as total FROM course";
+                $resultLevelCount = $conn->query($sqlLevelCount);
+                $levelCount = $resultLevelCount->fetch_assoc();
+                ?>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
                   <input type="checkbox" class="common_selector level custom-control-input" value="Beginner" id="levelCheckbox2" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox2">
-                    Beginner<span class="ms-1 text-gray">(<?php echo $levelCount['beginner'];?>)</span>
+                    Beginner<span class="ms-1 text-gray">(<?php echo $levelCount['beginner']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
                   <input type="checkbox" class="common_selector level custom-control-input" value="Intermediate" id="levelCheckbox3" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox3">
-                    Intermediate<span class="ms-1 text-gray">(<?php echo $levelCount['intermediate'];?>)</span>
+                    Intermediate<span class="ms-1 text-gray">(<?php echo $levelCount['intermediate']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
                   <input type="checkbox" class="common_selector level custom-control-input" value="Expert" id="levelCheckbox4" required />
                   <label class="custom-control-label custom--control-label text-black" for="levelCheckbox4">
-                    Expert<span class="ms-1 text-gray">(<?php echo $levelCount['expert'];?>)</span>
+                    Expert<span class="ms-1 text-gray">(<?php echo $levelCount['expert']; ?>)</span>
+                  </label>
+                </div>
+                <!-- end custom-control -->
+                <div class="custom-control custom-checkbox mb-1 fs-15">
+                  <input type="checkbox" class="common_selector level custom-control-input" value="AllLevels" id="levelCheckbox5" required />
+                  <label class="custom-control-label custom--control-label text-black" for="levelCheckbox5">
+                    All Levels<span class="ms-1 text-gray">(<?php echo $levelCount['allLevels']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
@@ -243,23 +250,23 @@ include 'include/header-links.php';
               <div class="card-body">
                 <h3 class="card-title fs-18 pb-2">By Cost</h3>
                 <div class="divider"><span></span></div>
-                  <?php
-                  # Prepare the SELECT Query
-                  $sqlPriceCount = "SELECT SUM(course_cost > 0) as paid, SUM(course_cost = 0) as free, COUNT(*) as total FROM course";
-                  $result = $conn->query($sqlPriceCount);
-                  $priceCount = $result->fetch_assoc();
-                  ?>
+                <?php
+                # Prepare the SELECT Query
+                $sqlPriceCount = "SELECT SUM(course_cost > 0) as paid, SUM(course_cost = 0) as free, COUNT(*) as total FROM course";
+                $result = $conn->query($sqlPriceCount);
+                $priceCount = $result->fetch_assoc();
+                ?>
                 <div class="custom-control custom-checkbox mb-1 fs-15">
                   <input type="checkbox" class="common_selector cost custom-control-input" value="paid" id="priceCheckbox" required />
                   <label class="custom-control-label custom--control-label text-black" for="priceCheckbox">
-                    Paid<span class="ms-1 text-gray">(<?php echo $priceCount['paid'];?>)</span>
+                    Paid<span class="ms-1 text-gray">(<?php echo $priceCount['paid']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
                 <div class="custom-control custom-checkbox mb-1 fs-15">
                   <input type="checkbox" class="common_selector cost custom-control-input" value="free" id="priceCheckbox2" required />
                   <label class="custom-control-label custom--control-label text-black" for="priceCheckbox2">
-                    Free<span class="ms-1 text-gray">(<?php echo $priceCount['free'];?>)</span>
+                    Free<span class="ms-1 text-gray">(<?php echo $priceCount['free']; ?>)</span>
                   </label>
                 </div>
                 <!-- end custom-control -->
@@ -301,56 +308,56 @@ include 'include/header-links.php';
   include 'include/footer-scripts.php';
   ?>
   <script>
-      $(document).ready(function() {
+    $(document).ready(function() {
 
-          filter_data();
+      filter_data();
 
-          function filter_data() {
-              $('.filter_data').html('<div id="loading" style="" ></div>');
-              var action = 'fetch_data';
-              var type = 'grid';
-              var search = $('#searchCourse').val();
-              var cost = get_filter('cost');
-              var rating = get_filter('rating');
-              var category = get_filter('category');
-              var tutor = get_filter('tutor');
-              var level = get_filter('level');
-              $.ajax({
-                  url: "fetch-filter-course.php",
-                  method: "POST",
-                  data: {
-                      action: action,
-                      type: type,
-                      cost: cost,
-                      rating: rating,
-                      category: category,
-                      tutor: tutor,
-                      search: search,
-                      level: level,
-                  },
-                  success: function(data) {
-                      $('.filter_data').html(data);
-                  }
-              });
+      function filter_data() {
+        $('.filter_data').html('<div id="loading" style="" ></div>');
+        var action = 'fetch_data';
+        var type = 'grid';
+        var search = $('#searchCourse').val();
+        var cost = get_filter('cost');
+        var rating = get_filter('rating');
+        var category = get_filter('category');
+        var tutor = get_filter('tutor');
+        var level = get_filter('level');
+        $.ajax({
+          url: "fetch-filter-course.php",
+          method: "POST",
+          data: {
+            action: action,
+            type: type,
+            cost: cost,
+            rating: rating,
+            category: category,
+            tutor: tutor,
+            search: search,
+            level: level,
+          },
+          success: function(data) {
+            $('.filter_data').html(data);
           }
+        });
+      }
 
-          function get_filter(class_name) {
-              var filter = [];
-              $('.' + class_name + ':checked').each(function() {
-                  filter.push($(this).val());
-              });
-              return filter;
-          }
+      function get_filter(class_name) {
+        var filter = [];
+        $('.' + class_name + ':checked').each(function() {
+          filter.push($(this).val());
+        });
+        return filter;
+      }
 
-          $('.common_selector').click(function() {
-              filter_data();
-          });
-
-          $('#searchCourse').keyup(function() {
-              filter_data();
-          });
-
+      $('.common_selector').click(function() {
+        filter_data();
       });
+
+      $('#searchCourse').keyup(function() {
+        filter_data();
+      });
+
+    });
   </script>
 </body>
 

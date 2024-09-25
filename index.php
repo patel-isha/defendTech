@@ -218,7 +218,7 @@ include 'include/header-links.php';
           ?>
               <div class="col-lg-4 responsive-column-half">
                 <div class="category-item">
-                  <img class="cat__img lazy" src="assets/images/categories/basics.jpg" data-src="<?php echo $row['cc_image']; ?>" alt="Category image" />
+                  <img class="cat__img lazy" src="assets/images/img-loading.png" data-src="admin/assets/images/category/<?php echo $row['cc_image']; ?>" alt="Category image" />
                   <div class="category-content">
                     <div class="category-inner">
                       <h3 class="cat__title"><a href="#"><?php echo $row['cc_name']; ?></a></h3>
@@ -303,11 +303,15 @@ include 'include/header-links.php';
 
               $cc_id = $category['cc_id'];
               # Prepare the SELECT Query for courses in the current category
-              $sqlCourses = "SELECT course.*, AVG(course_review.rating) AS avg_rating, COUNT(course_review.review) AS total_reviews 
-                                       FROM course 
-                                       LEFT JOIN course_review ON course.course_id = course_review.course_id 
-                                       WHERE course.cc_id='$cc_id' 
-                                       GROUP BY course.course_id";
+              $sqlCourses = "SELECT course.*, 
+              CONCAT(users.first_name, ' ', users.last_name) AS tutorName, 
+              AVG(course_review.rating) AS avg_rating, 
+              COUNT(course_review.review) AS total_reviews 
+              FROM course 
+              LEFT JOIN course_review ON course.course_id = course_review.course_id 
+              LEFT JOIN users ON course.user_id = users.user_id 
+              WHERE course.cc_id='$cc_id' 
+              GROUP BY course.course_id";
               $coursesResult = $conn->query($sqlCourses);
 
               if ($coursesResult->num_rows > 0) {
@@ -316,8 +320,8 @@ include 'include/header-links.php';
                   '<div class="col-lg-4 responsive-column-half">
                     <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_' . $course['course_id'] . '">
                       <div class="card-image">
-                        <a href="course-details.php?course_id=' . $course['course_id'] . '" class="d-block">
-                          <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="' . $course['course_image'] . '" alt="Card image cap" />
+                        <a href="course-details.php?course_id=' . $course['course_id'] . '" class="d-block"> 
+                          <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="admin/assets/images/course/' . $course['course_image'] . '" alt="Card image cap" />
                         </a>
                         <div class="course-badge-labels">
                           <div class="course-badge">Bestseller</div>
@@ -328,7 +332,7 @@ include 'include/header-links.php';
                       <h5 class="card-title min-h50">
                         <a href="course-details.php?course_id=' . $course['course_id'] . '">' . $course['course_title'] . '</a>
                       </h5>
-                      <p class="card-text">' . $course['course_author'] . '</p>
+                      <p class="card-text">' . $course['tutorName'] . '</p>
                       <div class="rating-wrap d-flex align-items-center py-2">
                         <div class="review-stars">
                           <span class="rating-number">' . round($course['avg_rating'], 1) . '</span>';

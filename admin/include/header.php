@@ -7,7 +7,7 @@
             </div>
             <div class="nk-header-brand d-xl-none">
                 <a href="dashboard.php" class="logo-link">
-                    <img class="logo-light logo-img" src="assets/images/logo.png" alt="logo">
+                    <img class="logo-light logo-img" src="assets/images/dashboard-logo.png" alt="logo">
                 </a>
             </div><!-- .nk-header-brand -->
             <div class="nk-header-tools">
@@ -23,8 +23,8 @@
                                     <div class="user-status"><?php echo ucfirst($_SESSION['designation']); ?></div>
                                     <div class="user-name dropdown-indicator">
                                         <?php
-                                        $fullname = $_SESSION['fullname'];
-                                        echo $fullname;
+                                        $firstname = $_SESSION['firstname'];
+                                        echo $firstname;
                                         ?>
                                     </div>
                                 </div>

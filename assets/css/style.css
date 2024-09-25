@@ -3181,6 +3181,9 @@ div.datedropper .picker .pick-lg-b li {
 }
 .category-item .cat__img {
   width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 198px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
