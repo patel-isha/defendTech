@@ -4,6 +4,15 @@
 }
 
 .theme-color-black {color: #201F1D; }
+.orange-bg {
+    background-color: #f68a03;
+}
+.green-bg {
+    background-color: #38bb0c;
+}
+.blue-bg {
+    background-color: #3aaae1;
+}
 .w-45 {
     width: 45%;
 }
@@ -44,6 +53,12 @@
 }
 
 /*/ padding classes /*/
+.pr-0 {
+    padding-right: 0;
+}
+.pl-5 {
+    padding-left: 5px;
+}
 .pl-30 {
     padding-left: 30px;
 }

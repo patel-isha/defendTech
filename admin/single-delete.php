@@ -1,19 +1,19 @@
 <?php
 include 'config/connection.php';
 
-if(isset($_POST["type"]) && $_POST["type"] == "car-list") {
+if(isset($_POST["type"]) && $_POST["type"] == "course-list") {
     $id = $_POST["id"];
-    $sql = "DELETE from `car_details` WHERE car_id = '$id'";
+    $sql = "DELETE from `course` WHERE course_id = '$id'";
+}
+
+if(isset($_POST["type"]) && $_POST["type"] == "course-category") {
+    $id = $_POST["id"];
+    $sql = "DELETE from `course_category` WHERE cc_id = '$id'";
 }
 
 if(isset($_POST["type"]) && $_POST["type"] == "car-brand") {
     $id = $_POST["id"];
     $sql = "DELETE from `car_brand` WHERE brand_id = '$id'";
-}
-
-if(isset($_POST["type"]) && $_POST["type"] == "car-category") {
-    $id = $_POST["id"];
-    $sql = "DELETE from `car_category` WHERE category_id = '$id'";
 }
 
 if(isset($_POST["type"]) && $_POST["type"] == "car-owner") {

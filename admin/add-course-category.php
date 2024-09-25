@@ -4,21 +4,37 @@ include 'config/connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["addCategory"])) {
         //Retrieve form data
-        $categoryName = $_POST["categoryName"];
-        $customFile = $_FILES["customFile"]["name"];
-        $tempname = $_FILES["customFile"]["tmp_name"];
-        $folder = "assets/images/category/".basename($_FILES["customFile"]["name"]);
+        $categoryName = $_POST["cc_name"];
+        $categoryAllias = $_POST["cc_allias"];
 
-        //SQL query to inser data into the database
-        $sql = "INSERT INTO `car_category`(`category_name`, `image`) VALUES ('$categoryName', '$customFile')";
+        if ($_FILES["cc_image"]["size"] > 0) {
+            $customFile = $_FILES["cc_image"]["name"];
+            $tempname = $_FILES["cc_image"]["tmp_name"];
+            $folder = "assets/images/category/" . basename($_FILES["cc_image"]["name"]);
 
-        //Execute the query
-        if ($conn->query($sql) === TRUE && move_uploaded_file($tempname,$folder)) {
-            echo "<h3>  Car Category Added Successfully!</h3>";
-            echo "<script> location.href='add-car-category.php'; </script>";
+            //SQL query to insert data into the database
+            $sql = "INSERT INTO `course_category`(`cc_name`, `cc_allias`, `cc_image`) VALUES ('$categoryName', '$categoryAllias', '$customFile')";
+
+            //Execute the query
+            if ($conn->query($sql) === TRUE && move_uploaded_file($tempname, $folder)) {
+                echo "<h3>  Course Category Added Successfully!</h3>";
+                echo "<script> location.href='add-course-category.php'; </script>";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+                die;
+            }
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            die;
+            //SQL query to insert data into the database
+            $sql = "INSERT INTO `course_category`(`cc_name`, `cc_allias`) VALUES ('$categoryName', '$categoryAllias')";
+
+            //Execute the query
+            if ($conn->query($sql) === TRUE) {
+                echo "<h3>  Course Category Added Successfully!</h3>";
+                echo "<script> location.href='add-course-category.php'; </script>";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+                die;
+            }
         }
     }
 }
@@ -91,23 +107,32 @@ include 'include/session.php';
                                                             <div class="form-group">
                                                                 <label class="form-label" for="categoryName">Category Name</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Convertible" required>
+                                                                    <input type="text" class="form-control" id="categoryName" name="cc_name" placeholder="Convertible" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Category Allias-->
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="categoryAllias">Category Allias</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="text" class="form-control" id="categoryAllias" name="cc_allias" placeholder="Basics" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Upload File -->
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="form-label" for="noofseats">Upload photo</label>
                                                                 <div class="form-control-wrap">
                                                                     <div class="form-file">
-                                                                        <input type="file" class="form-file-input" id="customFile" name="customFile" onchange="loadFile(event)">
+                                                                        <input type="file" class="form-file-input" id="customFile" name="cc_image" onchange="loadFile(event)">
                                                                         <label class="form-file-label" for="customFile">Choose file</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-2 pr-0 pl-5">
                                                             <div class="form-group">
                                                                 <label></label>
                                                                 <div class="form-control-wrap">
@@ -123,7 +148,7 @@ include 'include/session.php';
                                             <?php
                                             $search = isset($_POST["search"]) ? $_POST["search"] : '';
                                             # Prepare the SELECT Query
-                                            $sql = "SELECT * FROM `car_category` WHERE category_name LIKE '%$search%'";
+                                            $sql = "SELECT * FROM `course_category` WHERE cc_name LIKE '%$search%'";
                                             # Execute the SELECT Query
                                             if (!($result = $conn->query($sql))) {
                                                 echo 'Retrieval of data from Database Failed - #' . $sql . ': ' . $conn->error;
@@ -134,8 +159,8 @@ include 'include/session.php';
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <!-- <th>Car Name</th> -->
                                                                 <th>Category</th>
+                                                                <th>Allias</th>
                                                                 <th>Image</th>
                                                                 <th>Action</th>
                                                             </tr>
@@ -148,16 +173,22 @@ include 'include/session.php';
                                                                 while ($row = $result->fetch_assoc()) {
                                                             ?>
                                                                     <tr>
-                                                                        <td><?php echo $row['category_id']; ?></td>
-                                                                        <td><?php echo $row['category_name']; ?></td>
-                                                                        <td><img src="assets/images/category/<?php echo $row['image']; ?>" height="30"></td>
+                                                                        <td><?php echo $row['cc_id']; ?></td>
+                                                                        <td><?php echo $row['cc_name']; ?></td>
+                                                                        <td><?php echo $row['cc_allias']; ?></td>
+                                                                        <td>
+                                                                            <img src="../assets/images/img-loading.png"
+                                                                                data-src="assets/images/category/<?php echo $row['cc_image']; ?>"
+                                                                                height="30" alt="Category image"
+                                                                                onerror="this.src='../assets/images/img-loading.png'" />
+                                                                        </td>
                                                                         <td class="nk-tb-col nk-tb-col-tools">
                                                                             <ul class="nk-tb-actions gx-1 justify-content-start">
                                                                                 <li class="nk-tb-action">
-                                                                                    <a href="edit-car-category.php?id=<?php echo $row['category_id'];?>" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                                                    <a href="edit-course-category.php?cc_id=<?php echo $row['cc_id']; ?>" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                                                         <em class="icon fas fa-pen"></em>
                                                                                     </a>
-                                                                                    <button class="btn btn-trigger btn-icon" onclick="deleteData('<?php echo $row['category_id']; ?>')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                                                    <button class="btn btn-trigger btn-icon" onclick="deleteData('<?php echo $row['cc_id']; ?>')" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                                                         <em class="icon fas fa-trash text-danger"></em>
                                                                                     </button>
                                                                                 </li>
@@ -203,6 +234,7 @@ include 'include/session.php';
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
+
         function deleteData(categoryId) {
             Swal.fire({
                 title: "Are you sure, you want to delete this record?",
@@ -217,18 +249,18 @@ include 'include/session.php';
                     //Single Delete Category
                     $.post("single-delete.php", {
                             id: categoryId,
-                            type: "car-category",
+                            type: "course-category",
                             dataType: 'json',
-                    },
-                    function(data) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Record Deleted Successfully",
-                            icon: "success"
-                        }).then(function(){
-                            location.reload();
+                        },
+                        function(data) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Record Deleted Successfully",
+                                icon: "success"
+                            }).then(function() {
+                                location.reload();
+                            });
                         });
-                    });
                 }
             });
 

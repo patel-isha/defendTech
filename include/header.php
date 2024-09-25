@@ -51,7 +51,9 @@
                             <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray ps-3 ms-3">
                                 <li class="nav-item dropdown">
                                     <label class="welcome-user cursor-pointer" for="dropdown-toggle">
-                                        <span><i class="fa-solid fa-circle-user fa-fw align-middle f-28"></i></span>Welcome <?php echo $_SESSION['name']; ?> <i class="fas fa-angle-down align-middle ml-10"></i>
+                                        <span><i class="fa-solid fa-circle-user fa-fw align-middle f-28"></i></span>
+                                        Welcome <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?>
+                                        <i class="fas fa-angle-down align-middle ml-10"></i>
                                     </label>
                                     <input type="checkbox" id="dropdown-toggle" class="toggle-input">
                                     <ul class="submenu">
@@ -109,72 +111,6 @@
                                     <li>
                                         <a href="quiz.php">quiz</a>
                                     </li>
-                                    <!-- <li>
-                                         <a href="#">My profile <i class="la la-angle-down fs-12"></i></a>
-                                         <ul class="dropdown-menu-item">
-                                             <li>
-                                                 <a href="student-detail.html">my details</a>
-                                             </li>
-
-                                             <li><a href="student-path.html">path details </a></li>
-                                             <li>
-                                                 <a href="student-path-assessment.html">Skill Assessment</a>
-                                             </li>
-                                             <li>
-                                                 <a href="student-path-assessment-result.html">Skill result</a>
-                                             </li>
-                                         </ul>
-                                     </li> -->
-                                    <!-- <li class="mega-menu-has">
-                                         <a href="#">pages <i class="la la-angle-down fs-12"></i></a>
-                                         <div class="dropdown-menu-item mega-menu">
-                                             <ul class="row no-gutters">
-                                                 <li class="col-lg-3">
-                                                     <a href="dashboard.html">dashboard <span class="ribbon">Hot</span></a>
-
-                                                     <a href="teachers.html">Teachers</a>
-                                                     <a href="teacher-detail.html">Teacher detail</a>
-                                                     <a href="categories.html">categories </a>
-                                                     <a href="terms-and-conditions.html">Terms & conditions
-                                                     </a>
-                                                     <a href="privacy-policy.html">privacy policy </a>
-                                                     <a href="invite.html">invite friend </a>
-                                                 </li>
-                                                 <li class="col-lg-3">
-                                                     <a href="careers.html">careers </a>
-                                                     <a href="career-details.html">career details </a>
-                                                     <a href="become-a-teacher.html">become an instructor</a>
-                                                     <a href="faq.html">FAQs</a>
-                                                     <a href="admission.html">admission</a>
-                                                     <a href="gallery.html">gallery</a>
-                                                     <a href="pricing-table.html">pricing tables</a>
-
-                                                 </li>
-                                                 <li class="col-lg-3">
-                                                     <a href="for-business.html">for business </a>
-                                                     <a href="register.php">sign-up</a>
-                                                     <a href="login.php">login</a>
-                                                     <a href="forgot-password.php">recover</a>
-                                                     <a href="shopping-cart.php">cart</a>
-                                                     <a href="checkout.html">checkout</a>
-                                                     <a href="error.html">page 404</a>
-                                                 </li>
-                                                 <li class="col-lg-3">
-                                                     <div class="menu-banner position-relative h-100">
-                                                         <div class="overlay rounded-rounded opacity-4"></div>
-                                                         <div class="menu-banner-content p-4 position-absolute bottom-0 left-0">
-                                                             <h4 class="fs-20 font-weight-bold pb-3 text-white">
-                                                                 30 days free trail for new users
-                                                             </h4>
-                                                             <a href="register.php" class="btn theme-btn theme-btn-sm theme-btn-white">Start Learning
-                                                                 <i class="la la-arrow-right icon ms-1"></i></a>
-                                                         </div>
-                                                         <img src="assets/images/menu-banner-img.jpg" alt="menu banner image" class="w-100 h-100 rounded-rounded" />
-                                                     </div>
-                                                 </li>
-                                             </ul>
-                                         </div>
-                                     </li> -->
                                     <li>
                                         <a href="blog.php">blog </a>
                                     </li>
@@ -218,9 +154,6 @@
                 <a href="#">Home</a>
                 <ul class="sub-menu">
                     <li><a href="index.php">Home One</a></li>
-                    <li><a href="home-2.html">Home Two</a></li>
-                    <li><a href="home-3.html">Home Three</a></li>
-                    <li><a href="home-4.html">Home four </a></li>
                 </ul>
             </li>
             <li>
@@ -228,11 +161,6 @@
                 <ul class="sub-menu">
                     <li><a href="course-grid.html">course grid</a></li>
                     <li><a href="course-list.html">course list </a></li>
-                    <li><a href="course-left-sidebar.html">left sidebar </a></li>
-                    <li><a href="course-right-sidebar.html">right sidebar </a></li>
-                    <li><a href="course-details.php">course details</a></li>
-                    <li><a href="lesson-details.html">lesson details</a></li>
-                    <li><a href="my-courses.html">My courses</a></li>
                 </ul>
             </li>
             <li>
@@ -241,19 +169,6 @@
                     <li><a href="student-detail.html">student detail</a></li>
                     <li><a href="student-quiz.html">take quiz</a></li>
                     <li><a href="student-quiz-results.html">quiz results</a></li>
-                    <li>
-                        <a href="student-quiz-result-details.html">quiz details</a>
-                    </li>
-                    <li>
-                        <a href="student-quiz-result-details-2.html">quiz details 2</a>
-                    </li>
-                    <li><a href="student-path.html">path details </a></li>
-                    <li>
-                        <a href="student-path-assessment.html">Skill Assessment</a>
-                    </li>
-                    <li>
-                        <a href="student-path-assessment-result.html">Skill result</a>
-                    </li>
                 </ul>
             </li>
             <li>
@@ -263,38 +178,12 @@
                         <a href="dashboard.html">dashboard <span class="ribbon">Hot</span></a>
                     </li>
                     <li><a href="about.php">about</a></li>
-                    <li><a href="teachers.html">Teachers</a></li>
-                    <li><a href="teacher-detail.html">Teacher detail</a></li>
-                    <li><a href="careers.html">careers </a></li>
-                    <li><a href="career-details.html">career details </a></li>
-                    <li><a href="categories.html">categories </a></li>
-                    <li>
-                        <a href="terms-and-conditions.html">Terms & conditions </a>
-                    </li>
-                    <li><a href="privacy-policy.html">privacy policy </a></li>
-                    <li><a href="for-business.html">for business </a></li>
-                    <li><a href="become-a-teacher.html">become an instructor</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="admission.html">admission</a></li>
-                    <li><a href="gallery.html">gallery</a></li>
-                    <li><a href="pricing-table.html">pricing tables</a></li>
-                    <li><a href="contact.php">contact</a></li>
-                    <li><a href="register.php">sign-up</a></li>
-                    <li><a href="login.php">login</a></li>
-                    <li><a href="forgot-password.php">recover</a></li>
-                    <li><a href="shopping-cart.php">cart</a></li>
-                    <li><a href="checkout.html">checkout</a></li>
-                    <li><a href="error.html">page 404</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#">blog</a>
                 <ul class="sub-menu">
                     <li><a href="blog-full-width.html">blog full width </a></li>
-                    <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                    <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>
-                    <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
-                    <li><a href="blog-detail.php">blog detail</a></li>
                 </ul>
             </li>
         </ul>
@@ -311,13 +200,6 @@
                 <ul class="sub-menu">
                     <li><a href="#">All Development</a></li>
                     <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Mobile Apps</a></li>
-                    <li><a href="#">Game Development</a></li>
-                    <li><a href="#">Databases</a></li>
-                    <li><a href="#">Programming Languages</a></li>
-                    <li><a href="#">Software Testing</a></li>
-                    <li><a href="#">Software Engineering</a></li>
-                    <li><a href="#">E-Commerce</a></li>
                 </ul>
             </li>
             <li>
@@ -326,12 +208,6 @@
                     <li><a href="#">All Business</a></li>
                     <li><a href="#">Finance</a></li>
                     <li><a href="#">Entrepreneurship</a></li>
-                    <li><a href="#">Strategy</a></li>
-                    <li><a href="#">Real Estate</a></li>
-                    <li><a href="#">Home Business</a></li>
-                    <li><a href="#">Communications</a></li>
-                    <li><a href="#">Industry</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
             <li>
@@ -339,10 +215,6 @@
                 <ul class="sub-menu">
                     <li><a href="#">All IT & Software</a></li>
                     <li><a href="#">IT Certification</a></li>
-                    <li><a href="#">Hardware</a></li>
-                    <li><a href="#">Network & Security</a></li>
-                    <li><a href="#">Operating Systems</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
             <li>
@@ -350,10 +222,6 @@
                 <ul class="sub-menu">
                     <li><a href="#"> All Finance & Accounting</a></li>
                     <li><a href="#">Accounting & Bookkeeping</a></li>
-                    <li><a href="#">Cryptocurrency & Blockchain</a></li>
-                    <li><a href="#">Economics</a></li>
-                    <li><a href="#">Investing & Trading</a></li>
-                    <li><a href="#">Other Finance & Economics</a></li>
                 </ul>
             </li>
             <li>
@@ -362,10 +230,6 @@
                     <li><a href="#">All Design</a></li>
                     <li><a href="#">Graphic Design</a></li>
                     <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Design Tools</a></li>
-                    <li><a href="#">3D & Animation</a></li>
-                    <li><a href="#">User Experience</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
             <li>
@@ -373,12 +237,6 @@
                 <ul class="sub-menu">
                     <li><a href="#">All Personal Development</a></li>
                     <li><a href="#">Personal Transformation</a></li>
-                    <li><a href="#">Productivity</a></li>
-                    <li><a href="#">Leadership</a></li>
-                    <li><a href="#">Personal Finance</a></li>
-                    <li><a href="#">Career Development</a></li>
-                    <li><a href="#">Parenting & Relationships</a></li>
-                    <li><a href="#">Happiness</a></li>
                 </ul>
             </li>
             <li>
@@ -386,13 +244,6 @@
                 <ul class="sub-menu">
                     <li><a href="#">All Marketing</a></li>
                     <li><a href="#">Digital Marketing</a></li>
-                    <li><a href="#">Search Engine Optimization</a></li>
-                    <li><a href="#">Social Media Marketing</a></li>
-                    <li><a href="#">Branding</a></li>
-                    <li><a href="#">Video & Mobile Marketing</a></li>
-                    <li><a href="#">Affiliate Marketing</a></li>
-                    <li><a href="#">Growth Hacking</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
             <li>
@@ -400,26 +251,12 @@
                 <ul class="sub-menu">
                     <li><a href="#">All Health & Fitness</a></li>
                     <li><a href="#">Fitness</a></li>
-                    <li><a href="#">Sports</a></li>
-                    <li><a href="#">Dieting</a></li>
-                    <li><a href="#">Self Defense</a></li>
-                    <li><a href="#">Meditation</a></li>
-                    <li><a href="#">Mental Health</a></li>
-                    <li><a href="#">Yoga</a></li>
-                    <li><a href="#">Dance</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
             <li>
                 <a href="course-grid.html">Photography</a>
                 <ul class="sub-menu">
                     <li><a href="#">All Photography</a></li>
-                    <li><a href="#">Digital Photography</a></li>
-                    <li><a href="#">Photography Fundamentals</a></li>
-                    <li><a href="#">Commercial Photography</a></li>
-                    <li><a href="#">Video Design</a></li>
-                    <li><a href="#">Photography Tools</a></li>
-                    <li><a href="#">Other</a></li>
                 </ul>
             </li>
         </ul>

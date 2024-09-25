@@ -30,14 +30,8 @@ include 'include/header-links.php';
         <div class="section-heading">
           <h5 class="ribbon ribbon-lg ribbon-white mb-2">Welcome to DefendTech</h5>
           <h2 class="section__title fs-45 lh-60 text-white">
-            Improve Your Lives <br />
-            With Learning
+            Protect Your Digital World <br /> with Cybersecurity Expertise
           </h2>
-        </div>
-        <div class="breadcrumb-btn-box pt-40px ps-3">
-          <a href="#" class="btn-text text-white video-play-btn d-inline-flex align-items-center" data-fancybox data-src="https://www.youtube.com/watch?v=cRXm1p-CNyk">
-            <span class="icon-element icon-element-md pulse-btn me-3"><i class="la la-play"></i></span>Watch the Video
-          </a>
         </div>
       </div>
       <!-- end breadcrumb-content -->
@@ -59,29 +53,28 @@ include 'include/header-links.php';
           <div class="about-content pb-5">
             <div class="section-heading">
               <h2 class="section__title pb-3 lh-50">
-                The leading global marketplace for learning and instruction
+                The premier destination for cybersecurity education and training
               </h2>
               <p class="section__desc">
-                Nemo enim ipsam,voluptatem quia voluptas sit aspernatur aut
-                odit aut fugit, sed quia,consequuntur magni dolores eos qui
-                ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-                qui dolorem ipsum quia dolor sit amet, adipisci velit, sed
-                quia non numquam eius modi tempora
+                At DefendTech, we are committed to enhancing lives through learning, with a focus on cybersecurity
+                and digital protection. Our mission is to provide accessible, high-quality education to individuals
+                and organizations worldwide, empowering them to navigate and protect themselves in today’s digital
+                landscape.
               </p>
             </div>
             <!-- end section-heading -->
             <ul class="generic-list-item pt-3">
               <li>
-                <i class="la la-check-circle me-2 text-success"></i>Online
-                Courses with full discount systems.
+                <i class="la la-check-circle me-2 text-success"></i>
+                Build practical cybersecurity skills for real-world applications.
               </li>
               <li>
-                <i class="la la-check-circle me-2 text-success"></i>Online
-                Certificates which can be used worldwide.
+                <i class="la la-check-circle me-2 text-success"></i>
+                Offers special offers and discounts for affordability.
               </li>
               <li>
-                <i class="la la-check-circle me-2 text-success"></i>An online
-                leadership development program at DefendTech.
+                <i class="la la-check-circle me-2 text-success"></i>
+                Learn from industry experts for real-world insights.
               </li>
             </ul>
           </div>
@@ -93,21 +86,21 @@ include 'include/header-links.php';
             <div class="img__item img__item-1">
               <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img15.jpg" alt="About image" />
               <div class="generic-img-box-content">
-                <h3 class="fs-24 font-weight-semi-bold pb-1">55K</h3>
+                <h3 class="fs-24 font-weight-semi-bold pb-1">328</h3>
                 <span>Instructors</span>
               </div>
             </div>
             <div class="img__item img__item-2">
               <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img16.jpg" alt="About image" />
               <div class="generic-img-box-content">
-                <h3 class="fs-24 font-weight-semi-bold pb-1">6,900+</h3>
+                <h3 class="fs-24 font-weight-semi-bold pb-1">546</h3>
                 <span>Courses</span>
               </div>
             </div>
             <div class="img__item img__item-3">
               <img class="lazy" src="assets/images/img-loading.png" data-src="assets/images/img17.jpg" alt="About image" />
               <div class="generic-img-box-content">
-                <h3 class="fs-24 font-weight-semi-bold pb-1">40M</h3>
+                <h3 class="fs-24 font-weight-semi-bold pb-1">2602</h3>
                 <span>Learners</span>
               </div>
             </div>
@@ -128,7 +121,7 @@ include 'include/header-links.php';
   <!--======================================
         START GET STARTED AREA
 ======================================-->
-  <section class="get-started-area pt-30px pb-120px position-relative">
+  <section class="get-started-area pt-30px pb-50px position-relative">
     <span class="ring-shape ring-shape-1"></span>
     <span class="ring-shape ring-shape-2"></span>
     <span class="ring-shape ring-shape-3"></span>
@@ -143,8 +136,8 @@ include 'include/header-links.php';
               <img src="assets/images/img-loading.png" data-src="assets/images/small-img-2.jpg" alt="card image" class="img-fluid lazy rounded-full" />
               <h5 class="card-title pt-4 pb-2">Personalized learning</h5>
               <p class="card-text">
-                Students practice at their own pace, first filling in gaps in
-                their understanding and then accelerating their learning.
+                Our courses are designed to allow learners to progress at their own pace, reinforcing understanding
+                and accelerating skill acquisition.
               </p>
             </div>
             <!-- end card-body -->
@@ -158,8 +151,8 @@ include 'include/header-links.php';
               <img src="assets/images/img-loading.png" data-src="assets/images/small-img-3.jpg" alt="card image" class="img-fluid lazy rounded-full" />
               <h5 class="card-title pt-4 pb-2">Trusted content</h5>
               <p class="card-text">
-                Created by experts, Coursector library of trusted practice and
-                lessons covers math, science, and more.
+                Developed by cybersecurity professionals and experts, our content covers essential topics from
+                the basics to advanced techniques.
               </p>
             </div>
             <!-- end card-body -->
@@ -173,8 +166,8 @@ include 'include/header-links.php';
               <img src="assets/images/img-loading.png" data-src="assets/images/small-img-4.jpg" alt="card image" class="img-fluid lazy rounded-full" />
               <h5 class="card-title pt-4 pb-2">Empower users</h5>
               <p class="card-text">
-                With Coursector, teachers can identify gaps in their students’
-                understanding, tailor instruction
+                We believe in providing not just information, but also the practical skills needed to stay safe
+                and secure online.
               </p>
             </div>
             <!-- end card-body -->
@@ -195,7 +188,7 @@ include 'include/header-links.php';
   <!--======================================
         START OUR MISSION AREA
 ======================================-->
-  <section class="our-mission-area section--padding bg-gray">
+  <section class="our-mission-area section--padding pb-10px bg-gray">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
@@ -232,17 +225,13 @@ include 'include/header-links.php';
             <div class="section-heading">
               <h2 class="section__title pb-3 lh-50">Our Mission</h2>
               <p class="section__desc pb-3">
-                We’re not one of those companies. We are rethinking education
-                from the bottom up. The web has rethought nearly everything -
-                commerce, social networking, healthcare, and more. We are
-                building the education the world needs - the first truly net
-                native education. We take more cues from modern tech
-                innovators in creating an engaging educational experience than
-                we do from the classroom.
+                We aim to reshape the future of education by providing innovative, effective learning experiences
+                that equip people with the tools to succeed in an increasingly digital world.
+                Through our advanced e-learning platform, we are creating an engaging and impactful
+                educational experience for students and professionals alike.
               </p>
               <p class="section__desc text-black">
-                Education is broken. Come help us build the education the
-                world deserves.
+                Cybersecurity is crucial. Join us in creating a safer digital world through education.
               </p>
             </div>
             <!-- end section-heading -->
@@ -269,13 +258,13 @@ include 'include/header-links.php';
         <div class="section-heading">
           <h2 class="section__title pb-3 lh-50">Our Story</h2>
           <p class="section__desc">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            eaque ipsa quae ab illo Maecenas quis consequat Consectetur
-            Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et
-            Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud
-            Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo
-            Consequat. Duis Aute Irure Dolor In Reprehenderit In Voluptate
-            Velit Esse Cillum Dolore
+            At DefendTech, our journey began with a vision to protect individuals and organizations from the
+            growing threats in the digital world. With cybersecurity evolving at a rapid pace, we set out to
+            create an educational platform that empowers learners to stay ahead of cyber threats.
+            From humble beginnings, we've grown into a trusted resource for millions of learners, offering
+            expert-led courses and hands-on tools to master the skills necessary for safeguarding the digital world.
+            Our commitment is to continuously innovate and provide accessible learning experiences to everyone,
+            ensuring a safer future for all.
           </p>
         </div>
         <!-- end section-heading -->
@@ -318,7 +307,7 @@ include 'include/header-links.php';
   <!--================================
          START TESTIMONIAL AREA
 =================================-->
-  <section class="testimonial-area bg-gray section--padding">
+  <section class="testimonial-area bg-gray section--padding pb-10px">
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -326,28 +315,24 @@ include 'include/header-links.php';
             <div class="section-heading">
               <h2 class="section__title mb-3">From the DefendTech community</h2>
               <p class="section__desc">
-                Donec vitae orci sed dolor rutrum auctor. Duis arcu tortor,
-                suscipit eget, imperdiet nec
+                Over 300 learners trust DefendTech for their cybersecurity education. 
+                Here’s what some of them are saying:
               </p>
             </div>
             <!-- end section-heading -->
-            <div class="btn-box mt-28px">
-              <a href="about.php" class="btn theme-btn">Explore all <i class="la la-arrow-right icon ms-1"></i></a>
-            </div>
           </div>
         </div>
         <!-- end col-lg-4 -->
         <div class="col-lg-8">
           <h3 class="fs-22 font-weight-medium pb-3">
-            30+ million people are already learning on DefendTech
+            300+ people are already learning on DefendTech
           </h3>
           <div class="testimonial-carousel-2 owl-action-styled owl-action-styled-2">
             <div class="card card-item">
               <div class="card-body">
                 <p class="card-text">
-                  I really recommend this site to all my friends and anyone
-                  who’s willing to learn real skills. This platform gives you
-                  the opportunity to learn from experts at a convenient time.
+                  I highly recommend DefendTech to anyone looking to develop real cybersecurity skills.
+                  The platform gave me access to expert knowledge at my convenience.
                 </p>
                 <div class="media media-card align-items-center pt-4">
                   <div class="media-img avatar-md">
@@ -375,9 +360,8 @@ include 'include/header-links.php';
             <div class="card card-item">
               <div class="card-body">
                 <p class="card-text">
-                  I really recommend this site to all my friends and anyone
-                  who’s willing to learn real skills. This platform gives you
-                  the opportunity to learn from experts at a convenient time.
+                  DefendTech is the best platform for learning cybersecurity skills. The courses are well-structured
+                  and practical, helping me stay ahead in my career.
                 </p>
                 <div class="media media-card align-items-center pt-4">
                   <div class="media-img avatar-md">

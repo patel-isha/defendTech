@@ -54,7 +54,7 @@ include 'include/session.php';
                                                                 <label></label>
                                                                 <div class="form-control-wrap">
                                                                     <button type="submit" class="btn btn-lg btn-primary">Search</button>
-                                                                    <a href="add-car.php" class="btn btn-lg btn-primary">Add Course</a>
+                                                                    <a href="add-course.php" class="btn btn-lg btn-primary">Add Course</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -69,16 +69,23 @@ include 'include/session.php';
                                             $search = isset($_POST["search"]) ? $_POST["search"] : '';
                                             $userId = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : '';
 
-                                            if ($_SESSION['roletype'] == "owner"){
+                                            if ($_SESSION['designation'] == "tutor") {
                                                 # Prepare the SELECT Query
-                                                $sql = "SELECT *,
-                                                        (SELECT name from owners where owner_id = car_details.owner_id) as ownerName
-                                                         FROM car_details WHERE car_name LIKE '%$search%' AND owner_id = '$userId'";
+                                                $sql = "SELECT course.*, 
+                                                (SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE user_id = course.user_id) AS tutorName,
+                                                course_category.cc_name AS categoryName
+                                                FROM course
+                                                JOIN course_category ON course.cc_id = course_category.cc_id
+                                                WHERE course_title LIKE '%$search%' 
+                                                AND user_id = '$userId'";
                                             } else {
                                                 # Prepare the SELECT Query
-                                                $sql = "SELECT *,
-                                                        (SELECT name from owners where owner_id = car_details.owner_id) as ownerName
-                                                         FROM car_details WHERE car_name LIKE '%$search%'";
+                                                $sql = "SELECT course.*, 
+                                                (SELECT CONCAT(first_name, ' ', last_name) FROM users WHERE user_id = course.user_id) AS tutorName,
+                                                course_category.cc_name AS categoryName
+                                                FROM course
+                                                JOIN course_category ON course.cc_id = course_category.cc_id
+                                                WHERE course_title LIKE '%$search%'";
                                             }
 
                                             # Execute the SELECT Query
@@ -88,7 +95,7 @@ include 'include/session.php';
                                                 if ($result->num_rows == 0) {
                                                     echo '<div class="text-center mtb10">No Data Found
                                                             <div class="mt-10">
-                                                                <a href="add-car.php" class="btn btn-lg btn-primary text-center" target="_blank">Add Course</a>
+                                                                <a href="add-course.php" class="btn btn-lg btn-primary text-center" target="_blank">Add Course</a>
                                                             </div>
                                                         </div>';
                                                 } else {
@@ -98,34 +105,47 @@ include 'include/session.php';
                                                             <thead>
                                                                 <tr>
                                                                     <th>Id</th>
-                                                                    <th>Car Name</th>
-                                                                    <th>Owner Name</th>
-                                                                    <th>Car Year</th>
-                                                                    <th>Make</th>
-                                                                    <th>Model</th>
-                                                                    <th>Color</th>
-                                                                    <th>Current Mileage</th>
-                                                                    <th>Alarm Type</th>
+                                                                    <th>Title</th>
+                                                                    <th>Tutor Name</th>
                                                                     <th>Category</th>
+                                                                    <th>Course Badge</th>
+                                                                    <th>Level</th>
+                                                                    <th>Cost</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <?php
                                                                 while ($row = $result->fetch_assoc()) {
-                                                                    $_SESSION['id'] = $row['car_id'];
+                                                                    $_SESSION['id'] = $row['course_id'];
+
+                                                                    // Define badge colors based on the value
+                                                                    $badge = $row['course_badge'];
+                                                                    $badgeClass = ''; // Default empty class
+
+                                                                    // Dynamically assign classes based on the badge type
+                                                                    switch ($badge) {
+                                                                        case 'Bestseller':
+                                                                            $badgeClass = 'orange-bg'; // Orange badge for Bestseller
+                                                                            break;
+                                                                        case 'Free':
+                                                                            $badgeClass = 'green-bg'; // Green badge for Free
+                                                                            break;
+                                                                        default:
+                                                                            $badgeClass = 'blue-bg'; // Blue badge for Highest rated
+                                                                            break;
+                                                                    }
                                                                 ?>
                                                                     <tr>
-                                                                        <td><?php echo $row['car_id']; ?></td>
-                                                                        <td><?php echo $row['car_name']; ?></td>
-                                                                        <td><?php echo $row['ownerName']; ?></td>
-                                                                        <td><?php echo $row['vehicle_year']; ?></td>
-                                                                        <td><?php echo $row['vehicle_make']; ?></td>
-                                                                        <td><?php echo $row['vehicle_model']; ?></td>
-                                                                        <td><?php echo $row['color']; ?></td>
-                                                                        <td><?php echo $row['mileage']; ?></td>
-                                                                        <td><?php echo $row['alarm_type']; ?></td>
-                                                                        <td><?php echo $row['category_id']; ?></td>
+                                                                        <td><?php echo $row['course_id']; ?></td>
+                                                                        <td><?php echo $row['course_title']; ?></td>
+                                                                        <td><?php echo $row['tutorName']; ?></td>
+                                                                        <td><?php echo $row['categoryName']; ?></td>
+                                                                        <td>
+                                                                            <span class="badge <?php echo $badgeClass; ?>"><?php echo $badge; ?></span>
+                                                                        </td>
+                                                                        <td><?php echo $row['course_level']; ?></td>
+                                                                        <td><?php echo $row['course_cost']; ?></td>
                                                                         <td class="nk-tb-col nk-tb-col-tools">
                                                                             <ul class="nk-tb-actions gx-1">
                                                                                 <li>
@@ -133,8 +153,8 @@ include 'include/session.php';
                                                                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                                             <ul class="link-list-opt no-bdr">
-                                                                                                <li><a href="edit-car-details.php?id=<?php echo $row['car_id']; ?>" target="_blank">Edit</a></li>
-                                                                                                <li><a onclick="deleteData('<?php echo $row['car_id']; ?>')" class="text-danger cursor-pointer">Remove</a></li>
+                                                                                                <li><a href="edit-course-details.php?course_id=<?php echo $row['course_id']; ?>" target="_blank">Edit</a></li>
+                                                                                                <li><a onclick="deleteData('<?php echo $row['course_id']; ?>')" class="text-danger cursor-pointer">Remove</a></li>
                                                                                             </ul>
                                                                                         </div>
                                                                                     </div>
@@ -191,7 +211,7 @@ include 'include/session.php';
                 //Single Delete Category
                 $.post("single-delete.php", {
                         id: id,
-                        type: "car-list",
+                        type: "course-list",
                         dataType: 'json',
                     },
                     function(data) {
@@ -199,7 +219,7 @@ include 'include/session.php';
                             title: "Deleted!",
                             text: "Record Deleted Successfully",
                             icon: "success"
-                        }).then(function(){
+                        }).then(function() {
                             location.reload();
                         });
                     });

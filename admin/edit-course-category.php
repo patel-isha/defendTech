@@ -3,13 +3,13 @@ include 'config/connection.php';
 
 // Fetch Car Category Details
 $id = "";
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    $editCarCategorySql = "SELECT * FROM `car_category` WHERE category_id = '$id'";
-    $editCarCategoryResult = $conn->query($editCarCategorySql);
-    if ($editCarCategoryResult->num_rows > 0) {
-        $rowEditCategory = $editCarCategoryResult->fetch_assoc();
-    }else{
+if (isset($_GET['cc_id'])) {
+    $id = $_GET['cc_id'];
+    $editCourseCategorySql = "SELECT * FROM `course_category` WHERE cc_id = '$id'";
+    $editCourseCategoryResult = $conn->query($editCourseCategorySql);
+    if ($editCourseCategoryResult->num_rows > 0) {
+        $rowEditCategory = $editCourseCategoryResult->fetch_assoc();
+    } else {
         echo "<h3>No Data Found!</h3>";
         die;
     }
@@ -18,30 +18,31 @@ if(isset($_GET['id'])){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["updateCategory"])) {
         //Retrieve form data
-        $categoryName = $_POST["categoryName"];
-        if ($_FILES["customFile"]["size"] > 0){
-            $customFile = $_FILES["customFile"]["name"];
-            $tempname = $_FILES["customFile"]["tmp_name"];
-            $folder = "assets/images/category/".basename($_FILES["customFile"]["name"]);
+        $categoryName = $_POST["cc_name"];
+        $categoryAllias = $_POST["cc_allias"];
+        if ($_FILES["cc_image"]["size"] > 0) {
+            $customFile = $_FILES["cc_image"]["name"];
+            $tempname = $_FILES["cc_image"]["tmp_name"];
+            $folder = "assets/images/category/" . basename($_FILES["cc_image"]["name"]);
             //SQL query to inser data into the database
-            $sql = "UPDATE `car_category` SET `category_name` = '$categoryName', `image` = '$customFile' WHERE category_id = '$id'";
+            $sql = "UPDATE `course_category` SET `cc_name` = '$categoryName', `cc_allias` = '$categoryAllias', `cc_image` = '$customFile' WHERE cc_id = '$id'";
 
             //Execute the query
-            if ($conn->query($sql) === TRUE && move_uploaded_file($tempname,$folder)) {
-                echo "<h3>  Car Category Added Successfully!</h3>";
-                echo "<script> location.href='add-car-category.php'; </script>";
+            if ($conn->query($sql) === TRUE && move_uploaded_file($tempname, $folder)) {
+                echo "<h3>  Course Category Updated Successfully!</h3>";
+                echo "<script> location.href='add-course-category.php'; </script>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
                 die;
             }
-        }else{
-            //SQL query to inser data into the database
-            $sql = "UPDATE `car_category` SET `category_name` = '$categoryName' WHERE category_id = '$id'";
+        } else {
+            //SQL query to insert data into the database
+            $sql = "UPDATE `course_category` SET `cc_name` = '$categoryName', `cc_allias` = '$categoryAllias' WHERE cc_id = '$id'";
 
             //Execute the query
             if ($conn->query($sql) === TRUE) {
-                echo "<h3>  Car Category Added Successfully!</h3>";
-                echo "<script> location.href='add-car-category.php'; </script>";
+                echo "<h3>  Course Category Updated Successfully!</h3>";
+                echo "<script> location.href='add-course-category.php'; </script>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
                 die;
@@ -80,7 +81,7 @@ include 'include/session.php';
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">Edit Car Category</h3>
+                                                <h3 class="nk-block-title page-title">Edit Course Category</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -94,17 +95,26 @@ include 'include/session.php';
                                                             <div class="form-group">
                                                                 <label class="form-label" for="categoryName">Category Name</label>
                                                                 <div class="form-control-wrap">
-                                                                    <input type="text" class="form-control" id="categoryName" name="categoryName" value="<?php echo isset($rowEditCategory['category_name']) ? $rowEditCategory['category_name'] : '' ?>" placeholder="Convertible" required>
+                                                                    <input type="text" class="form-control" id="categoryName" name="cc_name" value="<?php echo isset($rowEditCategory['cc_name']) ? $rowEditCategory['cc_name'] : '' ?>" placeholder="Cybersecurity Basics" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Category -->
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="form-label" for="categoryAllias">Category Allias</label>
+                                                                <div class="form-control-wrap">
+                                                                    <input type="text" class="form-control" id="categoryAllias" name="cc_allias" value="<?php echo isset($rowEditCategory['cc_allias']) ? $rowEditCategory['cc_allias'] : '' ?>" placeholder="Basics" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- Upload File -->
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="form-label" for="noofseats">Upload photo</label>
                                                                 <div class="form-control-wrap">
                                                                     <div class="form-file">
-                                                                        <input type="file" class="form-file-input" id="customFile" name="customFile" onchange="loadFile(event)">
+                                                                        <input type="file" class="form-file-input" id="customFile" name="cc_image" onchange="loadFile(event)">
                                                                         <label class="form-file-label" for="customFile">Choose file</label>
                                                                     </div>
                                                                 </div>
@@ -114,11 +124,16 @@ include 'include/session.php';
                                                             <div class="form-group">
                                                                 <label class="form-label" for="categoryImage"></label>
                                                                 <div class="form-control-wrap">
-                                                                    <img class="form-control" src="assets/images/category/<?php echo $rowEditCategory['image']; ?>" style="width: 60px;">
+                                                                    <img class="form-control w-80" src="../assets/images/img-loading.png"
+                                                                        data-src="assets/images/category/<?php echo $rowEditCategory['cc_image']; ?>" alt="Category image"
+                                                                        onerror="this.src='../assets/images/img-loading.png'"  />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
+                                                    </div>
+                                                    <div class="row g-gs">
+                                                        <div class="col-md-9"></div>
+                                                        <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label></label>
                                                                 <div class="form-control-wrap">
@@ -152,7 +167,7 @@ include 'include/session.php';
 
     <script>
         var loadFile = function(event) {
-            var output = document.getElementById('output');
+            var output = document.getElementById('customFile');
             output.src = URL.createObjectURL(event.target.files[0]);
             output.onload = function() {
                 URL.revokeObjectURL(output.src) // free memory

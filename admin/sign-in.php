@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
             //Get Owner Details
             $_SESSION['admin_id'] = $row['user_id'];
             header("Location:dashboard.php");
-        } else {
+        } else if ($row['designation'] == "student"){
             $error = 'No records found!';
         }
     } else {
@@ -72,7 +72,7 @@ if (isset($_POST['login'])) {
                                 <form method="post">
                                     <?php
                                     if (isset($error) && $error != "") {
-                                        echo "<div class='alert alert-danger'>".$error."</div>";
+                                        echo "<div class='alert alert-danger'>" . $error . "</div>";
                                     }
                                     ?>
                                     <div class="form-group">
