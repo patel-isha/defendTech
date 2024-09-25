@@ -188,62 +188,11 @@
                             <div class="shop-cart me-4">
                                 <ul>
                                     <li>
-                                        <p class="shop-cart-btn d-flex align-items-center">
+                                        <a href="shopping-cart.php" class="shop-cart-btn d-flex align-items-center">
                                             <i class="la la-shopping-cart f-large"></i>
-                                            <span class="product-count">2</span>
-                                        </p>
-                                        <ul class="cart-dropdown-menu">
-                                            <li class="media media-card">
-                                                <a href="shopping-cart.php" class="media-img">
-                                                    <img
-                                                        src="images/small-img.jpg"
-                                                        alt="Cart image" />
-                                                </a>
-                                                <div class="media-body">
-                                                    <h5>
-                                                        <a href="course-details.html">The Complete JavaScript Course 2021: From
-                                                            Zero to Expert!</a>
-                                                    </h5>
-                                                    <span class="d-block lh-18 py-1">Kamran Ahmed</span>
-                                                    <p class="text-black font-weight-semi-bold lh-18">
-                                                        $12.99
-                                                        <span class="before-price fs-14">$129.99</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li class="media media-card">
-                                                <a href="shopping-cart.php" class="media-img">
-                                                    <img
-                                                        src="images/small-img.jpg"
-                                                        alt="Cart image" />
-                                                </a>
-                                                <div class="media-body">
-                                                    <h5>
-                                                        <a href="course-details.html">The Complete JavaScript Course 2021: From
-                                                            Zero to Expert!</a>
-                                                    </h5>
-                                                    <span class="d-block lh-18 py-1">Kamran Ahmed</span>
-                                                    <p class="text-black font-weight-semi-bold lh-18">
-                                                        $12.99
-                                                        <span class="before-price fs-14">$129.99</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li class="media media-card">
-                                                <div class="media-body fs-16">
-                                                    <p class="text-black font-weight-semi-bold lh-18">
-                                                        Total: <span class="cart-total">$12.99</span>
-                                                        <span class="before-price fs-14">$129.99</span>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a
-                                                    href="shopping-cart.php"
-                                                    class="btn theme-btn w-100">Got to cart
-                                                    <i class="la la-arrow-right icon ms-1"></i></a>
-                                            </li>
-                                        </ul>
+                                            <span class="product-count"><?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?></span>
+                                        </a>
+
                                     </li>
                                 </ul>
                             </div>

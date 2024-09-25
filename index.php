@@ -320,7 +320,7 @@ include 'include/header-links.php';
                           <img class="card-img-top lazy" src="assets/images/img-loading.png" data-src="' . $course['course_image'] . '" alt="Card image cap" />
                         </a>
                         <div class="course-badge-labels">
-                          <div class="course-badge">Bestseller</div>
+                          <div class="course-badge">'.ucfirst(str_replace('_', ' ', $course['course_badge'])).'</div>
                         </div>
                       </div>
                     <div class="card-body">
@@ -344,7 +344,7 @@ include 'include/header-links.php';
                       </div>
                       <div class="d-flex justify-content-between align-items-center">
                         <p class="card-price text-black font-weight-bold">£ ' . $course['course_cost'] . '</p>
-                        <a href="#" class="btn theme-btn">
+                        <a href="#" class="btn theme-btn" onclick="addToCart(' . $course['course_id'] . ')">
                           <i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart
                         </a>
                       </div>
@@ -1499,6 +1499,25 @@ include 'include/header-links.php';
   <?php
   include 'include/footer-scripts.php';
   ?>
+  <script>
+      function addToCart(course_id) {
+          $.ajax({
+              url: 'add_to_cart.php', // The PHP file that processes the cart
+              method: 'POST',
+              data: {
+                  course_id: course_id,
+              },
+              success: function(response) {
+                  // Update the cart count (or other UI elements) dynamically
+                  var cart = JSON.parse(response);
+                  $('.product-count').text(cart.cart_count);
+              },
+              error: function(xhr, status, error) {
+                  console.error('AJAX Error:', status, error);
+              }
+          });
+      }
+  </script>
 </body>
 
 </html>

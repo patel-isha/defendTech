@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include 'config/connection.php';
 
 // Check if user is logged in
@@ -18,18 +20,11 @@ if (isset($_POST['login'])) {
     if ($result->num_rows > 0) {
         // Output data of the first (and only) row
         $row = $result->fetch_assoc();
-        if ($row['designation'] == "admin") {
+        if ($row['designation'] == "admin" || $row['designation'] == "tutor") {
             $_SESSION['designation'] = $row['designation'];
-//            $_SESSION['fullname'] = $row['full_name'];
-//            $_SESSION['roletype'] = $row['role_type'];
-//            if ($row['role_type'] == 'owner') {
-//                $user_id = $row['user_id'];
-//                $sqlOwner = "SELECT * FROM `owners` where user_id = '$user_id'";
-//                $resultOwner = $conn->query($sqlOwner);
-//                $rowOwner = $resultOwner->fetch_assoc();
-//            }
+            $_SESSION['fullname'] = $row['first_name']." ".$row['last_name'];
             //Get Owner Details
-            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['admin_id'] = $row['user_id'];
             header("Location:dashboard.php");
         } else {
             $error = 'No records found!';

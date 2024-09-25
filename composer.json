@@ -1,0 +1,12 @@
+{
+    "name": "isha/defend-tech",
+    "authors": [
+        {
+            "name": "Isha Patel",
+            "email": "patelisha307@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^15.10"
+    }
+}

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Validate email
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Invalid email format");
+      $error = 'Invalid email formats!';
   }
 
     // Check if email exist
@@ -30,27 +30,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sqlEmail);
 
     if ($result->num_rows > 0) {
-        throw new InvalidArgumentException('Email already exists');
+        $error = 'Email already exists!';
     }
 
   // Validate phone number (optional: add more specific validation if needed)
   if (!preg_match('/^[0-9]{10,11}$/', $contact_no)) {
-    die("Invalid phone number format");
+      $error = 'Invalid phone number format!';
   }
 
-  //SQL query to insert data into the database
-  $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`) 
+  if (empty($error)){
+      //SQL query to insert data into the database
+      $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`) 
   VALUES ('$fname', '$lname', '$email', '$contact_no', '$designation', '$gender', '$password')";
 
-  //Execute the query
-  if ($conn->query($sql) === TRUE) {
-    $last_id = mysqli_insert_id($conn);
+      //Execute the query
+      if ($conn->query($sql) === TRUE) {
+          $last_id = mysqli_insert_id($conn);
 
-    echo "<h3>User Added Successfully!</h3>";
-    echo "<script> location.href='login.php'; </script>";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    die;
+          echo "<h3>User Added Successfully!</h3>";
+          echo "<script> location.href='login.php'; </script>";
+      } else {
+          $error = 'Something went wrong!';
+      }
   }
 }
 ?>
@@ -99,6 +100,11 @@ include 'include/header-links.php';
               </h3>
               <div class="section-block"></div>
               <form method="post" class="pt-4">
+                  <?php
+                  if (isset($error) && $error != "") {
+                      echo "<div class='alert alert-danger'>".$error."</div>";
+                  }
+                  ?>
                 <div class="row">
                   <div class="col-lg-6 mx-auto">
                     <div class="input-box">
