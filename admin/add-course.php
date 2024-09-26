@@ -88,7 +88,7 @@ include 'include/session.php';
                                                         <div class="form-group">
                                                             <label class="form-label" for="course_tutor">Course Tutor's Name</label>
                                                             <div class="form-control-wrap">
-                                                                <select class="form-select js-select2" id="course_tutor" name="course_tutor" data-placeholder="Select owner" required>
+                                                                <select class="form-select js-select2" id="course_tutor" name="course_tutor" required>
                                                                     <option>Select Tutor</option>
                                                                     <?php
                                                                     # Prepare the SELECT Query

@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['name'] = $row['first_name']." ".$row['last_name'];
             $_SESSION['designation'] = $row['designation'];
-            header("Location:/");
+            header("Location:index.php");
         }
     } else {
         $error = 'No Records Found!';

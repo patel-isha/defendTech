@@ -28,24 +28,26 @@
                          </a>
                          <ul class="nk-menu-sub">
                              <li class="nk-menu-item">
-                                 <a href="course-list.php" class="nk-menu-link"><span class="nk-menu-text">Courses</span></a>
+                                 <a href="course-list.php" class="nk-menu-link"><span class="nk-menu-text">Course Listing</span></a>
                              </li>
-                             <?php if ($_SESSION['designation'] == 'admin'){ ?>
-                                 <li class="nk-menu-item" style="display: <?php if($_SESSION['designation'] == "tutor") {
-                                    echo "none";
-                                 }
-                                 else {
-                                    echo "block";
-                                 } ?>;" >
+                             <?php if ($_SESSION['designation'] == 'admin') { ?>
+                                 <li class="nk-menu-item" style="display: <?php if ($_SESSION['designation'] == "tutor") {
+                                                                                echo "none";
+                                                                            } else {
+                                                                                echo "block";
+                                                                            } ?>;">
                                      <a href="add-course-category.php" class="nk-menu-link"><span class="nk-menu-text">Course Category</span></a>
                                  </li>
-                                 <li class="nk-menu-item">
-                                     <a href="add-car-brand.php" class="nk-menu-link"><span class="nk-menu-text">Add Course</span></a>
-                                 </li>
                              <?php } ?>
+                             <li class="nk-menu-item">
+                                 <a href="course-content-list.php" class="nk-menu-link"><span class="nk-menu-text">Course Content</span></a>
+                             </li>
+                             <li class="nk-menu-item">
+                                 <a href="reviews.php" class="nk-menu-link"><span class="nk-menu-text">Course Reviews</span></a>
+                             </li>
                          </ul><!-- .nk-menu-sub -->
                      </li><!-- .nk-menu-item -->
-                     <?php if ($_SESSION['designation'] == 'admin'){ ?>
+                     <?php if ($_SESSION['designation'] == 'admin') { ?>
                          <li class="nk-menu-item">
                              <a href="owner-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
@@ -59,9 +61,9 @@
                              </a>
                          </li>
                      <?php } ?>
-                     <?php if ($_SESSION['designation'] == 'tutor'){ ?>
+                     <?php if ($_SESSION['designation'] == 'tutor') { ?>
                          <li class="nk-menu-item">
-                             <a href="edit-owner.php?id=<?php echo $_SESSION['user_id']?>" target="_blank" class="nk-menu-link">
+                             <a href="edit-owner.php?id=<?php echo $_SESSION['user_id'] ?>" target="_blank" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
                                  <span class="nk-menu-text">My Profile</span>
                              </a>

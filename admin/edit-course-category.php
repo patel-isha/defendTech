@@ -99,7 +99,7 @@ include 'include/session.php';
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Category -->
+                                                        <!-- Allias -->
                                                         <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label class="form-label" for="categoryAllias">Category Allias</label>

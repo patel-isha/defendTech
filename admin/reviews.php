@@ -1,27 +1,6 @@
 <?php
 include 'config/connection.php';
-//Execute the query
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["addBrand"])) {
-        //Retrieve form data
-        $brandName = $_POST["brandName"];
-        $customFile = $_FILES["customFile"]["name"];
-        $tempname = $_FILES["customFile"]["tmp_name"];
-        $folder = "assets/images/brand/".basename($_FILES["customFile"]["name"]);
 
-        //SQL query to inser data into the database
-        $sql = "INSERT INTO `car_brand`(`brand_name`, `image`) VALUES ('$brandName', '$customFile')";
-
-        //Execute the query
-        if ($conn->query($sql) === TRUE && move_uploaded_file($tempname,$folder)) {
-            echo "<h3>Car Brand Added Successfully!</h3>";
-            echo "<script> location.href='add-car-brand.php'; </script>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            die;
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +32,7 @@ include 'include/session.php';
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">Car Brand</h3>
+                                                <h3 class="nk-block-title page-title">Course Reviews</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +49,7 @@ include 'include/session.php';
                                                                     <div class="form-icon form-icon-right">
                                                                         <em class="icon fas fa-search"></em>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="search" name="search" placeholder="Search" required>
+                                                                    <input type="text" class="form-control" id="search" name="search" placeholder="Search Review" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -84,46 +63,17 @@ include 'include/session.php';
                                                         </div>
                                                     </div>
                                                 </form>
-                                                <form method="post" enctype="multipart/form-data">
-                                                    <div class="row g-gs">
-                                                        <!-- Category -->
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label" for="brandName">Brand Name</label>
-                                                                <div class="form-control-wrap">
-                                                                    <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Convertible" required>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Upload File -->
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label" for="noofseats">Upload photo</label>
-                                                                <div class="form-control-wrap">
-                                                                    <div class="form-file">
-                                                                        <input type="file" class="form-file-input" id="customFile" name="customFile" onchange="loadFile(event)">
-                                                                        <label class="form-file-label" for="customFile">Choose file</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label></label>
-                                                                <div class="form-control-wrap">
-                                                                    <button type="submit" class="btn btn-lg btn-primary" name="addBrand">Add Brand</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                         <div class="card card-bordered">
                                             <?php
                                             $search = isset($_POST["search"]) ? $_POST["search"] : '';
                                             # Prepare the SELECT Query
-                                            $sql = "SELECT * FROM `car_brand` WHERE brand_name LIKE '%$search%'";
+                                            $sql = "SELECT cr.*, c.course_title, CONCAT(u.first_name, ' ', u.last_name) AS username
+                                            FROM course_review cr
+                                            JOIN course c ON cr.course_id = c.course_id
+                                            JOIN users u ON cr.user_id = u.user_id
+                                            WHERE cr.review LIKE '%$search%';";
                                             # Execute the SELECT Query
                                             if (!($result = $conn->query($sql))) {
                                                 echo 'Retrieval of data from Database Failed - #' . $sql . ': ' . $conn->error;
@@ -134,8 +84,10 @@ include 'include/session.php';
                                                         <thead>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Brand</th>
-                                                                <th>Image</th>
+                                                                <th>Course Title</th>
+                                                                <th class="w-10">User Name</th>
+                                                                <th>Review</th>
+                                                                <th>Ratings</th>
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -147,18 +99,23 @@ include 'include/session.php';
                                                                 while ($row = $result->fetch_assoc()) {
                                                             ?>
                                                                     <tr>
-                                                                        <td><?php echo $row['brand_id']; ?></td>
-                                                                        <td><?php echo $row['brand_name']; ?></td>
-                                                                        <td><img src="assets/images/brand/<?php echo $row['image']; ?>" height="30"></td>
+                                                                        <td><?php echo $row['cr_id']; ?></td>
+                                                                        <td><?php echo $row['course_title']; ?></td>
+                                                                        <td class="w-10"><?php echo $row['username']; ?></td>
+                                                                        <td><?php echo $row['review']; ?></td>
+                                                                        <td><?php echo $row['rating']; ?></td>
                                                                         <td class="nk-tb-col nk-tb-col-tools">
-                                                                            <ul class="nk-tb-actions gx-1 justify-content-start">
-                                                                                <li class="nk-tb-action">
-                                                                                    <a href="edit-car-brand.php?id=<?php echo $row['brand_id'];?>" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                                        <em class="icon fas fa-pen"></em>
-                                                                                    </a>
-                                                                                    <a onclick="deleteData('<?php echo $row['brand_id']; ?>')" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                                        <em class="icon fas fa-trash text-danger"></em>
-                                                                                    </a>
+                                                                            <ul class="nk-tb-actions gx-1">
+                                                                                <li>
+                                                                                    <div class="drodown">
+                                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                                                            <ul class="link-list-opt no-bdr">
+                                                                                                <li><a href="edit-review.php?cr_id=<?php echo $row['cr_id']; ?>" target="_blank">Edit</a></li>
+                                                                                                <li><a onclick="deleteData('<?php echo $row['cr_id']; ?>')" class="text-danger cursor-pointer">Remove</a></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </li>
                                                                             </ul>
                                                                         </td>
@@ -195,14 +152,7 @@ include 'include/session.php';
     ?>
 
     <script>
-        var loadFile = function(event) {
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.onload = function() {
-                URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-        function deleteData(brandId) {
+        function deleteData(categoryId) {
             Swal.fire({
                 title: "Are you sure, you want to delete this record?",
                 text: "You won't be able to revert this!",
@@ -215,8 +165,8 @@ include 'include/session.php';
                 if (result.isConfirmed) {
                     //Single Delete Category
                     $.post("single-delete.php", {
-                            id: brandId,
-                            type: "car-brand",
+                            id: categoryId,
+                            type: "course-review",
                             dataType: 'json',
                         },
                         function(data) {
@@ -224,7 +174,7 @@ include 'include/session.php';
                                 title: "Deleted!",
                                 text: "Record Deleted Successfully",
                                 icon: "success"
-                            }).then(function(){
+                            }).then(function() {
                                 location.reload();
                             });
                         });
