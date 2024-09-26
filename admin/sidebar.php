@@ -30,8 +30,8 @@
                              <li class="nk-menu-item">
                                  <a href="car-list.php" class="nk-menu-link"><span class="nk-menu-text">Car</span></a>
                              </li>
-                             <?php if ($_SESSION['roletype'] == 'admin'){ ?>
-                                 <li class="nk-menu-item" style="display: <?php if($_SESSION['roletype'] == "owner") {
+                             <?php if ($_SESSION['designation'] == 'admin'){ ?>
+                                 <li class="nk-menu-item" style="display: <?php if($_SESSION['designation'] == "owner") {
                                     echo "none";
                                  }
                                  else {
@@ -45,11 +45,11 @@
                              <?php } ?>
                          </ul><!-- .nk-menu-sub -->
                      </li><!-- .nk-menu-item -->
-                     <?php if ($_SESSION['roletype'] == 'admin'){ ?>
+                     <?php if ($_SESSION['designation'] == 'admin'){ ?>
                          <li class="nk-menu-item">
                              <a href="owner-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
-                                 <span class="nk-menu-text">Owner</span>
+                                 <span class="nk-menu-text">Tutor</span>
                              </a>
                          </li>
                          <li class="nk-menu-item">
@@ -59,7 +59,7 @@
                              </a>
                          </li>
                      <?php } ?>
-                     <?php if ($_SESSION['roletype'] == 'owner'){ ?>
+                     <?php if ($_SESSION['designation'] == 'tutor'){ ?>
                          <li class="nk-menu-item">
                              <a href="edit-owner.php?id=<?php echo $_SESSION['admin_id']?>" target="_blank" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
