@@ -63,7 +63,7 @@
                      <?php } ?>
                      <?php if ($_SESSION['designation'] == 'tutor') { ?>
                          <li class="nk-menu-item">
-                             <a href="edit-owner.php?id=<?php echo $_SESSION['user_id'] ?>" target="_blank" class="nk-menu-link">
+                             <a href="edit-owner.php?id=<?php echo $_SESSION["admin_id"] ?>" target="_blank" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
                                  <span class="nk-menu-text">My Profile</span>
                              </a>
