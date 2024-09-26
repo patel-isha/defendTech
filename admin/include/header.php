@@ -23,8 +23,8 @@
                                     <div class="user-status"><?php echo ucfirst($_SESSION['designation']); ?></div>
                                     <div class="user-name dropdown-indicator">
                                         <?php
-                                        $firstname = $_SESSION['firstname'];
-                                        echo $firstname;
+                                        $fullname = $_SESSION['fullname'];
+                                        echo $fullname;
                                         ?>
                                     </div>
                                 </div>
