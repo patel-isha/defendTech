@@ -23,7 +23,14 @@ if (isset($_POST['login'])) {
         if ($row['designation'] == "admin" || $row['designation'] == "tutor") {
             $_SESSION['designation'] = $row['designation'];
             $_SESSION['fullname'] = $row['first_name']." ".$row['last_name'];
-            //Get Owner Details
+
+            if ($row['designation'] == 'tutor') {
+                $user_id = $row['user_id'];
+                $sqlTutor = "SELECT * FROM `users` where user_id = '$user_id'";
+                $resultTutor = $conn->query($sqlTutor);
+                $rowTutor = $resultTutor->fetch_assoc();
+            }
+            //Get Tutor Details
             $_SESSION['admin_id'] = $row['user_id'];
             header("Location:dashboard.php");
         } else if ($row['designation'] == "student"){
