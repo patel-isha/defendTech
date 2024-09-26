@@ -16,29 +16,30 @@
                     <!-- end header-widget -->
                 </div>
                 <!-- end col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="header-widget d-flex flex-wrap align-items-center justify-content-end">
-                        <div class="theme-picker d-flex align-items-center">
-                            <button class="theme-picker-btn dark-mode-btn" title="Dark mode">
-                                <svg id="moon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                            </button>
-                            <button class="theme-picker-btn light-mode-btn" title="Light mode">
-                                <svg id="sun" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <?php if (!isset($_SESSION['user_id'])) { ?>
+                <?php if (!isset($_SESSION['user_id'])) { ?>
+                    <div class="col-lg-6">
+                        <div class="header-widget d-flex flex-wrap align-items-center justify-content-end">
+                            <div class="theme-picker d-flex align-items-center">
+                                <button class="theme-picker-btn dark-mode-btn" title="Dark mode">
+                                    <svg id="moon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                    </svg>
+                                </button>
+                                <button class="theme-picker-btn light-mode-btn" title="Light mode">
+                                    <svg id="sun" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                    </svg>
+                                </button>
+                            </div>
+
                             <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray ps-3 ms-3">
                                 <li class="d-flex align-items-center pe-3 me-3 border-right border-right-gray">
                                     <i class="la la-sign-in me-1 f-large"></i><a href="login.php"> Login</a>
@@ -47,25 +48,10 @@
                                     <i class="la la-user me-1 f-large"></i><a href="register.php"> Register</a>
                                 </li>
                             </ul>
-                        <?php } else { ?>
-                            <ul class="generic-list-item d-flex flex-wrap align-items-center fs-14 border-left border-left-gray ps-3 ms-3">
-                                <li class="nav-item dropdown">
-                                    <label class="welcome-user cursor-pointer" for="dropdown-toggle">
-                                        <span><i class="fa-solid fa-circle-user fa-fw align-middle f-28"></i></span>
-                                        Welcome <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?>
-                                        <i class="fas fa-angle-down align-middle ml-10"></i>
-                                    </label>
-                                    <input type="checkbox" id="dropdown-toggle" class="toggle-input">
-                                    <ul class="submenu">
-                                        <li><a href="my-account.php">My Profile</a></li>
-                                        <li><a href="logout.php">Logout</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        <?php } ?>
+                        </div>
+                        <!-- end header-widget -->
                     </div>
-                    <!-- end header-widget -->
-                </div>
+                <?php } ?>
                 <!-- end col-lg-6 -->
             </div>
             <!-- end row -->
@@ -108,9 +94,11 @@
                                     <li>
                                         <a href="course-grid.php">courses</a>
                                     </li>
-                                    <li>
-                                        <a href="quiz.php">quiz</a>
-                                    </li>
+                                    <?php if (isset($_SESSION['user_id'])) { ?>
+                                        <li>
+                                            <a href="quiz.php">quiz</a>
+                                        </li>
+                                    <?php } ?>
                                     <li>
                                         <a href="blog.php">blog </a>
                                     </li>
@@ -133,6 +121,142 @@
                                 </ul>
                             </div>
                             <!-- end shop-cart -->
+                            <?php if (isset($_SESSION['user_id'])) { ?>
+                                <div class="shop-cart user-profile-cart me-2">
+                                    <ul>
+                                        <li>
+                                            <div class="shop-cart-btn">
+                                                <div class="avatar-xs">
+                                                    <img
+                                                        class="rounded-full img-fluid"
+                                                        src="assets/images/small-avatar-1.jpg"
+                                                        alt="Avatar image" />
+                                                </div>
+                                            </div>
+                                            <ul
+                                                class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
+                                                <li
+                                                    class="menu-heading-block d-flex align-items-center">
+                                                    <a
+                                                        href="teacher-detail.html"
+                                                        class="avatar-sm flex-shrink-0 d-block">
+                                                        <img
+                                                            class="rounded-full img-fluid"
+                                                            src="assets/images/small-avatar-1.jpg"
+                                                            alt="Avatar image" />
+                                                    </a>
+                                                    <div class="ms-2">
+                                                        <h4>
+                                                            <a
+                                                                href="teacher-detail.html"
+                                                                class="text-black">Alex Smith</a>
+                                                        </h4>
+                                                        <span class="d-block fs-14 lh-20">alexsmith@example.com</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div
+                                                        class="theme-picker d-flex align-items-center justify-content-center lh-40">
+                                                        <button
+                                                            class="theme-picker-btn dark-mode-btn w-100 font-weight-semi-bold justify-content-center"
+                                                            title="Dark mode">
+                                                            <svg
+                                                                class="me-1"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path
+                                                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                                            </svg>
+                                                            Dark Mode
+                                                        </button>
+                                                        <button
+                                                            class="theme-picker-btn light-mode-btn w-100 font-weight-semi-bold justify-content-center"
+                                                            title="Light mode">
+                                                            <svg
+                                                                class="me-1"
+                                                                viewBox="0 0 24 24"
+                                                                stroke-width="1.5"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <circle cx="12" cy="12" r="5"></circle>
+                                                                <line
+                                                                    x1="12"
+                                                                    y1="1"
+                                                                    x2="12"
+                                                                    y2="3"></line>
+                                                                <line
+                                                                    x1="12"
+                                                                    y1="21"
+                                                                    x2="12"
+                                                                    y2="23"></line>
+                                                                <line
+                                                                    x1="4.22"
+                                                                    y1="4.22"
+                                                                    x2="5.64"
+                                                                    y2="5.64"></line>
+                                                                <line
+                                                                    x1="18.36"
+                                                                    y1="18.36"
+                                                                    x2="19.78"
+                                                                    y2="19.78"></line>
+                                                                <line
+                                                                    x1="1"
+                                                                    y1="12"
+                                                                    x2="3"
+                                                                    y2="12"></line>
+                                                                <line
+                                                                    x1="21"
+                                                                    y1="12"
+                                                                    x2="23"
+                                                                    y2="12"></line>
+                                                                <line
+                                                                    x1="4.22"
+                                                                    y1="19.78"
+                                                                    x2="5.64"
+                                                                    y2="18.36"></line>
+                                                                <line
+                                                                    x1="18.36"
+                                                                    y1="5.64"
+                                                                    x2="19.78"
+                                                                    y2="4.22"></line>
+                                                            </svg>
+                                                            Light Mode
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <ul class="generic-list-item">
+                                                        <li>
+                                                            <a href="my-courses.php">
+                                                                <i class="la la-file-video-o me-1"></i> My
+                                                                courses
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="my-profile.php">
+                                                                <i class="la la-user me-1"></i> My
+                                                                profile
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="logout.php">
+                                                                <i class="la la-power-off me-1"></i>
+                                                                Logout
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <div class="section-block"></div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <?php } ?>
+                            <!-- end profile -->
                         </div>
                         <!-- end menu-wrapper -->
                     </div>

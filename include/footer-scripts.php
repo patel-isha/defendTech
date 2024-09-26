@@ -11,6 +11,8 @@
  <script src="assets/js/select2.min.js"></script>
  <script src="assets/js/tooltipster.bundle.min.js"></script>
  <script src="assets/js/progress-bar.js"></script>
+ <script src="assets/js/animated-skills.js"></script>
+ <script src="assets/js/jquery.MultiFile.min.js"></script>
  <script src="assets/js/jquery.lazy.min.js"></script>
  <script src="assets/js/main.js"></script>
  <script src="assets/js/form.js"></script>

@@ -7299,7 +7299,7 @@ textarea {
 /*======== dashboard-content-wrap =========*/
 .dashboard-content-wrap {
   height: 100vh;
-  padding-top: 45px;
+  padding-top: 25px;
   width: calc(100% - 325px);
   margin-left: auto;
   padding-right: 30px;
