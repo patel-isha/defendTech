@@ -67,7 +67,7 @@ include 'include/session.php';
                                         <div class="card card-bordered card-preview">
                                             <?php
                                             $search = isset($_POST["search"]) ? $_POST["search"] : '';
-                                            $userId = isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : '';
+                                            $userId = isset($_SESSION["admin_id"]) ? $_SESSION["admin_id"] : '';
 
                                             if ($_SESSION['designation'] == "tutor") {
                                                 # Prepare the SELECT Query
