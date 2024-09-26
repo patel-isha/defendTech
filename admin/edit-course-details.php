@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['course_id'])) {
         $customFile = $_FILES["course_image"]["name"];
         $tempname = $_FILES["course_image"]["tmp_name"];
         $folder = "assets/images/course/" . basename($_FILES["course_image"]["name"]);
-        //SQL query to inser data into the database
+        //SQL query to update data into the database
         $sql = "UPDATE `course` SET course_title='$title', course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost', `course_image` = '$customFile'
     WHERE course_id='$id'";
 
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['course_id'])) {
             die;
         }
     } else {
-        //SQL query to inser data into the database
+        //SQL query to update data into the database
         $sql = "UPDATE `course` SET course_title='$title', course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost'
     WHERE course_id='$id'";
 
@@ -186,7 +186,7 @@ include 'include/session.php';
                                                             <div class="form-group">
                                                                 <label class="form-label" for="course_subtext">Course Subtext</label>
                                                                 <div class="form-control-wrap">
-                                                                    <textarea class="form-control form-control-sm" id="course_subtext" name="course_subtext"><?php echo $row['course_subtext']; ?></textarea>
+                                                                    <textarea class="form-control form-control-sm" id="course_subtext" name="course_subtext" required><?php echo $row['course_subtext']; ?></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>

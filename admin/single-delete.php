@@ -11,9 +11,19 @@ if(isset($_POST["type"]) && $_POST["type"] == "course-category") {
     $sql = "DELETE from `course_category` WHERE cc_id = '$id'";
 }
 
-if(isset($_POST["type"]) && $_POST["type"] == "car-brand") {
+if(isset($_POST["type"]) && $_POST["type"] == "course-content") {
     $id = $_POST["id"];
-    $sql = "DELETE from `car_brand` WHERE brand_id = '$id'";
+    $sql = "DELETE from `course_content` WHERE content_id = '$id'";
+}
+
+if(isset($_POST["type"]) && $_POST["type"] == "course-review") {
+    $id = $_POST["id"];
+    $sql = "DELETE from `course_review` WHERE cr_id = '$id'";
+}
+
+if(isset($_POST["type"]) && $_POST["type"] == "course-content") {
+    $id = $_POST["id"];
+    $sql = "DELETE from `course_content` WHERE cct_id = '$id'";
 }
 
 if(isset($_POST["type"]) && $_POST["type"] == "car-owner") {
