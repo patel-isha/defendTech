@@ -94,7 +94,7 @@
                                     <li>
                                         <a href="course-grid.php">courses</a>
                                     </li>
-                                    <?php if (isset($_SESSION['user_id'])) { ?>
+                                    <?php if (isset($_SESSION['user_id']) && ($_SESSION['designation'] == 'student')) { ?>
                                         <li>
                                             <a href="quiz.php">quiz</a>
                                         </li>
@@ -137,8 +137,7 @@
                                                 class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
                                                 <li
                                                     class="menu-heading-block d-flex align-items-center">
-                                                    <a
-                                                        href="teacher-detail.html"
+                                                    <a href="javascript:void(0)"
                                                         class="avatar-sm flex-shrink-0 d-block">
                                                         <img
                                                             class="rounded-full img-fluid"
@@ -147,11 +146,20 @@
                                                     </a>
                                                     <div class="ms-2">
                                                         <h4>
-                                                            <a
-                                                                href="teacher-detail.html"
-                                                                class="text-black">Alex Smith</a>
+                                                            <a href="javascript:void(0)"
+                                                                class="text-black">
+                                                                <?php
+                                                                $fullname = $_SESSION['name'];
+                                                                echo $fullname;
+                                                                ?>
+                                                            </a>
                                                         </h4>
-                                                        <span class="d-block fs-14 lh-20">alexsmith@example.com</span>
+                                                        <span class="d-block fs-14 lh-20">
+                                                        <?php
+                                                                $email = $_SESSION['email'];
+                                                                echo $email;
+                                                                ?>
+                                                        </span>
                                                     </div>
                                                 </li>
                                                 <li>

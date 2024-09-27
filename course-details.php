@@ -42,11 +42,6 @@ include 'include/header-links.php';
     <div class="container">
       <div class="col-lg-8 me-auto">
         <div class="breadcrumb-content">
-          <ul class="generic-list-item generic-list-item-arrow d-flex flex-wrap align-items-center">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#">Course</a></li>
-            <li><a href="#">Course Details</a></li>
-          </ul>
           <div class="section-heading">
             <h2 class="section__title">
                 <?php echo $courseDetail['course_title']; ?>
