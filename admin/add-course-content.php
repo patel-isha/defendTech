@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include 'config/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -90,12 +92,15 @@ include 'include/session.php';
                                                     <div class="form-group">
                                                         <label class="form-label" for="course_title">Course Title</label>
                                                         <div class="form-control-wrap ">
-                                                            <?php if ($_SESSION['designation'] == 'admin') { ?>
+
                                                                 <select class="form-select js-select2" id="course_title" name="course_title" required>
                                                                     <option>Select Course Title</option>
-                                                                    <?php
-                                                                    # Prepare the SELECT Query
-                                                                    $sql = "SELECT course_id, course_title FROM `course`";
+                                                                    <?php if ($_SESSION['designation'] == 'admin') {
+                                                                        # Prepare the SELECT Query
+                                                                        $sql = "SELECT course_id, course_title FROM `course`";
+                                                                    } else {
+                                                                        $sql = "SELECT course_id, course_title FROM `course` WHERE user_id = '" . $_SESSION['admin_id'] . "'";
+                                                                    }
                                                                     $result = $conn->query($sql);
 
                                                                     if ($result->num_rows > 0) {
@@ -107,20 +112,7 @@ include 'include/session.php';
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                                <?php } else {
-                                                                $sql = "SELECT course_content.*, course.course_title 
-                                                                FROM course_content 
-                                                                INNER JOIN course ON course_content.course_id = course.course_id";
-                                                                $result = $conn->query($sql);
 
-                                                                if ($result->num_rows > 0) {
-                                                                    $row = $result->fetch_assoc(); // Fetch the first row of the result
-                                                                ?>
-                                                                    <input class="form-control" id="course_title" name="course_title" value="<?php echo $row['course_title']; ?>" disabled>
-                                                            <?php
-                                                                }
-                                                            }
-                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>

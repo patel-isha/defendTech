@@ -1,10 +1,14 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'config/connection.php';
+include 'include/session.php';
+?>
 <!DOCTYPE html>
 <html>
 
 <?php
 include 'include/header-links.php';
-include 'config/connection.php';
-include 'include/session.php';
 ?>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
