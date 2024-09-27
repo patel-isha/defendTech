@@ -1,9 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include 'config/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Retrieve form data
     $tutor = $_POST["course_tutor"];
+    $author = $_SESSION["fullname"] ?? 'Admin';
     $title = $_POST["course_title"];
     $category = $_POST["course_category"];
     $subtext = $_POST["course_subtext"];
@@ -18,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $folder = "assets/images/course/" . basename($_FILES["course_image"]["name"]);
 
         //SQL query to inser data into the database
-        $sql = "INSERT INTO `course`(`user_id`, `course_title`, `cc_id`,`course_subtext`, `course_badge`, `course_level`, `course_cost`, `course_image`) 
-    VALUES ('$tutor', '$title', '$category','$subtext', '$badge', '$level', '$cost', '$customFile')";
+        $sql = "INSERT INTO `course`(`user_id`,`course_author`, `course_title`, `cc_id`,`course_subtext`, `course_badge`, `course_level`, `course_cost`, `course_image`,`course_status`) 
+    VALUES ('$tutor','$author', '$title', '$category','$subtext', '$badge', '$level', '$cost', '$customFile','1')";
 
         //Execute the query
         if ($conn->query($sql) === TRUE && move_uploaded_file($tempname, $folder)) {
@@ -107,6 +110,8 @@ include 'include/session.php';
                                                             </div>
                                                         </div>
                                                     </div>
+                                                <?php } else{ ?>
+                                                    <input type="hidden" id="course_tutor" name="course_tutor" value="<?php echo $_SESSION['admin_id']; ?>">
                                                 <?php } ?>
                                                 <!-- Course Title -->
                                                 <div class="col-md-4">

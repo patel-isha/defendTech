@@ -4,7 +4,6 @@ include 'config/connection.php';
 $id = $_GET["course_id"];
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['course_id'])) {
     //Retrieve form data
-    $title = $_POST["course_title"];
     $subtext = $_POST["course_subtext"];
     $badge = $_POST["course_badge"];
     $level = $_POST["course_level"];
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['course_id'])) {
         $tempname = $_FILES["course_image"]["tmp_name"];
         $folder = "assets/images/course/" . basename($_FILES["course_image"]["name"]);
         //SQL query to inser data into the database
-        $sql = "UPDATE `course` SET course_title='$title', course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost', `course_image` = '$customFile'
+        $sql = "UPDATE `course` SET course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost', `course_image` = '$customFile'
     WHERE course_id='$id'";
 
         //Execute the query
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['course_id'])) {
         }
     } else {
         //SQL query to inser data into the database
-        $sql = "UPDATE `course` SET course_title='$title', course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost'
+        $sql = "UPDATE `course` SET course_subtext='$subtext', course_badge='$badge', course_level='$level', course_cost='$cost'
     WHERE course_id='$id'";
 
         //Execute the query
@@ -90,21 +89,12 @@ include 'include/session.php';
                                         ?>
                                                 <form method="post" enctype="multipart/form-data">
                                                     <div class="row g-gs">
-                                                        <!-- Course Id -->
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label class="form-label" for="cid">Course Id</label>
-                                                                <div class="form-control-wrap">
-                                                                    <input class="form-control" id="cid" name="cid" value="<?php echo $row['course_id']; ?>" disabled>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <!-- Course Title -->
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label class="form-label" for="course_title">Course Title</label>
+                                                                <label class="form-label" for="course_title">Course</label>
                                                                 <div class="form-control-wrap ">
-                                                                    <input type="text" class="form-control" id="course_title" name="course_title" value="<?php echo $row['course_title']; ?>">
+                                                                    <input type="text" class="form-control" id="course_title" name="course_title" value="<?php echo $row['course_title']; ?>" disabled>
                                                                 </div>
                                                             </div>
                                                         </div>
