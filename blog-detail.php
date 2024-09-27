@@ -37,7 +37,7 @@ include 'include/header-links.php';
         </ul>
         <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
           <li class="d-flex align-items-center">
-            By<a href="#">TechyDevs</a>
+            ByDefendTech
           </li>
           <li class="d-flex align-items-center">Jan 24, 2020</li>
           <li class="d-flex align-items-center">

@@ -6,7 +6,7 @@
              <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
          </div>
          <div class="nk-sidebar-brand">
-             <a href="dashboard.php" class="logo-link nk-sidebar-logo">
+             <a href="course-list.php" class="logo-link nk-sidebar-logo">
                  <img class="w-45" src="assets/images/dashboard-logo.png" alt="logo">
              </a>
          </div>
@@ -15,12 +15,6 @@
          <div class="nk-sidebar-content">
              <div class="nk-sidebar-menu" data-simplebar>
                  <ul class="nk-menu">
-                     <li class="nk-menu-item">
-                         <a href="dashboard.php" class="nk-menu-link">
-                             <span class="nk-menu-icon"><em class="icon fas fa-chart-line"></em></span>
-                             <span class="nk-menu-text">Dashboard</span>
-                         </a>
-                     </li>
                      <li class="nk-menu-item has-sub">
                          <a href="javascript:void(0)" class="nk-menu-link nk-menu-toggle">
                              <span class="nk-menu-icon"><em class="icon fa fa-book"></em></span>
@@ -49,13 +43,13 @@
                      </li><!-- .nk-menu-item -->
                      <?php if ($_SESSION['designation'] == 'admin') { ?>
                          <li class="nk-menu-item">
-                             <a href="owner-list.php" class="nk-menu-link">
+                             <a href="tutor-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
                                  <span class="nk-menu-text">Tutor</span>
                              </a>
                          </li>
                          <li class="nk-menu-item">
-                             <a href="driver-list.php" class="nk-menu-link">
+                             <a href="user-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user"></em></span>
                                  <span class="nk-menu-text">User</span>
                              </a>
@@ -63,18 +57,24 @@
                      <?php } ?>
                      <?php if ($_SESSION['designation'] == 'tutor') { ?>
                          <li class="nk-menu-item">
-                             <a href="edit-owner.php?id=<?php echo $_SESSION["admin_id"] ?>" target="_blank" class="nk-menu-link">
+                             <a href="edit-tutor.php?id=<?php echo $_SESSION["admin_id"] ?>" target="_blank" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
                                  <span class="nk-menu-text">My Profile</span>
                              </a>
                          </li>
                      <?php } ?>
                      <li class="nk-menu-item">
+                         <a href="blog-list.php" class="nk-menu-link">
+                             <span class="nk-menu-icon"><em class="icon fas fa-blog"></em></span>
+                             <span class="nk-menu-text">Blog</span>
+                         </a>
+                     </li>
+                     <!-- <li class="nk-menu-item">
                          <a href="bookings.php" class="nk-menu-link">
                              <span class="nk-menu-icon"><em class="icon fas fa-calendar-alt"></em></span>
                              <span class="nk-menu-text">Enrollments</span>
                          </a>
-                     </li>
+                     </li> -->
                  </ul><!-- .nk-menu -->
              </div><!-- .nk-sidebar-menu -->
          </div><!-- .nk-sidebar-content -->

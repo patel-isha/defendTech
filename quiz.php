@@ -89,26 +89,35 @@ include 'include/header-links.php';
                                     <fieldset name="step2">
                                         <div class="form-card">
                                             <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">3) Which mode of transportation do you prefer for long-distance travel?</h6>
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="traveler" value="Adventure seeker" qid="1">Adventure seeker</label>
+                                                <h6 class="navy-blue mb-3">3) Which of these is a common type of cyberattack?</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Phishing</label>
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="traveler" value="Relaxation enthusiast" qid="1">Relaxation enthusiast</label>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Surfing</label>
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="traveler" value="Foodie traveler" qid="1">Foodie traveler</label>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Listening</label>
                                                 </div>
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="traveler" value="Culture explorer" qid="1">Culture explorer</label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" name="traveler" value="Business traveler" qid="1">Business traveler</label>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Sharing</label>
                                                 </div>
                                             </div>
                                             <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">4) What influences your destination choice the most?</h6>
-                                                <textarea class="form-control" rows="3" qid="4"></textarea>
+                                                <h6 class="navy-blue mb-3">4) What does two-factor authentication (2FA) add to your account security?</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">A second password</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">A backup email address
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">An additional layer of verification</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Extra permissions to access your account</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
@@ -117,12 +126,34 @@ include 'include/header-links.php';
                                     <fieldset name="step3">
                                         <div class="form-card">
                                             <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">5) What type of accommodation do you prefer?</h6>
-                                                <textarea class="form-control" rows="3" qid="5"></textarea>
+                                                <h6 class="navy-blue mb-3">5) Which of the following is a safe practice for using public Wi-Fi</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Accessing sensitive information like bank accounts</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Using a VPN (Virtual Private Network)</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Disabling your device's firewall</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Connecting without security concerns</label>
+                                                </div>
                                             </div>
                                             <div class="mb-30">
-                                                <h6 class="navy-blue">6) How do you plan your travel itinerary?</h6>
-                                                <textarea class="form-control" rows="3" qid="6"></textarea>
+                                                <h6 class="navy-blue">6) What should you do if you suspect your device is infected with malware?</h6>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Ignore it and continue using your device</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Disconnect from the internet and run a full antivirus scan </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Delete all your files</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Restart your computer to solve the issue</label>
+                                                </div>
                                             </div>
                                         </div>
                                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />

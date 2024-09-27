@@ -32,7 +32,7 @@ if (isset($_POST['login'])) {
             }
             //Get Tutor Details
             $_SESSION['admin_id'] = $row['user_id'];
-            header("Location:dashboard.php");
+            header("Location:course-list.php");
         } else if ($row['designation'] == "student"){
             $error = 'No records found!';
         }

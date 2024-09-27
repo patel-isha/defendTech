@@ -26,6 +26,11 @@ if(isset($_POST["type"]) && $_POST["type"] == "course-content") {
     $sql = "DELETE from `course_content` WHERE cct_id = '$id'";
 }
 
+if(isset($_POST["type"]) && $_POST["type"] == "blog-list") {
+    $id = $_POST["id"];
+    $sql = "DELETE from `blog` WHERE b_id = '$id'";
+}
+
 if(isset($_POST["type"]) && $_POST["type"] == "car-owner") {
     $id = $_POST["id"];
 

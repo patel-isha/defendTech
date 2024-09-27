@@ -190,13 +190,6 @@ include 'include/header-links.php';
           </div>
         </div>
         <!-- end col-lg-9 -->
-        <div class="col-lg-3">
-          <div class="category-btn-box text-end">
-            <a href="categories.html" class="btn theme-btn">All Categories <i class="la la-arrow-right icon ms-1"></i></a>
-          </div>
-          <!-- end category-btn-box-->
-        </div>
-        <!-- end col-lg-3 -->
       </div>
       <!-- end row -->
       <div class="category-wrapper mt-30px">
@@ -223,7 +216,6 @@ include 'include/header-links.php';
                     <div class="category-inner">
                       <h3 class="cat__title"><a href="#"><?php echo $row['cc_name']; ?></a></h3>
                       <p class="cat__meta"><?php echo $courseCount; ?> courses</p>
-                      <a href="#" class="btn theme-btn theme-btn-sm theme-btn-white">Explore<i class="la la-arrow-right icon ms-1"></i></a>
                     </div>
                   </div>
                   <!-- end category-content -->
@@ -1081,101 +1073,6 @@ include 'include/header-links.php';
   <!-- end about-area -->
   <!--======================================
         END ABOUT AREA
-======================================-->
-
-  <div class="section-block"></div>
-
-  <!--======================================
-        START REGISTER AREA
-======================================-->
-  <section class="register-area section-padding dot-bg overflow-hidden">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="card card-item">
-            <div class="card-body">
-              <h3 class="fs-24 font-weight-semi-bold pb-2">
-                Receive Free Courses
-              </h3>
-              <div class="divider"><span></span></div>
-              <form method="post">
-                <div class="input-box">
-                  <label class="label-text mb-2">Name</label>
-                  <div class="form-group mb-3">
-                    <input class="form-control form--control" type="text" name="name" placeholder="Your Name" />
-                    <span class="la la-user input-icon"></span>
-                  </div>
-                </div>
-                <!-- end input-box -->
-                <div class="input-box">
-                  <label class="label-text mb-2">Email</label>
-                  <div class="form-group mb-3">
-                    <input class="form-control form--control" type="email" name="email" placeholder="Email Address" />
-                    <span class="la la-envelope input-icon"></span>
-                  </div>
-                </div>
-                <!-- end input-box -->
-                <div class="input-box">
-                  <label class="label-text mb-2">Phone Number</label>
-                  <div class="form-group mb-3">
-                    <input class="form-control form--control" type="text" name="phone" placeholder="Phone Number" />
-                    <span class="la la-phone input-icon"></span>
-                  </div>
-                </div>
-                <!-- end input-box -->
-                <div class="input-box">
-                  <label class="label-text mb-2">Subject</label>
-                  <div class="form-group mb-3">
-                    <input class="form-control form--control" type="text" name="subject" placeholder="Subject" />
-                    <span class="la la-book input-icon"></span>
-                  </div>
-                </div>
-                <!-- end input-box -->
-                <div class="btn-box pt-2">
-                  <button class="btn theme-btn" type="submit">
-                    Apply Now <i class="la la-arrow-right icon ms-1"></i>
-                  </button>
-                </div>
-                <!-- end btn-box -->
-              </form>
-            </div>
-            <!-- end card-body -->
-          </div>
-          <!-- end card -->
-        </div>
-        <!-- end col-lg-5 -->
-        <div class="col-lg-6 ms-auto">
-          <div class="register-content">
-            <div class="section-heading">
-              <h5 class="ribbon ribbon-lg mb-2">Register</h5>
-              <h2 class="section__title">
-                Get ahead with Learning Paths. Stay Sharp.
-              </h2>
-              <span class="section-divider"></span>
-              <p class="section__desc">
-                Join DefendTech to gain access to expertly crafted Learning Paths that guide you step-by-step in
-                mastering cybersecurity skills. Whether you're a beginner or an experienced professional,
-                our courses are designed to keep you sharp and up-to-date with the latest industry practices,
-                ensuring you stay ahead in your career. Sign up today and start your journey to becoming a
-                cybersecurity expert.
-              </p>
-            </div>
-            <!-- end section-heading -->
-            <div class="btn-box pt-35px">
-              <a href="register.php" class="btn theme-btn"><i class="la la-user me-1"></i>Get Started</a>
-            </div>
-          </div>
-          <!-- end register-content -->
-        </div>
-        <!-- end col-lg-6 -->
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end container -->
-  </section>
-  <!-- end register-area -->
-  <!--======================================
-        END REGISTER AREA
 ======================================-->
 
   <div class="section-block"></div>

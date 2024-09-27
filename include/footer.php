@@ -24,7 +24,7 @@
                         <li><a href="about.php">About us</a></li>
                         <li><a href="course-grid.php">Courses</a></li>
                         <li><a href="quiz.php">Quiz</a></li>
-                        <li><a href="admin/sign-in.php">Admin Dashboard</a></li>
+                        <li><a href="admin/sign-in.php">Admin/Tutor Dashboard</a></li>
                     </ul>
                 </div>
                 <!-- end footer-item -->

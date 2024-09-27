@@ -67,7 +67,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
@@ -118,7 +118,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
@@ -169,7 +169,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
@@ -220,7 +220,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
@@ -271,7 +271,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
@@ -322,7 +322,7 @@ include 'include/header-links.php';
               </h5>
               <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center flex-wrap fs-14 pt-2">
                 <li class="d-flex align-items-center">
-                  By<a href="#">TechyDevs</a>
+                  ByDefendTech
                 </li>
                 <li class="d-flex align-items-center">
                   <a href="#">4 Comments</a>
