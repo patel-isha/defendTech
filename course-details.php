@@ -39,11 +39,6 @@ include 'include/header-links.php';
     <div class="container">
       <div class="col-lg-8 me-auto">
         <div class="breadcrumb-content">
-          <ul class="generic-list-item generic-list-item-arrow d-flex flex-wrap align-items-center">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="#">Development</a></li>
-            <li><a href="#">Java</a></li>
-          </ul>
           <div class="section-heading">
             <h2 class="section__title">
                 <?php echo $courseDetail['course_title']; ?>
@@ -105,18 +100,6 @@ include 'include/header-links.php';
             </p>
           </div>
           <!-- end d-flex -->
-          <div class="bread-btn-box pt-3">
-            <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 me-2 mb-2">
-              <i class="la la-heart-o me-1"></i>
-              <span class="swapping-btn" data-text-swap="Wishlisted" data-text-original="Wishlist">Wishlist</span>
-            </button>
-            <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 me-2 mb-2" data-bs-toggle="modal" data-bs-target="#shareModal">
-              <i class="la la-share me-1"></i>Share
-            </button>
-            <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 mb-2" data-bs-toggle="modal" data-bs-target="#reportModal">
-              <i class="la la-flag me-1"></i>Report abuse
-            </button>
-          </div>
         </div>
         <!-- end breadcrumb-content -->
       </div>

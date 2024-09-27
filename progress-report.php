@@ -64,32 +64,31 @@ include 'include/header-links.php';
                   <ul class="generic-list-item">
                     <li>
                       <span class="badge bg-success text-white p-1">Passed</span>
-                      <span>January 22, 2019 10:50am</span>
+                      <span>September 27, 2024</span>
                     </li>
                     <li>
-                      <a href="course-details.php" class="text-black">Adobe After Effects CC: The Complete Motion Graphics
-                        Course</a>
+                      <a href="course-details.php" class="text-black">Cybersecurity Basics</a>
                     </li>
                   </ul>
                 </th>
                 <td>
                   <ul class="generic-list-item">
-                    <li>12</li>
+                    <li>6</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>22.00</li>
+                    <li>30</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>5.00(60%)</li>
+                    <li>25</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>20.25(75%)</li>
+                    <li>20</li>
                   </ul>
                 </td>
               </tr>
@@ -98,132 +97,31 @@ include 'include/header-links.php';
                   <ul class="generic-list-item">
                     <li>
                       <span class="badge bg-danger text-white p-1">Failed</span>
-                      <span>January 22, 2019 10:50am</span>
+                      <span>September 26, 2024</span>
                     </li>
                     <li>
-                      <a href="course-details.php" class="text-black">The Ultimate Text-To-Video Creation Course</a>
+                      <a href="course-details.php" class="text-black">Cybersecurity Basics</a>
                     </li>
                   </ul>
                 </th>
                 <td>
                   <ul class="generic-list-item">
-                    <li>12</li>
+                    <li>6</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>22.00</li>
+                    <li>30</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>2.00(7%)</li>
+                    <li>5</li>
                   </ul>
                 </td>
                 <td>
                   <ul class="generic-list-item">
-                    <li>20.25(75%)</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <ul class="generic-list-item">
-                    <li>
-                      <span class="badge bg-success text-white p-1">Passed</span>
-                      <span>January 22, 2019 10:50am</span>
-                    </li>
-                    <li>
-                      <a href="course-details.php" class="text-black">Complete Ethical Hacking Course: Zero to Hero</a>
-                    </li>
-                  </ul>
-                </th>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>12</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>22.00</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>5.00(60%)</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>20.25(75%)</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <ul class="generic-list-item">
-                    <li>
-                      <span class="badge bg-danger text-white p-1">Failed</span>
-                      <span>January 22, 2019 10:50am</span>
-                    </li>
-                    <li>
-                      <a href="course-details.php" class="text-black">Javascript - From Beginner to Pro-Build real world JS
-                        apps</a>
-                    </li>
-                  </ul>
-                </th>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>12</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>22.00</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>2.00(7%)</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>20.25(75%)</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <ul class="generic-list-item">
-                    <li>
-                      <span class="badge bg-success text-white p-1">Passed</span>
-                      <span>January 22, 2019 10:50am</span>
-                    </li>
-                    <li>
-                      <a href="course-details.php" class="text-black">iOS 12 & Swift: The Complete Developer Course
-                        (Project base)</a>
-                    </li>
-                  </ul>
-                </th>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>12</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>22.00</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>7.00(60%)</li>
-                  </ul>
-                </td>
-                <td>
-                  <ul class="generic-list-item">
-                    <li>20.25(75%)</li>
+                    <li>20</li>
                   </ul>
                 </td>
               </tr>

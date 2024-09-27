@@ -41,8 +41,6 @@ include 'include/header-links.php';
                                     <li id="step2"></li>
                                     <li id="step3"></li>
                                     <li id="step4"></li>
-                                    <li id="step5"></li>
-                                    <li id="step6"></li>
                                 </ul>
                                 <h3 class="navy-blue mb-30"><strong>Cybersecurity Basics <span class="orange">Quiz</span></strong></h3>
                                 <!-- fieldsets -->
@@ -70,16 +68,16 @@ include 'include/header-links.php';
                                             <div class="mb-30">
                                                 <h6 class="navy-blue">2) What should you do if you receive a suspicious email?</h6>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Open it to see if it's important.</label>
+                                                    <label><input type="radio" name="travel2" value="Less than once" qid="2">Open it to see if it's important.</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Click the link to find out more.</label>
+                                                    <label><input type="radio" name="travel2" value="1-2 times" qid="2">Click the link to find out more.</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Mark it as spam or delete it.</label>
+                                                    <label><input type="radio" name="travel2" value="3-5 times" qid="2">Mark it as spam or delete it.</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Reply to ask for more details.</label>
+                                                    <label><input type="radio" name="travel2" value="More than 5 times" qid="2">Reply to ask for more details.</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -91,32 +89,32 @@ include 'include/header-links.php';
                                             <div class="mb-30">
                                                 <h6 class="navy-blue mb-3">3) Which of these is a common type of cyberattack?</h6>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Phishing</label>
+                                                    <label><input type="radio" name="travel3" value="Less than once" qid="2">Phishing</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Surfing</label>
+                                                    <label><input type="radio" name="travel3" value="1-2 times" qid="2">Surfing</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Listening</label>
+                                                    <label><input type="radio" name="travel3" value="3-5 times" qid="2">Listening</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Sharing</label>
+                                                    <label><input type="radio" name="travel3" value="More than 5 times" qid="2">Sharing</label>
                                                 </div>
                                             </div>
                                             <div class="mb-30">
                                                 <h6 class="navy-blue mb-3">4) What does two-factor authentication (2FA) add to your account security?</h6>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">A second password</label>
+                                                    <label><input type="radio" name="travel4" value="Less than once" qid="2">A second password</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">A backup email address
+                                                    <label><input type="radio" name="travel4" value="1-2 times" qid="2">A backup email address
                                                     </label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">An additional layer of verification</label>
+                                                    <label><input type="radio" name="travel4" value="3-5 times" qid="2">An additional layer of verification</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Extra permissions to access your account</label>
+                                                    <label><input type="radio" name="travel4" value="More than 5 times" qid="2">Extra permissions to access your account</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,51 +141,23 @@ include 'include/header-links.php';
                                             <div class="mb-30">
                                                 <h6 class="navy-blue">6) What should you do if you suspect your device is infected with malware?</h6>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="Less than once" qid="2">Ignore it and continue using your device</label>
+                                                    <label><input type="radio" name="travel5" value="Less than once" qid="2">Ignore it and continue using your device</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="1-2 times" qid="2">Disconnect from the internet and run a full antivirus scan </label>
+                                                    <label><input type="radio" name="travel5" value="1-2 times" qid="2">Disconnect from the internet and run a full antivirus scan </label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="3-5 times" qid="2">Delete all your files</label>
+                                                    <label><input type="radio" name="travel5" value="3-5 times" qid="2">Delete all your files</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <label><input type="radio" name="travel" value="More than 5 times" qid="2">Restart your computer to solve the issue</label>
+                                                    <label><input type="radio" name="travel5" value="More than 5 times" qid="2">Restart your computer to solve the issue</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                        <input type="button" name="make_payment" class="next action-button" value="Next" />
-                                    </fieldset>
-                                    <fieldset name="step4">
-                                        <div class="form-card">
-                                            <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">7) What activities do you enjoy most while traveling? (Select all that apply)</h6>
-                                                <textarea class="form-control" rows="3" qid="7"></textarea>
-                                            </div>
-                                            <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">8) How do you prefer to book your travel arrangements?</h6>
-                                                <textarea class="form-control" rows="3" qid="8"></textarea>
-                                            </div>
-                                        </div>
-                                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                        <input type="button" name="next" class="next action-button" value="Next" />
-                                    </fieldset>
-                                    <fieldset name="step5">
-                                        <div class="form-card">
-                                            <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">9) How important is sustainable/eco-friendly travel to you?</h6>
-                                                <textarea class="form-control" rows="3" qid="9"></textarea>
-                                            </div>
-                                            <div class="mb-30">
-                                                <h6 class="navy-blue mb-3">10) How do you typically document your travel experiences?</h6>
-                                                <textarea class="form-control" rows="3" qid="10"></textarea>
                                             </div>
                                         </div>
                                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                         <input type="button" name="next" class="next action-button" value="Finish" />
                                     </fieldset>
-                                    <fieldset name="step6">
+                                    <fieldset name="step4">
                                         <div class="form-card">
                                             <h2 class="fs-title text-center">Success !</h2>
                                             <br>
@@ -198,13 +168,13 @@ include 'include/header-links.php';
                                             </div>
                                             <div class="row justify-content-center mt-3">
                                                 <div class="col-6 text-center">
-                                                    <a href="#" id="viewInvoiceLink" class="btn btn-primary action-button w-75">View Your Invoice</a>
+                                                    <a href="progress-report.php" id="viewInvoiceLink" class="btn btn-primary action-button w-75">View Your Report</a>
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row justify-content-center">
                                                 <div class="col-7 text-center">
-                                                    <h5>You Have Successfully Completed The Survey</h5>
+                                                    <h5>You Have Successfully Completed The Quiz</h5>
                                                 </div>
                                             </div>
                                         </div>

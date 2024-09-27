@@ -3,6 +3,20 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include 'config/connection.php';
 include 'include/session.php';
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch user data from the database
+$sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // Fetch the user details as an associative array
+  $user = $result->fetch_assoc();
+} else {
+  echo "No user found!";
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +66,7 @@ include 'include/header-links.php';
                 alt="Student thumbnail image" />
             </div>
             <div class="media-body">
-              <h2 class="section__title fs-30">Howdy, Tim Buchalka</h2>
+              <h2 class="section__title fs-30"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></h2>
             </div>
             <!-- end media-body -->
           </div>
@@ -66,22 +80,22 @@ include 'include/header-links.php';
         <div class="profile-detail mb-5">
           <ul class="generic-list-item generic-list-item-flash">
             <li>
-              <span class="profile-name">Registration Date:</span><span class="profile-desc">Sat 20 Apr 2019, 03:50:30 AM</span>
+              <span class="profile-name">Registration Date:</span><span class="profile-desc"><?php echo date("D d M Y, h:i:s A", strtotime($user['created_at'])); ?></span>
             </li>
             <li>
-              <span class="profile-name">First Name:</span><span class="profile-desc">Alex</span>
+              <span class="profile-name">First Name:</span><span class="profile-desc"><?php echo $user['first_name']; ?></span>
             </li>
             <li>
-              <span class="profile-name">Last Name:</span><span class="profile-desc">Smith</span>
+              <span class="profile-name">Last Name:</span><span class="profile-desc"><?php echo $user['last_name']; ?></span>
             </li>
             <li>
-              <span class="profile-name">Email:</span><span class="profile-desc">alexsmith@gmail.com</span>
+              <span class="profile-name">Email:</span><span class="profile-desc"><?php echo $user['email']; ?></span>
             </li>
             <li>
-              <span class="profile-name">Contact Number:</span><span class="profile-desc">(91) 7547 622250</span>
+              <span class="profile-name">Contact Number:</span><span class="profile-desc"><?php echo $user['contact_no']; ?></span>
             </li>
             <li>
-              <span class="profile-name">Gender:</span><span class="profile-desc">Male</span>
+              <span class="profile-name">Gender:</span><span class="profile-desc"><?php echo ucfirst($user['gender']); ?></span>
             </li>
           </ul>
         </div>
