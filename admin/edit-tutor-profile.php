@@ -1,48 +1,45 @@
 <?php
 include 'config/connection.php';
 
-// Fetch Car Category Details
+// Fetch Tutor Details
 $id = "";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $editOwnerSql = "SELECT * FROM `owners` WHERE owner_id = '$id'";
-    $editOwnerResult = $conn->query($editOwnerSql);
-    if ($editOwnerResult->num_rows > 0) {
-        $rowEditOwner = $editOwnerResult->fetch_assoc();
-        $user_id = $rowEditOwner["user_id"];
-        //User Details
-        $editUserSql = "SELECT * FROM `user_register` WHERE user_id = '$user_id'";
-        $editUserResult = $conn->query($editUserSql);
-        $rowEditUser = $editUserResult->fetch_assoc();
+    $editTutorSql = "SELECT * FROM `users` WHERE user_id = '$id'";
+    $editTutorResult = $conn->query($editTutorSql);
+    if ($editTutorResult->num_rows > 0) {
+        $rowEditTutor = $editTutorResult->fetch_assoc();
     } else {
         echo "<h3>No Data Found!</h3>";
         die;
     }
 }
+
+function sanitize_input($data)
+{
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
 //Execute the query
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["updateOwner"])) {
+    if (isset($_POST["updateTutor"])) {
         //Retrieve form data
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $contact_no = $_POST["phone"];
-        $address = $_POST["address"];
-        $zipcode = $_POST["code"];
-        $gender = $_POST["gender"];
-        $username = $_POST["uname"];
-        $password = $_POST["password"];
+        $fname = sanitize_input($_POST["first_name"]);
+        $lname = sanitize_input($_POST["last_name"]);
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+        $contact_no = sanitize_input($_POST["phone"]);
+        $designation = sanitize_input($_POST["designation"]);
+        $gender = sanitize_input($_POST["gender"]);
 
         //SQL query to inser data into the database
-        $sql = "UPDATE `owners` SET `name` = '$name',`email` = '$email',`contact_no` = '$contact_no',`address` = '$address',`zipcode` = '$zipcode',`gender` = '$gender' WHERE owner_id = '$id'";
+        $sql = "UPDATE `users` SET `first_name` = '$fname',`last_name` = '$lname',`email` = '$email',`contact_no` = '$contact_no',`gender` = '$gender' WHERE user_id = '$id'";
 
         //Execute the query
         if ($conn->query($sql) === TRUE) {
-            $user_id = $rowEditOwner["user_id"];
-            //SQL query to inser data into the database
-            $sqlUser = "UPDATE `user_register` SET `fullname` = '$name',`email` = '$email' WHERE user_id = '$user_id'";
-            $conn->query($sqlUser);
-            echo "<h3>Owner Updated Successfully!</h3>";
-            echo "<script> location.href='owner-list.php'; </script>";
+            $last_id = mysqli_insert_id($conn);
+
+            echo "<h3>Profile Data Updated Successfully!</h3>";
+            echo "<script> location.href='edit-tutor-profile.php?id=" . $id . "'; </script>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
             die;
@@ -78,12 +75,9 @@ include 'include/session.php';
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <?php if ($_SESSION['roletype'] == 'owner') { ?>
-                                                <h3 class="nk-block-title page-title">Edit Profile Details</h3>
-                                            <?php } ?>
-                                            <?php if ($_SESSION['roletype'] == 'admin') { ?>
-                                                <h3 class="nk-block-title page-title">Edit Owner Details</h3>
-                                            <?php } ?>
+                                            <h3 class="nk-block-title page-title">
+                                                Edit Profile Details
+                                            </h3>
                                         </div>
                                     </div>
                                 </div>
@@ -94,9 +88,17 @@ include 'include/session.php';
                                                 <!-- Full name -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="name">Full Name</label>
+                                                        <label class="form-label" for="fname">First Name</label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $rowEditOwner['name'] ?>" placeholder="name" required>
+                                                            <input class="form-control" id="fname" name="first_name" value="<?php echo $rowEditTutor['first_name'] ?>" placeholder="First Name" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="lname">Last Name</label>
+                                                        <div class="form-control-wrap">
+                                                            <input class="form-control" id="lname" name="last_name" value="<?php echo $rowEditTutor['last_name'] ?>" placeholder="Last Name" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -108,7 +110,7 @@ include 'include/session.php';
                                                             <div class="form-icon form-icon-right">
                                                                 <em class="icon ni ni-mail"></em>
                                                             </div>
-                                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $rowEditOwner['email'] ?>" placeholder="email" required>
+                                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $rowEditTutor['email'] ?>" placeholder="email" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,28 +119,7 @@ include 'include/session.php';
                                                     <div class="form-group">
                                                         <label class="form-label" for="phone">Contact No.</label>
                                                         <div class="form-control-wrap">
-                                                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone" value="<?php echo $rowEditOwner['contact_no'] ?>" pattern="[0-9]{10,11}" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Zip code -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="code">Zipcode</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="code" name="code" value="<?php echo $rowEditOwner['zipcode'] ?>" placeholder="zipcode" pattern="[a-zA-Z0-9\s]{6,7}" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Username -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="uname">Username</label>
-                                                        <div class="form-control-wrap">
-                                                            <div class="form-icon form-icon-right">
-                                                                <em class="icon ni ni-user"></em>
-                                                            </div>
-                                                            <input type="text" class="form-control" id="uname" name="uname" value="<?php echo $rowEditUser['username'] ?>" placeholder="abc001" disabled>
+                                                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone" value="<?php echo $rowEditTutor['contact_no'] ?>" pattern="[0-9]{10,11}" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -150,19 +131,19 @@ include 'include/session.php';
                                                             <ul class="custom-control-group">
                                                                 <li>
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio" class="custom-control-input" name="gender" value="male" id="sex-male" <?php if ($rowEditOwner['gender'] == "male") { ?> checked <?php } ?> required>
+                                                                        <input type="radio" class="custom-control-input" name="gender" value="male" id="sex-male" <?php if ($rowEditTutor['gender'] == "male") { ?> checked <?php } ?> required>
                                                                         <label class="custom-control-label" for="sex-male">Male</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio" class="custom-control-input" name="gender" value="female" id="sex-female" <?php if ($rowEditOwner['gender'] == "female") { ?> checked <?php } ?> required>
+                                                                        <input type="radio" class="custom-control-input" name="gender" value="female" id="sex-female" <?php if ($rowEditTutor['gender'] == "female") { ?> checked <?php } ?> required>
                                                                         <label class="custom-control-label" for="sex-female">Female</label>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="custom-control custom-radio">
-                                                                        <input type="radio" class="custom-control-input" name="gender" value="other" id="sex-other" <?php if ($rowEditOwner['gender'] == "other") { ?> checked <?php } ?> required>
+                                                                        <input type="radio" class="custom-control-input" name="gender" value="other" id="sex-other" <?php if ($rowEditTutor['gender'] == "other") { ?> checked <?php } ?> required>
                                                                         <label class="custom-control-label" for="sex-other">Others</label>
                                                                     </div>
                                                                 </li>
@@ -170,18 +151,9 @@ include 'include/session.php';
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Address -->
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="address">Address</label>
-                                                        <div class="form-control-wrap">
-                                                            <textarea class="form-control form-control-sm" id="address" name="address" placeholder="address" required><?php echo $rowEditOwner['address'] ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <button type="submit" name="updateOwner" class="btn btn-lg btn-primary">Update</button>
+                                                        <button type="submit" name="updateTutor" class="btn btn-lg btn-primary">Update</button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1,37 +1,63 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors',1);
+ini_set('display_errors', 1);
 include 'config/connection.php';
+
+function sanitize_input($data)
+{
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Retrieve form data
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $contact_no = $_POST["phone"];
-    $address = $_POST["address"];
-    $zipcode = $_POST["code"];
-    $gender = $_POST["gender"];
-    $username = $_POST["uname"];
-    $password = sha1($_POST["password"]);
-    $role_type = 'owner';
+    // Retrieve and sanitize form data
+    $fname = sanitize_input($_POST["fname"]);
+    $lname = sanitize_input($_POST["lname"]);
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $contact_no = sanitize_input($_POST["phone"]);
+    $designation = sanitize_input($_POST["designation"]);
+    $gender = sanitize_input($_POST["gender"]);
+    $password = SHA1($_POST["password"]);
 
-    //SQL query to inser data into the database
-    $sqlUser = "INSERT INTO `user_register`(`role_type`,`full_name`, `email`, `username`, `password`) 
-        VALUES ('$role_type','$name', '$email', '$username', '$password')";
+    // Validate email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = 'Invalid email formats!';
+    }
 
-    //Execute the query
-    if ($conn->query($sqlUser) === TRUE) {
-        $last_id = mysqli_insert_id($conn);
+    // Check if email exist
+    $sqlEmail = "SELECT * FROM users WHERE email = '$email'";
 
-        //SQL query to inser data into the database
-        $sql = "INSERT INTO `owners`(`name`, `email`, `contact_no`, `address`, `zipcode`, `gender`, `user_id`) 
-        VALUES ('$name', '$email', '$contact_no', '$address', '$zipcode', '$gender', '$last_id')";
-        $conn->query($sql);
+    $result = $conn->query($sqlEmail);
 
-        echo "<h3>Car Owner Added Successfully!</h3>";
-        echo "<script> location.href='owner-list.php'; </script>";
-    } else {
-        echo "Error: " . $sqlUser . "<br>" . $conn->error;
-        die;
+    if ($result->num_rows > 0) {
+        $error = 'Email already exists!';
+    }
+
+    // Validate phone number (optional: add more specific validation if needed)
+    if (!preg_match('/^[0-9]{10,11}$/', $contact_no)) {
+        $error = 'Invalid phone number format!';
+    }
+
+    if (empty($error)) {
+        //SQL query to insert data into the database
+        $sql = "INSERT INTO `users`(`first_name`, `last_name`, `email`, `contact_no`, `designation`, `gender`, `password`) 
+VALUES ('$fname', '$lname', '$email', '$contact_no', '$designation', '$gender', '$password')";
+
+        //Execute the query
+        if ($conn->query($sql) === TRUE) {
+            $last_id = mysqli_insert_id($conn);
+
+            // Redirect based on designation
+            if ($designation === 'tutor') {
+                echo "<h3>Tutor Added Successfully!</h3>";
+                echo "<script> location.href='tutor-list.php'; </script>";
+            } else {
+                echo "<h3>Student/Learner Added Successfully!</h3>";
+                echo "<script> location.href='student-list.php'; </script>";
+            }
+        } else {
+            $error = 'Something went wrong!';
+        }
     }
 }
 ?>
@@ -63,25 +89,38 @@ include 'include/session.php';
                                 <div class="nk-block-head nk-block-head-sm">
                                     <div class="nk-block-between">
                                         <div class="nk-block-head-content">
-                                            <h3 class="nk-block-title page-title">Add Owner</h3>
+                                            <h3 class="nk-block-title page-title">Add Tutor/Student</h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card card-bordered">
                                     <div class="card-inner">
                                         <form method="post">
+                                            <?php
+                                            if (isset($error) && $error != "") {
+                                                echo "<div class='alert alert-danger'>" . $error . "</div>";
+                                            }
+                                            ?>
                                             <div class="row g-gs">
                                                 <!-- Full name -->
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="name">Full Name</label>
+                                                        <label class="label-text">First Name</label>
                                                         <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                                                            <input type="text" class="form-control" name="fname" id="fname" placeholder="First name" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="label-text">Last Name</label>
+                                                        <div class="form-control-wrap">
+                                                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Last name" required>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- Email -->
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="form-label" for="email">Email address</label>
                                                         <div class="form-control-wrap">
@@ -101,12 +140,16 @@ include 'include/session.php';
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Zip code -->
+                                                <!-- Designation -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label class="form-label" for="code">Zipcode</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="text" class="form-control" id="code" name="code" placeholder="Enter your zipcode" pattern="[a-zA-Z0-9\s]{6,7}" required>
+                                                        <label class="form-label" for="designation">Designation</label>
+                                                        <div class="form-control-wrap ">
+                                                            <select class="form-select js-select2" id="designation" name="designation" data-placeholder="Select a option" required>
+                                                                <option value="">Select designation</option>
+                                                                <option value="student">Student/Learner</option>
+                                                                <option value="tutor">Tutor</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -138,27 +181,6 @@ include 'include/session.php';
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Address -->
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="address">Address</label>
-                                                        <div class="form-control-wrap">
-                                                            <textarea class="form-control form-control-sm" id="address" name="address" placeholder="Enter your address here" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Username -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="uname">Username</label>
-                                                        <div class="form-control-wrap">
-                                                            <div class="form-icon form-icon-right">
-                                                                <em class="icon ni ni-user"></em>
-                                                            </div>
-                                                            <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter your username" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <!-- Password -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -168,18 +190,9 @@ include 'include/session.php';
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Confirm Password -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-label" for="conpassword">Confirm Password</label>
-                                                        <div class="form-control-wrap">
-                                                            <input type="password" class="form-control" id="conpassword" name="conpassword" placeholder="Re-enter your password" required title="Both password should match" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <button type="submit" name="addOwner" class="btn btn-lg btn-primary">Submit</button>
+                                                        <button type="submit" name="addTutor" class="btn btn-lg btn-primary">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,5 +216,37 @@ include 'include/session.php';
     <?php
     include 'include/footer-scripts.php';
     ?>
+
+    <script>
+        $(document).ready(function() {
+            $("#registerForm").validate({
+                rules: {
+                    fname: "required",
+                    lname: "required",
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                },
+                messages: {
+                    fname: "Enter your firstname",
+                    lname: "Enter your lastname",
+                    password: {
+                        required: "Provide a password",
+                        minlength: "Enter at least  characters"
+                    },
+                    email: {
+                        required: "Please enter a valid email address",
+                        minlength: "Please enter a valid email address",
+                    },
+                },
+            });
+        });
+    </script>
 </body>
+
 </html>

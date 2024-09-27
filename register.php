@@ -186,7 +186,7 @@ include 'include/header-links.php';
                             <option value="">
                               Select your designation
                             </option>
-                            <option value="student/Learner">Student/Learner</option>
+                            <option value="student">Student/Learner</option>
                             <option value="tutor">Tutor</option>
                           </select>
                         </div>

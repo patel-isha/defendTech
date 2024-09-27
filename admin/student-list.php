@@ -30,7 +30,7 @@ include 'include/session.php';
                                     <div class="nk-block-head nk-block-head-sm">
                                         <div class="nk-block-between">
                                             <div class="nk-block-head-content">
-                                                <h3 class="nk-block-title page-title">List of Tutors</h3>
+                                                <h3 class="nk-block-title page-title">List of Users</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@ include 'include/session.php';
                                                             <label></label>
                                                             <div class="form-control-wrap">
                                                                 <button type="submit" class="btn btn-lg btn-primary">Search</button>
-                                                                <a href="add-tutor-student.php" class="btn btn-lg btn-primary">Add Tutor</a>
+                                                                <a href="add-tutor-student.php" class="btn btn-lg btn-primary">Add Student</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -68,7 +68,7 @@ include 'include/session.php';
                                             <?php
                                             $search = isset($_POST["search"]) ? $_POST["search"] : '';
                                             # Prepare the SELECT Query
-                                            $sql = "SELECT * FROM `users` WHERE email LIKE '%$search%' AND designation = 'tutor'";
+                                            $sql = "SELECT * FROM `users` WHERE email LIKE '%$search%' AND designation = 'student'";
 
                                             # Execute the SELECT Query
                                             if (!($result = $conn->query($sql))) {

@@ -45,19 +45,19 @@
                          <li class="nk-menu-item">
                              <a href="tutor-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
-                                 <span class="nk-menu-text">Tutor</span>
+                                 <span class="nk-menu-text">Tutors</span>
                              </a>
                          </li>
                          <li class="nk-menu-item">
-                             <a href="user-list.php" class="nk-menu-link">
+                             <a href="student-list.php" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user"></em></span>
-                                 <span class="nk-menu-text">User</span>
+                                 <span class="nk-menu-text">Students</span>
                              </a>
                          </li>
                      <?php } ?>
                      <?php if ($_SESSION['designation'] == 'tutor') { ?>
                          <li class="nk-menu-item">
-                             <a href="edit-tutor.php?id=<?php echo $_SESSION["admin_id"] ?>" target="_blank" class="nk-menu-link">
+                             <a href="edit-tutor-profile.php?id=<?php echo $_SESSION["admin_id"] ?>" target="_blank" class="nk-menu-link">
                                  <span class="nk-menu-icon"><em class="icon fas fa-user-tie"></em></span>
                                  <span class="nk-menu-text">My Profile</span>
                              </a>
