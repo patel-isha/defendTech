@@ -2,6 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include 'config/connection.php';
+session_start();
 
 # Prepare the SELECT Query
 $sqlCourseCount = "SELECT COUNT(course_id) as course_count FROM course";
@@ -308,6 +309,23 @@ include 'include/header-links.php';
   include 'include/footer-scripts.php';
   ?>
   <script>
+      function addToCart(course_id) {
+          $.ajax({
+              url: 'add_to_cart.php', // The PHP file that processes the cart
+              method: 'POST',
+              data: {
+                  course_id: course_id,
+              },
+              success: function(response) {
+                  // Update the cart count (or other UI elements) dynamically
+                  var cart = JSON.parse(response);
+                  $('.product-count').text(cart.cart_count);
+              },
+              error: function(xhr, status, error) {
+                  console.error('AJAX Error:', status, error);
+              }
+          });
+      }
     $(document).ready(function() {
 
       filter_data();
@@ -356,7 +374,6 @@ include 'include/header-links.php';
       $('#searchCourse').keyup(function() {
         filter_data();
       });
-
     });
   </script>
 </body>

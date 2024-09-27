@@ -1,5 +1,7 @@
 <?php
 include 'config/connection.php';
+include 'config/session.php';
+session_start();
 
 # Prepare the SELECT Query
 $sqlCourseDetail = "SELECT c.*,cc.cc_id, 
@@ -81,8 +83,6 @@ include 'include/header-links.php';
                   <?php } ?>
 
               </div>
-              <span class="rating-total ps-1">(20,230 ratings)</span>
-              <span class="student-total ps-2">540,815 students</span>
             </div>
           </div>
           <!-- end d-flex -->

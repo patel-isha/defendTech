@@ -136,7 +136,7 @@ HAVING avg_rating > 0";
                     ' . $cost . '
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="#" class="btn theme-btn flex-grow-1 me-3"><i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart</a>
+                    <a href="javascript:void(0)" onclick="addToCart(' . $row['course_id'] . ')" class="btn theme-btn flex-grow-1 me-3"><i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
@@ -198,7 +198,7 @@ HAVING avg_rating > 0";
                                             '.$cost.'
                                         </p>
                                           <div class="justify-content-between align-items-center">
-                                              <a href="#" class="btn theme-btn flex-grow-1 me-3"><i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart</a>
+                                              <a href="javascript:void(0)" onclick="addToCart(' . $row['course_id'] . ')" class="btn theme-btn flex-grow-1 me-3"><i class="la la-shopping-cart me-1 fs-18"></i> Add to Cart</a>
                                           </div>
                                       </div>
                                     </div>
